@@ -791,10 +791,10 @@ de la Vall\'ee Poussin, quoted without proof; see, e.g.,
 \begin{theorem}[de la Vall\'ee Poussin zero-free region]
 \label{thm:zero-free}
 There exists an absolute constant $c_0 \in (0, 1/2)$ such that
-$\zeta(s) \neq 0$ on the region
+$\zeta(s) \neq 0$ on the open region
 \begin{equation}\label{eq:zero-free-region}
     \mathcal{Z} := \left\{ s = \sigma + it \in \C :
-    \sigma \geq 1 - \frac{c_0}{\log(|t| + 2)} \right\}
+    \sigma > 1 - \frac{c_0}{\log(|t| + 2)} \right\}
     \setminus \{1\}.
 \end{equation}
 \end{theorem}
@@ -829,9 +829,9 @@ is the slit along the real axis to the left of $s = 1$. The slit
 $\mathcal{S}$ disconnects the segment $\mathcal{Z} \cap \mathcal{S}$
 from the rest of $\mathcal{Z}$ from above and below, rendering
 $\mathcal{D}$ simply connected.\footnote{%
-Indeed, $\mathcal{Z} \setminus \{1\}$ is a slit-once-punctured
-domain that is not simply connected, since a small loop around
-$s = 1$ inside $\mathcal{Z}$ is not nullhomotopic. Removing the
+Indeed, $\mathcal{Z}$ is a slit-once-punctured domain that is not
+simply connected, since a small loop around $s = 1$ inside
+$\mathcal{Z}$ is not nullhomotopic. Removing the
 entire ray $(-\infty, 1]$ (equivalently, the connected component
 $\mathcal{Z} \cap \mathcal{S}$ of $\mathcal{S}$ inside
 $\mathcal{Z}$, which contains $s = 1$) cuts every such loop,
@@ -952,13 +952,12 @@ estimate (see, e.g., \cite[\S9.4]{} or
 \begin{theorem}[Bound on $\arg \zeta$]
 \label{thm:arg-zeta}
 There exists an absolute constant $C_{\arg} > 0$ such that, for
-every $\sigma > 1/2$ and every $|t| \geq 2$,
+every $s=\sigma+it\in\mathcal{D}$ with $|t| \geq 2$,
 \begin{equation}\label{eq:arg-zeta-bound}
-    |\arg \zeta(\sigma + it)| \leq C_{\arg} \log|t|,
+    |\arg \zeta(s)| \leq C_{\arg} \log|t|,
 \end{equation}
 where the branch of $\arg \zeta$ is the one determined by
-analytic continuation from $\sigma > 1$ along any path in
-$\mathcal{D}$.
+the logarithm $L$ on $\mathcal{D}$.
 \end{theorem}
 
 We now combine these bounds. On the range $|t| \geq 2$,
