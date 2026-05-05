@@ -14,6 +14,7 @@ This folder contains the LaTeX source for the paper.
 - `figures/`: figures used by `\includegraphics`
 - `tables/`: standalone table files
 - `bib/`: bibliography files such as `.bib`
+- `notes/`: project direction, notation, and proof-convention notes
 
 ## Build
 
