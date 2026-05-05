@@ -1,0 +1,10 @@
+*.tex text eol=lf
+*.bib text eol=lf
+*.md text eol=lf
+*.sty text eol=lf
+*.cls text eol=lf
+*.cfg text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
