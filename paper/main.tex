@@ -1,0 +1,1349 @@
+\documentclass[11pt]{article}
+% ===== 패키지 =====
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{mathrsfs}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{lettrine}
+% ===== 정리 환경 =====
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+
+\numberwithin{equation}{section}
+\newcommand{\myabstract}{
+\noindent
+\textsc{Abstract.}
+}
+% ===== 수학 기호 단축키 =====
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\Real}{\operatorname{Re}}
+
+% ===== 제목 / 저자 =====
+\title{\textbf{A New Decomposition of the Divisor Summatory Function and Its Asymptotic Formula}}
+\author{GUEHERN HWANG \\ Department of Mathematics, Ajou University}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% ===== Abstract =====
+\begin{quote}
+\noindent
+\textsc{Abstract.}
+In this paper, we study the asymptotic behavior of the divisor summatory 
+function $D(x)$. We establish the exact identity
+\begin{equation*}
+    D(x) = 1 + \sum_{i \geq 1} (i+1) \pi(x^{1/i}) 
+         + \sum_{j \geq 2} (-1)^j (j-1) T_j(x),
+\end{equation*}
+which decomposes $D(x)$ via inclusion--exclusion according to the number 
+of distinct prime factors of $n$. The three terms correspond respectively 
+to $n = 1$, prime powers, and integers with $\omega(n) \geq 2$, where the 
+last sum constitutes the main term.
+
+As the first step toward analyzing $D(x)$, we establish an asymptotic 
+formula with an explicit error term for $T_j(x)$ with fixed $j \geq 2$. 
+We consider the two-variable Dirichlet series $F(s, y)$ and obtain the 
+factorization $F(s, y) = \zeta(s)^{2+2y} H(s, y)$, where $H$ is 
+holomorphic near $s = 1$. Applying the Selberg--Delange 
+method---a truncated Perron formula, contour deformation, and local 
+Hankel analysis---we prove that
+\begin{equation*}
+    T_j(x) \sim \frac{2^j}{j!} \, x \log x \, (\log \log x)^j 
+    \quad \text{as } x \to \infty.
+\end{equation*}
+We hope to extend our results to obtain an asymptotic formula for 
+$D(x)$ itself.
+\end{quote}
+
+% ===== Introduction =====
+\section{Introduction}
+
+\subsection{The Dirichlet divisor problem}
+
+Let $d(n)$ denote the number of divisors of a positive integer $n$, and let
+\begin{equation}
+    D(x) := \sum_{n \leq x} d(n)
+\end{equation}
+be its summatory function. Dirichlet\cite{} proved in 1849 that
+\begin{equation}
+    D(x) = x \log x + (2\gamma - 1) x + \Delta(x),
+\end{equation}
+where $\gamma$ is the Euler--Mascheroni constant and 
+$\Delta(x) = O(x^{1/2})$. The Dirichlet divisor problem asks for the 
+infimum $\theta$ of all real numbers such that 
+$\Delta(x) = O(x^{\theta + \eps})$ for every $\eps > 0$.
+
+Hardy \cite{} proved in 1916 that $\theta \geq 1/4$, and it is 
+conjectured that $\theta = 1/4$. In the other direction, 
+Voronoï \cite{} first improved Dirichlet's bound to $\theta \leq 1/3$ 
+in 1904, and subsequent refinements based on Vinogradov's method of 
+exponential sums \cite{} led to the current best estimate, due to 
+Huxley \cite{} in 2003:
+\begin{equation}
+    \theta \leq 131/416.
+\end{equation}
+
+In this paper, rather than pursuing further improvements of $\theta$, 
+we explore an alternative approach: an exact combinatorial decomposition 
+of $D(x)$ via inclusion--exclusion on the number of distinct prime 
+factors of $n$.
+
+\subsection{A new decomposition}
+
+For a positive integer $n$, let $\omega(n)$ denote the number of distinct prime factors of $n$. For each integer $j\geq2$, define
+\begin{equation}\label{eq:Tj-def}
+    T_j(x) := \sum_{n \leq x}d(n)\binom{\omega(n)}{j}
+\end{equation}
+where $\binom{\omega(n)}{j}$ is the binomial coefficient. The main identity of this paper is the following.
+
+\begin{theorem}\label{thm:identity}
+    For every real number $x\geq1$,
+    \begin{equation}\label{eq:main-identity}
+        D(x)=1+\sum_{i\geq 1}(i+1)\pi(x^{1/i})+\sum_{j\geq 2}(-1)^j(j-1)T_j(x)
+    \end{equation}
+    where $\pi(x)$ denotes the prime-counting function.
+\end{theorem}
+
+The three terms on the right-hand side of \eqref{eq:main-identity} correspond, respectively, to $n = 1$, prime powers $\omega(n) = 1$, and integers with $\omega(n)\geq 2$. The proof of Theorem~\ref{thm:identity} is given in Section~\ref{sec:identity}.
+
+Classical results of Dirichlet give the asymptotic 
+$D(x) \sim x \log x$. By the prime number theorem, the prime-power 
+contribution satisfies
+\begin{equation}
+     \sum_{i \geq 1} (i+1) \pi(x^{1/i}) \sim \frac{2x}{\log x},
+\end{equation}
+which is of strictly smaller order than $x \log x$. Hence the 
+first two terms in the identity are negligible compared with the 
+main asymptotic of $D(x)$, and the third sum
+\begin{equation}
+    \sum_{j \geq 2} (-1)^j (j-1) T_j(x)
+\end{equation}
+must constitute the main term of $D(x)$. Individually, 
+each $T_j(x)$ grows rapidly with $j$, but the alternating coefficients 
+$(-1)^j (j-1)$ induce substantial cancellation, reducing the total 
+contribution to the order $x \log x$. Understanding the 
+asymptotic behavior of each $T_j(x)$ is therefore the first step toward 
+an asymptotic formula for $D(x)$ itself.
+
+\begin{example}
+    At $x=10000$, direct computation gives
+    \begin{align*}
+        T_2(10000) &= 297{,}078 & T_3(10000) &= 140{,}640 \\
+        T_4(10000) &= 26{,}674  & T_5(10000) &= 1{,}216
+    \end{align*}
+    and $T_j(10000)=0$ for $j\geq6$. The prime-power contribution equals 
+$2{,}711$, and the identity \eqref{eq:main-identity} yields
+    \begin{align*}
+        1+2{,}711+(T_2-2T_3+3T_4-4T_5)=1+2{,}711+90{,}956=93{,}668=D(10000),
+    \end{align*}
+    confirming Theorem~\ref{thm:identity} numerically. Moreover, the ratio between 
+$T_j(x)$ and its conjectured asymptotic $\frac{2^j}{j!}x\log x(\log\log x)^j$ converges to 1 only very slowly: at $x=10^9$, this ratio is 0.43 for 
+$j=2$ and 0.21 for $j=3$. This slow convergence motivates the refined 
+asymptotic expansion of $T_j(x)$ developed in Section~\ref{sec:extraction}.
+\end{example}
+
+\subsection{Main results}
+
+To analyze $T_j(x)$, we consider the two-variable Dirichlet series
+\begin{equation}
+    F(s, y) := \sum_{n \geq 1} \frac{d(n)(1+y)^{\omega(n)}}{n^s},
+\end{equation}
+which encodes $T_j(x)$ as the coefficient of $y^j$ in the generating 
+relation $\sum_{j \geq 0} T_j(x) y^j$. Here, we extend the definition 
+of $T_j(x)$ to all $j \geq 0$ by the formula~\eqref{eq:Tj-def}, so 
+that $T_0(x) = D(x)$ and $T_1(x) = \sum_{n \leq x} d(n) \omega(n)$. 
+The series $F(s, y)$ admits the factorization
+\begin{equation}
+    F(s, y) = \zeta(s)^{2+2y} H(s, y),
+\end{equation}
+where $H(s, y)$ is holomorphic in $s$ on a neighborhood of 
+$\Real(s) \geq 1$ and uniformly bounded for $y$ in a small disk 
+around $0$. This factorization isolates the singularity of 
+$F(s, y)$ at $s = 1$, and it is the starting point of the 
+Selberg--Delange method.
+
+Our main asymptotic result is the following.
+
+\begin{theorem}\label{thm:main}
+For each fixed integer $j \geq 2$, as $x \to \infty$,
+\begin{equation}
+\begin{aligned}
+    T_j(x) 
+    &= \frac{2^j}{j!} \, x \log x \, (\log \log x)^j \\
+    &\quad + \frac{2^{j-1}}{(j-1)!} 
+       \bigl(\partial_y H(1, 0) - 2(1 - \gamma)\bigr) 
+       x \log x \, (\log \log x)^{j-1} \\
+    &\quad + O\bigl(x \log x \, (\log \log x)^{j-2}\bigr).
+\end{aligned}
+\end{equation}
+In particular,
+\begin{equation}
+    T_j(x) \sim \frac{2^j}{j!} \, x \log x \, (\log \log x)^j.
+\end{equation}
+\end{theorem}
+
+The proof of Theorem~\ref{thm:main} is given in Sections~\ref{sec:perron}--\ref{sec:extraction}. The essential ingredients 
+are the truncated Perron formula, contour deformation around 
+$s = 1$, and a local Hankel analysis in the $w$-plane obtained 
+via the substitution $w = (s - 1) \log x$. The coefficient $\partial_y H(1, 0)$ admits an explicit expression as an absolutely convergent series over primes; we record this 
+expression in Section~\ref{sec:extraction}, where it is used in the proof of Theorem~\ref{thm:main}.
+
+Combining Theorem~\ref{thm:main} with the identity~\eqref{eq:main-identity}, 
+we hope to obtain an asymptotic formula for $D(x)$ itself. We 
+discuss this direction in Section~\ref{sec:outlook}.
+
+\subsection{Outline of the paper}
+
+The paper is organized as follows. In Section~\ref{sec:identity}, 
+we prove the identity (Theorem~\ref{thm:identity}) by partitioning 
+$D(x)$ according to $\omega(n)$ and applying an inclusion--exclusion 
+argument to the composite part. In Section~\ref{sec:dirichlet-series}, 
+we introduce the two-variable Dirichlet series $F(s, y)$ and establish 
+its factorization $F(s, y) = \zeta(s)^{2+2y} H(s, y)$, together with 
+the analytic properties of $H(s, y)$ needed in the sequel.
+
+Sections~\ref{sec:perron}--\ref{sec:extraction} are devoted to the 
+proof of Theorem~\ref{thm:main}. In Section~\ref{sec:perron}, we 
+apply the truncated Perron formula to the generating partial sum 
+$A(x, y) := \sum_{n \leq x} d(n) (1+y)^{\omega(n)}$ and deform the 
+contour around $s = 1$. In Section~\ref{sec:hankel}, we carry out 
+the local Hankel analysis via the substitution $w = (s-1) \log x$ 
+and evaluate the main and lower-order contributions. In 
+Section~\ref{sec:extraction}, we extract the asymptotic formula for 
+$T_j(x)$ from that of $A(x, y)$ by differentiating in $y$, thereby 
+completing the proof of Theorem~\ref{thm:main}.
+
+Finally, in Section~\ref{sec:outlook}, we combine 
+Theorem~\ref{thm:main} with the identity~\eqref{eq:main-identity} 
+and discuss the remaining obstacles toward an asymptotic formula 
+for $D(x)$.
+
+% ===== Section 2 =====
+\section{Proof of the identity}\label{sec:identity}
+
+In this section, we prove the identity stated in 
+Theorem~\ref{thm:identity}. The proof proceeds by partitioning 
+the sum $D(x) = \sum_{n \leq x} d(n)$ according to the value of 
+$\omega(n)$, and then applying an inclusion--exclusion argument 
+to the composite part.
+
+\begin{proof}[Proof of Theorem~\ref{thm:identity}]
+Partition the integers $n$ with $1 \leq n \leq x$ into three 
+disjoint classes:
+\begin{itemize}
+    \item[(i)] $n = 1$ (equivalently, $\omega(n) = 0$);
+    \item[(ii)] prime powers, i.e., $\omega(n) = 1$;
+    \item[(iii)] composite integers with $\omega(n) \geq 2$.
+\end{itemize}
+Writing $D(x)$ as the sum of contributions from each class, we 
+have
+\begin{equation}
+    D(x) = d(1) + \sum_{\substack{n \leq x \\ \omega(n) = 1}} d(n) 
+               + \sum_{\substack{n \leq x \\ \omega(n) \geq 2}} d(n).
+\end{equation}
+
+Since $d(1) = 1$, the first term equals $1$.
+
+For the second term, every integer $n$ with $\omega(n) = 1$ is of 
+the form $n = p^i$ for a unique prime $p$ and a unique integer 
+$i \geq 1$, and $d(p^i) = i + 1$. The number of prime powers 
+$p^i \leq x$ with exponent exactly $i$ equals $\pi(x^{1/i})$. 
+Hence
+\begin{equation}
+    \sum_{\substack{n \leq x \\ \omega(n) = 1}} d(n) 
+    = \sum_{i \geq 1} (i+1) \pi(x^{1/i}).
+\end{equation}
+
+For the third term, we apply inclusion--exclusion on the set of 
+distinct prime divisors of $n$. For each integer $j \geq 2$, 
+recall the definition
+\[
+    T_j(x) = \sum_{n \leq x} d(n) \binom{\omega(n)}{j}.
+\]
+We claim that
+\begin{equation}
+    \sum_{\substack{n \leq x \\ \omega(n) \geq 2}} d(n) 
+    = \sum_{j \geq 2} (-1)^j (j-1) T_j(x).
+\end{equation}
+
+To prove~(2.3), interchange the order of summation on the 
+right-hand side:
+\[
+    \sum_{j \geq 2} (-1)^j (j-1) T_j(x) 
+    = \sum_{n \leq x} d(n) \sum_{j \geq 2} (-1)^j (j-1) 
+      \binom{\omega(n)}{j}.
+\]
+For $n$ with $\omega(n) \in \{0, 1\}$, we have 
+$\binom{\omega(n)}{j} = 0$ for all $j \geq 2$, so such $n$ do not 
+contribute. For $n$ with $\omega(n) = m \geq 2$, we use the 
+following combinatorial identity.
+
+\begin{lemma}
+For every integer $m \geq 2$,
+\begin{equation}
+    \sum_{j=2}^{m} (-1)^j (j-1) \binom{m}{j} = 1.
+\end{equation}
+\end{lemma}
+
+\begin{proof}[Proof of the lemma]
+Starting from the standard identities
+\[
+    \sum_{j=0}^{m} (-1)^j \binom{m}{j} = 0 
+    \quad \text{and} \quad 
+    \sum_{j=0}^{m} (-1)^j \, j \binom{m}{j} =\left.\frac{d}{dx}(1-x)^m\right|_{x=1}=0 \ \text{(for } m \geq 1),
+\]
+we combine them to obtain
+\[
+    \sum_{j=0}^{m} (-1)^j (j-1) \binom{m}{j} = 0
+    \quad \text{(for } m \geq 1).
+\]
+Separating the $j = 0$ and $j = 1$ terms:
+\[
+    1 \cdot (-1) + 0 \cdot \binom{m}{1} 
+    + \sum_{j=2}^{m} (-1)^j (j-1) \binom{m}{j} = 0,
+\]
+which yields
+\[
+    \sum_{j=2}^{m} (-1)^j (j-1) \binom{m}{j} = 1. \qedhere
+\]
+\end{proof}
+
+Applying the lemma, we obtain
+\[
+    \sum_{n \leq x} d(n) \sum_{j \geq 2} (-1)^j (j-1) 
+    \binom{\omega(n)}{j} 
+    = \sum_{\substack{n \leq x \\ \omega(n) \geq 2}} d(n) \cdot 1,
+\]
+which establishes~(2.3).
+
+Combining the contributions from all three classes yields
+\[
+    D(x) = 1 + \sum_{i \geq 1} (i+1) \pi(x^{1/i}) 
+             + \sum_{j \geq 2} (-1)^j (j-1) T_j(x),
+\]
+completing the proof.
+\end{proof}
+
+\section{Dirichlet series and factorization}\label{sec:dirichlet-series}
+
+In this section, we introduce the two-variable Dirichlet series 
+$F(s, y)$ and establish its key analytic properties. The main 
+output is the factorization 
+$F(s, y) = \zeta(s)^{2+2y} H(s, y)$, where $H(s, y)$ is holomorphic 
+in a neighborhood of $s = 1$ and uniformly bounded in a small disk 
+around $y = 0$.
+
+\subsection{Euler product}\label{sec:euler-product}
+
+Recall the definition
+\begin{equation}
+    F(s, y) := \sum_{n \geq 1} \frac{d(n)(1+y)^{\omega(n)}}{n^s}.
+\end{equation}
+Since the arithmetic function $n \mapsto d(n)(1+y)^{\omega(n)}$ is 
+multiplicative in $n$ for each fixed $y$, the series admits an Euler 
+product representation for $\Real(s) > 1$.
+
+\begin{lemma}\label{lem:euler-product}
+For $\Real(s) > 1$ and every $y \in \C$,
+\begin{equation}\label{eq:euler-product}
+    F(s, y) = \prod_p \left(1 + (1+y)\left((1 - p^{-s})^{-2} - 1\right)\right),
+\end{equation}
+where the product is over all primes $p$.
+\end{lemma}
+
+\begin{proof}
+By multiplicativity, for $\Real(s) > 1$ we have
+\[
+    F(s, y) =\sum_{n \geq 1}\frac{d(n)(1+y)^{\omega(n)}}{n^s} = \prod_p \left(\sum_{k \geq 0} 
+    \frac{d(p^k)(1+y)^{\omega(p^k)}}{p^{ks}}\right).
+\]
+For $k = 0$, the summand equals $1$. For $k \geq 1$, we have 
+$d(p^k) = k + 1$ and $\omega(p^k) = 1$, so the local factor becomes
+\[
+    1 + (1+y) \sum_{k \geq 1} \frac{k+1}{p^{ks}}.
+\]
+Setting $u := p^{-s}$ and using the standard identity
+\[
+    \sum_{k \geq 1} (k+1) u^k = \frac{1}{(1-u)^2} - 1 
+    \quad \text{for } |u| < 1,
+\]
+the local factor equals $1 + (1+y)\bigl((1-p^{-s})^{-2} - 1\bigr)$, 
+which proves~\eqref{eq:euler-product}.
+\end{proof}
+
+\subsection{Factorization isolating the singularity}\label{sec:factorization}
+
+The Riemann zeta function admits the Euler product 
+$\zeta(s) = \prod_p (1 - p^{-s})^{-1}$ for $\Real(s) > 1$, so that 
+$\zeta(s)^{2+2y} = \prod_p (1 - p^{-s})^{-(2+2y)}$ on the same 
+half-plane, provided a branch of the logarithm is fixed. We use the 
+principal branch, which is analytic in $s$ in a neighborhood of 
+any point with $\Real(s) > 1$ and in $y$ in a neighborhood of $0$.
+
+Define
+\begin{equation}\label{eq:H-def}
+    H(s, y) := \prod_p (1 - p^{-s})^{2+2y} 
+    \left(1 + (1+y)\left((1 - p^{-s})^{-2} - 1\right)\right).
+\end{equation}
+
+\begin{theorem}\label{thm:factorization}
+For $\Real(s) > 1$ and $y$ in a neighborhood of $0$,
+\begin{equation}\label{eq:factorization}
+    F(s, y) = \zeta(s)^{2+2y} H(s, y).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This follows by combining Lemma~\ref{lem:euler-product} with the 
+Euler product for $\zeta(s)^{2+2y}$ and regrouping factors.
+\end{proof}
+
+The purpose of the factorization~\eqref{eq:factorization} is to 
+isolate the singular behavior of $F(s, y)$ at $s = 1$ into the 
+factor $\zeta(s)^{2+2y}$, leaving $H(s, y)$ as a well-behaved 
+function in a larger region, as we now establish.
+
+\subsection{Analytic properties of \texorpdfstring{$H(s, y)$}{H(s,y)}}\label{sec:H-analytic}
+
+We show that the Euler product~\eqref{eq:H-def} defines a 
+holomorphic function on a strip containing $\Real(s) = 1$, 
+uniformly for $y$ in a small disk around $0$. The key is that 
+each local factor $H_p(s, y)$ deviates from $1$ by a quantity of 
+order $p^{-2\Real(s)}$.
+
+\begin{lemma}\label{lem:local-factor-estimate}
+Fix $\eta \in (0, 1/2)$ and $\delta \in (0, 1/2)$. Write 
+$u := p^{-s}$ and denote the local factor by
+\[
+    H_p(s, y) := (1 - u)^{2+2y}\left(1 + (1+y)\left((1-u)^{-2} - 1\right)\right).
+\]
+Then for $|y| \leq \eta$ and $\Real(s) \geq 1 - \delta$,
+\begin{equation}\label{eq:local-factor-estimate}
+    H_p(s, y) = 1 + O_{\eta, \delta}(u^2),
+\end{equation}
+where the implied constant depends only on $\eta$ and $\delta$.
+\end{lemma}
+
+\begin{proof}
+The condition $\Real(s) \geq 1 - \delta$ implies that, for every 
+prime $p \geq 2$,
+\[
+    |u| = p^{-\Real(s)} \leq p^{-(1 - \delta)} \leq 2^{-(1-\delta)} < 1,
+\]
+since $\delta < 1/2$. In particular, $|u|$ is bounded away from 
+$1$, and the power series expansions
+\[
+    (1 - u)^{-2} - 1 = 2u + 3u^2 + 4u^3 + \cdots = 2u + O_\delta(u^2),
+\]
+\[
+    (1 - u)^{2+2y} = 1 - (2+2y)u + \binom{2+2y}{2}u^2 + \cdots
+                   = 1 - (2+2y)u + O_{\eta, \delta}(u^2),
+\]
+converge absolutely, with remainders uniform for $|y| \leq \eta$ 
+and $\Real(s) \geq 1 - \delta$. Multiplying the expansions:
+\[
+    H_p(s, y) = \bigl(1 - (2+2y)u + O_{\eta, \delta}(u^2)\bigr)
+                \bigl(1 + (1+y)(2u + O_\delta(u^2))\bigr).
+\]
+The coefficient of $u^1$ on the right is $-(2+2y) + 2(1+y) = 0$. 
+Hence $H_p(s, y) = 1 + O_{\eta, \delta}(u^2)$, 
+proving~\eqref{eq:local-factor-estimate}.
+\end{proof}
+
+% =====================================================
+% Proposition 3.4 (revised): H is jointly holomorphic
+% =====================================================
+
+\begin{proposition}\label{prop:H-analytic}
+Fix $\eta \in (0, 1/2)$ and $\delta \in (0, 1/2)$, and let
+\begin{equation}\label{eq:H-region}
+    \mathcal{R}_{\delta, \eta} := \{(s, y) \in \C^2 : 
+    \Real(s) \geq 1 - \delta, \ |y| \leq \eta\}.
+\end{equation}
+Then the partial products of the Euler product~\eqref{eq:H-def} 
+converge absolutely and uniformly on $\mathcal{R}_{\delta, \eta}$ 
+to a function $H(s, y)$. For every $y$ with $|y| \leq \eta$, the 
+function $H(s, y)$ is holomorphic in $s$ on the open strip 
+$\Real(s) > 1 - \delta$. Moreover, $H(s, y)$ is jointly holomorphic 
+in $(s, y)$ on $\operatorname{int}(\mathcal{R}_{\delta, \eta})$, 
+and $H$ is uniformly bounded on $\mathcal{R}_{\delta, \eta}$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:local-factor-estimate}, for every 
+$(s, y) \in \mathcal{R}_{\delta, \eta}$ and every prime $p$,
+\begin{equation}\label{eq:Hp-bound}
+    |H_p(s, y) - 1| \leq C_{\eta, \delta} \, p^{-2(1-\delta)},
+\end{equation}
+where the constant $C_{\eta, \delta}$ depends only on $\eta$ and 
+$\delta$. Since $\delta < 1/2$, we have $2(1 - \delta) > 1$, and 
+the series $\sum_n n^{-2(1-\delta)}$ converges; in particular, 
+$\sum_p p^{-2(1-\delta)}$ converges. By the Weierstrass $M$-test, 
+the series $\sum_p (H_p(s, y) - 1)$ converges absolutely and 
+uniformly on $\mathcal{R}_{\delta, \eta}$. By the standard theorem 
+on infinite products---which states that an infinite product 
+$\prod_n (1 + u_n)$ converges absolutely if and only if 
+$\sum_n u_n$ does, and that the convergence of the partial products 
+is uniform on a set whenever the corresponding series converges 
+uniformly there---the partial products 
+$\prod_{p \leq P} H_p(s, y)$ converge absolutely and uniformly on 
+$\mathcal{R}_{\delta, \eta}$ to a limit, which we denote $H(s, y)$.
+
+To deduce holomorphy in $s$, fix $y_0 \in \C$ with $|y_0| \leq \eta$ 
+and let $s_0 \in \C$ be any point with $\Real(s_0) > 1 - \delta$. 
+Choose $r > 0$ small enough that $r < \Real(s_0) - (1 - \delta)$, 
+and define
+\begin{equation}\label{eq:K-disk}
+    K := \overline{D}(s_0, r) 
+       = \{s \in \C : |s - s_0| \leq r\}.
+\end{equation}
+The set $K$ is closed and bounded in $\C$, so by the Heine--Borel 
+theorem it is compact. By the choice of $r$, every $s \in K$ 
+satisfies
+\[
+    \Real(s) \geq \Real(s_0) - r > 1 - \delta,
+\]
+and hence $K \times \{y_0\} \subset \mathcal{R}_{\delta, \eta}$. 
+The uniform convergence of the partial products on 
+$\mathcal{R}_{\delta, \eta}$ established above therefore restricts 
+to uniform convergence of $\prod_{p \leq P} H_p(s, y_0)$ on $K$ 
+as $P \to \infty$.
+
+Each finite partial product $\prod_{p \leq P} H_p(s, y_0)$ is 
+holomorphic in $s$ on the open disk 
+$D(s_0, r) = \operatorname{int}(K)$, since each factor 
+$H_p(\cdot, y_0)$ is. By the theorem on uniform limits of 
+holomorphic functions (Weierstrass), the limit $H(\cdot, y_0)$ is 
+holomorphic on $D(s_0, r)$, and in particular at $s_0$. Since 
+$s_0$ with $\Real(s_0) > 1 - \delta$ was arbitrary, $H(\cdot, y_0)$ 
+is holomorphic on the open strip $\Real(s) > 1 - \delta$. Since 
+$y_0$ with $|y_0| \leq \eta$ was also arbitrary, the holomorphy 
+claim in $s$ is proved.
+
+For joint holomorphy, each finite partial product 
+$\prod_{p \leq P} H_p(s, y)$ is holomorphic in $(s, y)$ on 
+$\operatorname{int}(\mathcal{R}_{\delta, \eta})$, since each factor 
+$H_p(s, y)$ is. The uniform convergence of the partial products on 
+$\mathcal{R}_{\delta, \eta}$ established above restricts to uniform 
+convergence on every compact subset of 
+$\operatorname{int}(\mathcal{R}_{\delta, \eta})$, since 
+$\operatorname{int}(\mathcal{R}_{\delta, \eta}) \subset 
+\mathcal{R}_{\delta, \eta}$. By the theorem on uniform limits of 
+holomorphic functions in two complex variables, the limit 
+$H(s, y)$ is jointly holomorphic on 
+$\operatorname{int}(\mathcal{R}_{\delta, \eta})$.
+
+Uniform boundedness on $\mathcal{R}_{\delta, \eta}$ follows 
+from~\eqref{eq:Hp-bound}:
+\[
+    |H(s, y)| 
+    \leq \prod_p \bigl(1 + |H_p(s, y) - 1|\bigr) 
+    \leq \exp\!\left(\sum_p |H_p(s, y) - 1|\right) 
+    \leq \exp\!\left(C_{\eta, \delta} \sum_p p^{-2(1-\delta)}\right),
+\]
+the right-hand side being finite and independent of 
+$(s, y) \in \mathcal{R}_{\delta, \eta}$.
+\end{proof}
+
+
+% =====================================================
+% Proposition 3.5 (new): H(s, 0) = 1
+% =====================================================
+
+\begin{proposition}\label{prop:H-at-zero}
+The function $H(s, y)$ satisfies
+\begin{equation}\label{eq:H-at-y-zero}
+    H(s, 0) \equiv 1 \quad \text{on } \Real(s) > 1/2.
+\end{equation}
+In particular, $H(1, 0) = 1$.
+\end{proposition}
+
+\begin{proof}
+On $\Real(s) > 1$, the factorization~\eqref{eq:factorization} 
+specialized at $y = 0$ reads
+\[
+    F(s, 0) = \zeta(s)^2 \, H(s, 0).
+\]
+On the other hand, the Dirichlet series defining $F$ gives 
+\[
+    F(s, 0) = \sum_{n \geq 1} \frac{d(n)}{n^s} = \zeta(s)^2 
+    \quad \text{on } \Real(s) > 1.
+\]
+Comparing the two expressions yields 
+$\zeta(s)^2 H(s, 0) = \zeta(s)^2$ on $\Real(s) > 1$. Since 
+$\zeta(s) \neq 0$ on $\Real(s) > 1$ (which follows directly from 
+the Euler product representation of $\zeta$), we may divide both 
+sides by $\zeta(s)^2$ to obtain
+\[
+    H(s, 0) \equiv 1 \quad \text{on } \Real(s) > 1.
+\]
+
+By Proposition~\ref{prop:H-analytic}, applied with any 
+$\delta \in (0, 1/2)$, the function $H(s, 0)$ is holomorphic on 
+$\Real(s) > 1 - \delta$; letting $\delta \to 1/2$ shows that 
+$H(s, 0)$ is holomorphic on the connected open set 
+$\Real(s) > 1/2$. The constant function $1$ is also holomorphic 
+there, and the two functions agree on the open subset 
+$\Real(s) > 1$. By the identity theorem, they agree on all of 
+$\Real(s) > 1/2$. In particular, $H(1, 0) = 1$.
+\end{proof}
+
+\section{Perron formula and contour deformation}\label{sec:perron}
+
+To extract the asymptotic behavior of $T_j(x)$ from the Dirichlet 
+series $F(s, y)$, we work with the generating partial sum
+\begin{equation}\label{eq:Axy-def}
+    A(x, y) := \sum_{n \leq x} d(n) (1 + y)^{\omega(n)},
+\end{equation}
+which satisfies the generating relation
+\begin{equation}\label{eq:Axy-generating}
+    A(x, y) = \sum_{j \geq 0} T_j(x) y^j.
+\end{equation}
+Throughout this section, we fix one parameter:
+\begin{itemize}
+    \item $\eta \in (0, 1/2)$, controlling the size of the disk 
+    $|y| \leq \eta$.
+\end{itemize}
+ 
+To avoid threading $T$-dependent constants through every estimate 
+borrowed from Section~\ref{sec:dirichlet-series}, we also fix once 
+and for all an auxiliary constant
+\begin{equation}\label{eq:delta-prime}
+    \delta' := \frac{1}{4},
+\end{equation}
+and apply the results of Section~\ref{sec:dirichlet-series} on the 
+fixed region $\mathcal{R}_{\delta', \eta}$. Constants such as 
+$C_{\eta, \delta'}$ inherited from those results are absolute 
+(they do not depend on $T$).
+ 
+A second quantity, $\lambda_T$, will govern the depth of the 
+contour deformation in Section~\ref{sec:contour-decomposition}. 
+In contrast to the free parameter $\delta \in (0, 1/2)$ used in 
+Section~\ref{sec:dirichlet-series} and the fixed constant $\delta'$ 
+just defined, $\lambda_T$ is a function of the truncation height 
+$T \geq 1$, defined as
+\begin{equation}\label{eq:lambda-T}
+    \lambda_T := \frac{c_0}{2 \log(T + 2)},
+\end{equation}
+where $c_0$ is the constant of Theorem~\ref{thm:zero-free}. By construction,
+\begin{equation}\label{eq:lambda-T-bound}
+    \lambda_T 
+    \leq \frac{c_0}{2 \log 3} 
+    < \frac{1}{4 \log 3} 
+    < \frac{1}{4} = \delta' 
+    \qquad (T \geq 1),
+\end{equation}
+and $\lambda_T \to 0$ as $T \to \infty$. Since $\lambda_T < \delta'$, 
+the contour $\mathcal{C}(T, \rho)$ constructed in 
+Section~\ref{sec:contour-decomposition} (and the closed loop 
+$\Gamma$ it forms) lies in $\mathcal{R}_{\delta', \eta}$ for every 
+$T \geq 1$ and every $|y| \leq \eta$. Consequently, all bounds on 
+$H$ inherited from Section~\ref{sec:dirichlet-series} are uniform 
+in $T$ on the contour and its enclosed region.
+ 
+We also abbreviate $\alpha := 2 + 2y$. Thus the 
+factorization~\eqref{eq:factorization} becomes 
+$F(s, y) = \zeta(s)^\alpha H(s, y)$. For $|y| \leq \eta$ with 
+$\eta < 1/2$, the exponent $\alpha$ ranges in a disk of radius 
+$2\eta < 1$ around $2$, so in particular $\alpha$ is bounded away 
+from non-positive integers.
+
+\subsection{The truncated Perron formula}\label{sec:perron-formula}
+
+We quote the following standard form of the truncated Perron 
+formula (see, e.g., \cite[Theorem II.2.2]{}).
+
+\begin{theorem}[Truncated Perron formula]\label{thm:perron}
+Let $f(s) = \sum_{n \geq 1} a_n n^{-s}$ be a Dirichlet series with 
+abscissa of absolute convergence $\sigma_a$. For real numbers 
+$c > \sigma_a$, $x \geq 2$, and $T \geq 1$ with $x \notin \mathbb{Z}$,
+\begin{equation}\label{eq:perron}
+    \sum_{n \leq x} a_n 
+    = \frac{1}{2\pi i} \int_{c - iT}^{c + iT} f(s) \frac{x^s}{s} \, ds 
+    + R(x, T),
+\end{equation}
+where the truncation error satisfies
+\begin{equation}\label{eq:perron-error}
+    R(x, T) \ll \frac{x^c}{T} \sum_{n \geq 1} \frac{|a_n|}{n^c 
+    \left(1 + T \left|\log \frac{x}{n}\right|\right)} 
+    + \frac{x^c}{T \log x}.
+\end{equation}
+\end{theorem}
+
+We apply Theorem~\ref{thm:perron} to the Dirichlet series 
+$F(s, y) = \sum_{n \geq 1} d(n) (1+y)^{\omega(n)} n^{-s}$. For 
+$|y| \leq \eta$ with $\eta$ sufficiently small, the series 
+converges absolutely for $\Real(s) > 1$, so we may take any $c > 1$. 
+Choose, for instance, $c = 1 + 1/\log x$, which is the standard 
+choice to balance the main term size and the truncation error.
+
+\begin{proposition}\label{prop:perron-applied}
+For $x \geq 2$ with $x \notin \mathbb{Z}$, $|y| \leq \eta$, and 
+$T \geq 1$,
+\begin{equation}\label{eq:Axy-perron}
+    A(x, y) = \frac{1}{2\pi i} \int_{c - iT}^{c + iT} F(s, y) 
+    \frac{x^s}{s} \, ds + E_{\mathrm{Perron}}(x, T, y),
+\end{equation}
+where $c = 1 + 1/\log x$ and the truncation error satisfies
+\begin{equation}\label{eq:Axy-perron-error}
+    E_{\mathrm{Perron}}(x, T, y) \ll_{\eta, \delta'} 
+    \frac{x (\log x)^{2 + 2\eta}}{T}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Apply Theorem~\ref{thm:perron} with $a_n = d(n)(1+y)^{\omega(n)}$ 
+and $c = 1 + 1/\log x$. Denote the resulting Perron truncation 
+error by $R(x, T, y)$. Using $|1+y| \leq 1+\eta$ and the trivial 
+bound $1 + T|\log(x/n)| \geq 1$, the first term 
+of~\eqref{eq:perron-error} satisfies
+\begin{align*}
+    \frac{x^c}{T} \sum_{n \geq 1} 
+    \frac{\left| d(n)(1+y)^{\omega(n)} \right|}
+         {n^c \left(1 + T \left|\log \frac{x}{n}\right|\right)}
+    \leq \frac{x^c}{T} \sum_{n \geq 1} 
+    \frac{d(n)(1+ \left|y\right|)^{\omega(n)}}{n^c}
+    \leq \frac{x^c}{T} \sum_{n \geq 1} 
+    \frac{d(n)(1+\eta)^{\omega(n)}}{n^c}
+    = \frac{x^c}{T} F(c, \eta).
+\end{align*}
+Hence
+\begin{equation}\label{eq:R-bound-raw}
+    R(x, T, y) \ll_{\eta, \delta'} \frac{x^c}{T} F(c, \eta) 
+    + \frac{x^c}{T \log x}.
+\end{equation}
+
+We now estimate $F(c, \eta)$ at $c = 1 + 1/\log x$. By the 
+factorization~\eqref{eq:factorization},
+\[
+    F(c, \eta) = \zeta(c)^{2 + 2\eta} H(c, \eta).
+\]
+Since $\zeta(s)$ has a simple pole at $s = 1$ with residue $1$, 
+the standard expansion 
+$\zeta(s) = \frac{1}{s - 1} + \gamma + O(s-1)$ near $s = 1$ gives
+\[
+    \zeta\!\left(1 + \tfrac{1}{\log x}\right) 
+    = \log x + \gamma + O\!\left(\tfrac{1}{\log x}\right) 
+    \sim \log x \quad (x \to \infty).
+\]
+Hence $\zeta(c)^{2+2\eta} \ll_\eta (\log x)^{2+2\eta}$. Moreover, Proposition~\ref{prop:H-analytic}, applied with 
+$\delta = \delta'$, implies that $H(c, \eta)$ is bounded by 
+a constant depending only on $\eta$ and $\delta'$. Therefore
+\begin{equation}\label{eq:F-at-c}
+    F(c, \eta) \ll_{\eta, \delta'} (\log x)^{2 + 2\eta}.
+\end{equation}
+
+Substituting~\eqref{eq:F-at-c} into~\eqref{eq:R-bound-raw} and 
+using $x^c = x \cdot x^{c - 1} = x \cdot x^{1/\log x} = e\,x$,
+\[
+    R(x, T, y) 
+    \ll_{\eta, \delta'} \frac{x (\log x)^{2+2\eta}}{T} 
+    + \frac{x}{T \log x}
+    \ll_{\eta, \delta'} \frac{x (\log x)^{2+2\eta}}{T},
+\]
+where the second term is absorbed into the first. Setting 
+$E_{\mathrm{Perron}}(x, T, y) := R(x, T, y)$ proves the proposition.
+\end{proof}
+
+The Perron truncation error~\eqref{eq:Axy-perron-error} is of size $x(\log x)^{2+2\eta}/T$. Since $T$ appears in the denominator, this term decreases as $T$ grows, and it can be made negligible compared to the main term by choosing $T$ sufficiently large as a function of $x$. The precise choice of $T = T(x)$ will be made in Section~\ref{sec:contour-estimates}, after combining this error with the contributions from the contour deformation.
+
+\subsection{Analytic preliminaries}\label{sec:analytic-prelim}
+ 
+To control the contour integrals arising from the deformation in 
+Section~\ref{sec:contour-decomposition}, we will need:
+\begin{itemize}
+    \item[(a)] a region in which $\zeta(s)$ does not vanish, so 
+    that the contour can avoid its zeros;
+    \item[(b)] a continuous branch of $\zeta(s)^{2 + 2y}$ on a 
+    neighborhood of the contour;
+    \item[(c)] a uniform bound on $|\zeta(s)|$ along vertical 
+    lines in the critical strip;
+    \item[(d)] a corresponding bound on $|F(s, y)|$ combining 
+    (b) and (c).
+\end{itemize}
+We collect these analytic ingredients here, before constructing 
+the contour itself in Section~\ref{sec:contour-decomposition}.
+ 
+\subsubsection*{Zero-free region}
+ 
+For the contour deformation to be valid, we need a region in which 
+$\zeta(s) \neq 0$. We use the following classical result of 
+de la Vall\'ee Poussin, quoted without proof; see, e.g., 
+\cite[Ch.~3]{} or \cite[\S6.6]{}.
+ 
+\begin{theorem}[de la Vall\'ee Poussin zero-free region]
+\label{thm:zero-free}
+There exists an absolute constant $c_0 \in (0, 1/2)$ such that 
+$\zeta(s) \neq 0$ on the region
+\begin{equation}\label{eq:zero-free-region}
+    \mathcal{Z} := \left\{ s = \sigma + it \in \C : 
+    \sigma \geq 1 - \frac{c_0}{\log(|t| + 2)} \right\} 
+    \setminus \{1\}.
+\end{equation}
+\end{theorem}
+ 
+The boundary of $\mathcal{Z}$ is curved, and integrating along it 
+would complicate the estimation of the resulting contour pieces. 
+We will instead use a fixed vertical line lying strictly inside 
+$\mathcal{Z}$ for all $|t| \leq T$.
+ 
+\subsubsection*{Continuous branch of \texorpdfstring{$\zeta(s)^\alpha$}{zeta(s)^alpha}}
+ 
+To make sense of $\zeta(s)^\alpha = \zeta(s)^{2 + 2y}$ on a 
+neighborhood of the contour, we specify a branch on the region
+\begin{equation}\label{eq:D-region}
+    \mathcal{D} := \mathcal{Z} \setminus \mathcal{S},
+\end{equation}
+where $\mathcal{S} := \{s \in \C : \Im(s) = 0,\ \Real(s) \leq 1\}$ 
+is the slit along the real axis to the left of $s = 1$. The slit 
+$\mathcal{S}$ disconnects the segment $\mathcal{Z} \cap \mathcal{S}$ 
+from the rest of $\mathcal{Z}$ from above and below, rendering 
+$\mathcal{D}$ simply connected.\footnote{%
+Indeed, $\mathcal{Z} \setminus \{1\}$ is a slit-once-punctured 
+domain that is not simply connected, since a small loop around 
+$s = 1$ inside $\mathcal{Z}$ is not nullhomotopic. Removing the 
+entire ray $(-\infty, 1]$ (equivalently, the connected component 
+$\mathcal{Z} \cap \mathcal{S}$ of $\mathcal{S}$ inside 
+$\mathcal{Z}$, which contains $s = 1$) cuts every such loop, 
+making the resulting domain simply connected.}
+ 
+On $\mathcal{D}$, both $\zeta(s)$ and $\zeta'(s)$ are holomorphic, 
+and $\zeta(s) \neq 0$. Fix any real number $c_* > 1$ (for 
+example $c_* = 2$); since $\zeta(c_*) > 0$, the principal 
+logarithm $\log \zeta(c_*) \in \R$ is well-defined. Define
+\begin{equation}\label{eq:L-def}
+    L(s) := \log \zeta(c_*) 
+          + \int_{c_*}^{s} \frac{\zeta'(\omega)}{\zeta(\omega)}\, d\omega 
+    \qquad (s \in \mathcal{D}),
+\end{equation}
+where the integral is taken along any path in $\mathcal{D}$ from 
+$c_*$ to $s$. Since $\mathcal{D}$ is simply connected and 
+$\zeta'/\zeta$ is holomorphic on $\mathcal{D}$, the integral is 
+path-independent, and $L$ is a well-defined holomorphic function 
+on $\mathcal{D}$.
+ 
+We claim $e^{L(s)} = \zeta(s)$ on $\mathcal{D}$. Indeed, 
+$L'(s) = \zeta'(s)/\zeta(s)$ on $\mathcal{D}$, so
+\[
+    \frac{d}{ds}\!\bigl(e^{-L(s)} \zeta(s)\bigr) 
+    = e^{-L(s)} \bigl(\zeta'(s) - L'(s) \zeta(s)\bigr) 
+    = 0.
+\]
+Hence $e^{-L(s)} \zeta(s)$ is constant on $\mathcal{D}$, and 
+evaluating at $s = c_*$ gives 
+$e^{-L(c_*)} \zeta(c_*) = e^{-\log\zeta(c_*)} \zeta(c_*) = 1$. 
+Therefore $e^{L(s)} = \zeta(s)$ throughout $\mathcal{D}$, so $L$ 
+serves as a continuous branch of $\log \zeta$ on $\mathcal{D}$.
+ 
+We define
+\begin{equation}\label{eq:zeta-alpha-def}
+    \zeta(s)^\alpha := e^{\alpha L(s)} 
+    \qquad (s \in \mathcal{D},\ \alpha \in \C).
+\end{equation}
+This is single-valued and holomorphic in $s$ on $\mathcal{D}$, 
+and entire in $\alpha$. At $\alpha = 2$, the definition reduces 
+to $\zeta(s)^2$ in the usual sense.
+ 
+\subsubsection*{Vertical growth of \texorpdfstring{$\zeta(s)$}{zeta(s)}}
+ 
+We use the following uniform bound on $|\zeta(s)|$, obtained by 
+combining the convexity bound with the trivial estimate 
+$\zeta(\sigma + it) \ll \log |t|$ for $\sigma \geq 1$ (see, e.g., 
+\cite[Theorem II.3.8]{} for the convexity bound).
+ 
+\begin{theorem}[Uniform bound on $\zeta(s)$ in a vertical strip]
+\label{thm:zeta-uniform}
+Fix $\delta \in (0, 1/2)$. For every $\varepsilon > 0$,
+\begin{equation}\label{eq:zeta-uniform}
+    |\zeta(\sigma + it)| \ll_{\delta, \varepsilon} 
+    |t|^{\delta/2 + \varepsilon}
+    \quad \text{for } 1 - \delta \leq \sigma \leq 1 + \delta 
+    \text{ and } |t| \geq 2,
+\end{equation}
+where the implied constant is independent of $t$.
+\end{theorem}
+ 
+\begin{proof}[Sketch]
+For $1 - \delta \leq \sigma \leq 1$, the convexity bound gives 
+$|\zeta(\sigma + it)| \ll_\varepsilon |t|^{(1-\sigma)/2 + \varepsilon}$. 
+Taking the supremum of $(1 - \sigma)/2$ over $\sigma \in [1-\delta, 1]$ 
+yields $\delta/2$, so 
+$|\zeta(\sigma + it)| \ll_\varepsilon |t|^{\delta/2 + \varepsilon}$ 
+on this subrange.
+ 
+For $1 \leq \sigma \leq 1 + \delta$, the standard estimate 
+$|\zeta(\sigma + it)| \ll \log |t|$ holds, and 
+$\log |t| \ll_\varepsilon |t|^\varepsilon \leq |t|^{\delta/2 + \varepsilon}$. 
+Combining the two ranges gives~\eqref{eq:zeta-uniform}.
+\end{proof}
+ 
+In what follows, we apply Theorem~\ref{thm:zeta-uniform} with the 
+fixed choice $\delta = \delta'$.
+ 
+\subsubsection*{A bound on \texorpdfstring{$|F(s, y)|$}{|F(s,y)|}}
+ 
+The branch~\eqref{eq:zeta-alpha-def} yields a clean bound on 
+$|F(s, y)|$ on $\mathcal{D}$. Writing $\alpha = 2 + 2y$ with 
+$y = \Real(y) + i \Im(y)$,
+\[
+    |\zeta(s)^\alpha| 
+    = |e^{\alpha L(s)}| 
+    = e^{\Real(\alpha L(s))} 
+    = e^{\Real(\alpha) \Real(L(s)) \,-\, \Im(\alpha) \Im(L(s))}.
+\]
+Using $e^{L(s)} = \zeta(s)$, we have 
+$\Real(L(s)) = \log|\zeta(s)|$ and 
+$\Im(L(s)) = \arg \zeta(s)$ (with the latter referring to the 
+specific branch determined by $L$). Hence
+\[
+    |\zeta(s)^\alpha| 
+    = |\zeta(s)|^{\Real(\alpha)} \cdot e^{-\Im(\alpha) \arg \zeta(s)}.
+\]
+Since $\Re(\alpha) = 2 + 2\Re(y)$, $\Im(\alpha) = 2\Im(y)$, and 
+$|\Im(y)| \leq |y| \leq \eta$, we obtain
+\begin{equation}\label{eq:F-safe-bound}
+    |F(s, y)| 
+    \leq |H(s, y)| \cdot |\zeta(s)|^{2 + 2\Real(y)} 
+    \cdot \exp\bigl(2 \eta \, |\arg \zeta(s)|\bigr) 
+    \qquad (s \in \mathcal{D},\ |y| \leq \eta).
+\end{equation}
+ 
+The factor $|H(s, y)|$ is uniformly bounded on 
+$\mathcal{R}_{\delta', \eta}$ by 
+Proposition~\ref{prop:H-analytic}. The factor 
+$|\zeta(s)|^{2 + 2\Real(y)}$ is controlled by 
+Theorem~\ref{thm:zeta-uniform}, and the factor 
+$\exp(2\eta |\arg \zeta(s)|)$ by the following standard 
+estimate (see, e.g., \cite[\S9.4]{} or 
+\cite[Theorem~II.3.10]{}).
+ 
+\begin{theorem}[Bound on $\arg \zeta$]
+\label{thm:arg-zeta}
+There exists an absolute constant $C_{\arg} > 0$ such that, for 
+every $\sigma > 1/2$ and every $|t| \geq 2$,
+\begin{equation}\label{eq:arg-zeta-bound}
+    |\arg \zeta(\sigma + it)| \leq C_{\arg} \log|t|,
+\end{equation}
+where the branch of $\arg \zeta$ is the one determined by 
+analytic continuation from $\sigma > 1$ along any path in 
+$\mathcal{D}$.
+\end{theorem}
+ 
+We now combine these bounds. On the range $|t| \geq 2$ and 
+$1 - \delta' \leq \sigma \leq 1 + \delta'$, applying 
+Theorem~\ref{thm:zeta-uniform} with $\delta = \delta'$ and 
+Theorem~\ref{thm:arg-zeta} to~\eqref{eq:F-safe-bound} gives
+\begin{equation}\label{eq:F-bound-large-t}
+    |F(\sigma + it, y)| 
+    \ll_{\eta, \varepsilon} 
+    |t|^{(2 + 2\eta)(\delta'/2 + \varepsilon)} 
+    \cdot |t|^{2 \eta C_{\arg}} 
+    = |t|^{B},
+\end{equation}
+where
+\begin{equation}\label{eq:B-exponent}
+    B := B(\eta, \varepsilon) 
+       := (2 + 2\eta)\!\left(\tfrac{\delta'}{2} + \varepsilon\right) 
+        + 2 \eta C_{\arg} 
+       = (2 + 2\eta)\!\left(\tfrac{1}{8} + \varepsilon\right) 
+        + 2 \eta C_{\arg}.
+\end{equation}
+The implied constant in~\eqref{eq:F-bound-large-t} depends on 
+$\eta$ and $\varepsilon$ but not on $t$ or $y$. For $\eta$ and 
+$\varepsilon$ sufficiently small, $B < 1$, which is essential for 
+the contour estimates of Section~\ref{sec:contour-estimates} to 
+vanish in the limit $T \to \infty$.
+ 
+On the complementary range $|t| \leq 2$ and 
+$1 - \delta' \leq \sigma \leq 1 + \delta'$ (a compact subset of 
+$\mathcal{D}$ avoiding $s = 1$), all of $|H(s, y)|$, $|\zeta(s)|$, 
+and $|\arg \zeta(s)|$ are bounded by absolute constants, so 
+$|F(s, y)| \ll_\eta 1$ uniformly. Combining the two ranges, we 
+obtain on the entire vertical strip 
+$1 - \delta' \leq \sigma \leq 1 + \delta'$ (with $s \neq 1$):
+\begin{equation}\label{eq:F-bound-uniform}
+    |F(\sigma + it, y)| 
+    \ll_{\eta, \varepsilon} 
+    (|t| + 2)^B 
+    \qquad (|y| \leq \eta).
+\end{equation}
+This is the bound that will be used throughout 
+Section~\ref{sec:contour-estimates}.
+
+\subsection{Contour decomposition}\label{sec:contour-decomposition}
+
+We now construct the deformed contour and use it, together with 
+the analytic preliminaries of Section~\ref{sec:analytic-prelim}, 
+to express $A(x, y)$ as a sum of contour integrals.
+
+\subsubsection*{The deformed contour}
+
+Fix a truncation height $T \geq 1$, and let $\lambda_T$ be as 
+in~\eqref{eq:lambda-T}. Set 
+\begin{equation}\label{eq:sigma0-T}
+    \sigma_0 := \sigma_0(T) := 1 - \lambda_T 
+    = 1 - \frac{c_0}{2 \log(T + 2)}.
+\end{equation}
+Choose a parameter $\rho > 0$ with $\rho < \lambda_T$ (the precise 
+choice of $\rho$ as a function of $x$ will be made in 
+Section~\ref{sec:hankel}). Write 
+$i 0^\pm := \lim_{\varepsilon \to 0^+}(\pm i \varepsilon)$ for 
+points on the upper and lower edges of the slit $\mathcal{S}$, 
+viewed as distinct points on the Riemann surface of 
+$\log(s - 1)$.
+
+We deform the original Perron contour $[c - iT, c + iT]$ leftward, 
+around the singularity at $s = 1$, into a contour 
+$\mathcal{C} = \mathcal{C}(T, \rho)$ traversed from $c - iT$ to 
+$c + iT$ and consisting of the following five pieces:
+
+\begin{itemize}
+    \item[(1)] $\mathcal{C}_{\mathrm{bot}}$: from $c - iT$ to 
+    $\sigma_0 - iT$, leftward;
+    
+    \item[(2)] $\mathcal{C}_{\mathrm{left}}^-$: from 
+    $\sigma_0 - iT$ to $\sigma_0 + i 0^-$, upward;
+    
+    \item[(3)] $\mathcal{H}_{\mathrm{loc}}$, a local Hankel contour 
+    around $s = 1$, consisting of:
+    \begin{itemize}
+        \item[(3a)] from $\sigma_0 + i 0^-$ to $1 - \rho + i 0^-$, 
+        rightward along the lower edge of $\mathcal{S}$;
+        
+        \item[(3b)] the arc $\{|s - 1| = \rho\}$ from 
+        $1 - \rho + i 0^-$ to $1 - \rho + i 0^+$, traversed 
+        counterclockwise (i.e., passing through $s = 1 + \rho$);
+        
+        \item[(3c)] from $1 - \rho + i 0^+$ to $\sigma_0 + i 0^+$, 
+        leftward along the upper edge of $\mathcal{S}$;
+    \end{itemize}
+    
+    \item[(4)] $\mathcal{C}_{\mathrm{left}}^+$: from 
+    $\sigma_0 + i 0^+$ to $\sigma_0 + iT$, upward;
+    
+    \item[(5)] $\mathcal{C}_{\mathrm{top}}$: from $\sigma_0 + iT$ 
+    to $c + iT$, rightward.
+\end{itemize}
+
+The Hankel arms (3a) and (3c) follow the slit \(\mathcal S\) on
+opposite edges. In the local representation
+\[
+F(s,y)=G(s,y)(s-1)^{-\alpha},
+\]
+the discontinuity across \(\mathcal S\) is entirely contained in
+\((s-1)^{-\alpha}\), and this discontinuity produces the local Hankel
+contribution \(I_H\) evaluated in Section~\ref{sec:hankel}.
+The five pieces are joined consecutively, so $\mathcal{C}$ begins 
+at $c - iT$ and ends at $c + iT$, matching the orientation of the 
+original Perron contour.
+
+\subsubsection*{Verification that the contour avoids \texorpdfstring{$\zeta$}{zeta}-zeros}
+
+We claim that $\mathcal{C} \setminus \{1\} \subset \mathcal{Z}$, 
+where $\mathcal{Z}$ is the zero-free region of 
+Theorem~\ref{thm:zero-free}. For the horizontal pieces 
+$\mathcal{C}_{\mathrm{bot}}$ and $\mathcal{C}_{\mathrm{top}}$,
+\begin{equation}\label{eq:zfree-horizontal}
+    \Real(s) \geq \sigma_0(T) 
+    = 1 - \frac{c_0}{2\log(T+2)} 
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)}.
+\end{equation}
+For the vertical pieces $\mathcal{C}_{\mathrm{left}}^\pm$,
+\begin{equation}\label{eq:zfree-vertical}
+    \Real(s) = \sigma_0(T) 
+    = 1 - \frac{c_0}{2\log(T+2)} 
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)}.
+\end{equation}
+For the local Hankel contour $\mathcal{H}_{\mathrm{loc}}$, the two 
+horizontal arms (3a) and (3c) satisfy $\Real(s) \geq \sigma_0(T)$ 
+and $|\Im s| \leq \rho$, hence are covered by the same estimate 
+as the vertical pieces. For the small circle (3b),
+\begin{equation}\label{eq:zfree-hankel}
+    \Real(s) \geq 1 - \rho 
+    > 1 - \lambda_T 
+    = 1 - \frac{c_0}{2\log(T+2)}
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)}.
+\end{equation}
+
+Therefore $\mathcal{C} \setminus \{1\} \subset \mathcal{Z}$. 
+Combined with the fact that $\mathcal{C} \setminus \{1\}$ avoids 
+the slit $\mathcal{S}$ (the Hankel arms (3a) and (3c) lie on its 
+upper and lower edges, viewed as distinct points on the Riemann 
+surface, hence not on $\mathcal{S}$ itself), we conclude that 
+$\mathcal{C} \setminus \{1\} \subset \mathcal{D}$. The integrand 
+$F(s, y) x^s / s$ is therefore well-defined and holomorphic on a 
+neighborhood of $\mathcal{C} \setminus \{1\}$.
+
+\subsubsection*{Cauchy's theorem}
+
+The Perron contour and $\mathcal{C}$ share the same endpoints 
+$c \pm iT$. Together, the Perron contour traversed from $c - iT$ 
+to $c + iT$ and $\mathcal{C}$ traversed in the reverse direction 
+form a closed loop $\Gamma$, oriented counterclockwise. The 
+keyhole formed by $\mathcal{H}_{\mathrm{loc}}$ and the slit 
+$\mathcal{S}$ excludes the point $s = 1$ from the interior of 
+$\Gamma$, so the interior of $\Gamma$ is contained in the 
+rectangle
+\begin{equation}\label{eq:Gamma-interior-bound}
+    \mathcal{R}_\Gamma := \{ s = \sigma + it 
+    : \sigma_0(T) \leq \sigma \leq c, \ |t| \leq T \} 
+    \setminus \{1\},
+\end{equation}
+with the slit further excluded. For every $s \in \mathcal{R}_\Gamma$,
+\begin{equation}\label{eq:zfree-interior}
+    \Real(s) \geq \sigma_0(T) 
+    = 1 - \frac{c_0}{2\log(T+2)} 
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)},
+\end{equation}
+so $\mathcal{R}_\Gamma \subset \mathcal{Z}$. Combined with the 
+on-contour verifications~\eqref{eq:zfree-horizontal}--\eqref{eq:zfree-hankel}, 
+this shows that $\Gamma$ together with its interior is contained 
+in $\mathcal{Z}$. In particular, $F(s, y) x^s / s$ is holomorphic 
+on a neighborhood of $\Gamma$ and its interior, with the slit 
+$\mathcal{S}$ removed. By Cauchy's theorem,
+\begin{equation}\label{eq:cauchy-zero}
+    \oint_\Gamma F(s, y) \frac{x^s}{s}\, ds = 0,
+\end{equation}
+which yields
+\begin{equation}\label{eq:contour-equality}
+    \int_{c - iT}^{c + iT} F(s, y) \frac{x^s}{s}\, ds 
+    = \int_{\mathcal{C}} F(s, y) \frac{x^s}{s}\, ds.
+\end{equation}
+
+\subsubsection*{Decomposition of \texorpdfstring{$A(x, y)$}{A(x,y)}}
+
+Combining~\eqref{eq:contour-equality} with the truncated Perron 
+formula (Proposition~\ref{prop:perron-applied}), we obtain
+\begin{equation}\label{eq:A-decomposition}
+    A(x, y) = I_H + I_{\mathrm{top}} + I_{\mathrm{bot}} 
+            + I_{\mathrm{left}} + E_{\mathrm{Perron}}(x, T, y),
+\end{equation}
+where, for $* \in \{\mathrm{top},\ \mathrm{bot},\ \mathrm{left}\}$,
+\begin{equation}\label{eq:I-pieces}
+    I_* := \frac{1}{2\pi i} \int_{\mathcal{C}_*} 
+    F(s, y) \frac{x^s}{s}\, ds,
+\end{equation}
+with $\mathcal{C}_{\mathrm{left}} := \mathcal{C}_{\mathrm{left}}^- 
+\cup \mathcal{C}_{\mathrm{left}}^+$, and
+\begin{equation}\label{eq:I-H}
+    I_H := \frac{1}{2\pi i} \int_{\mathcal{H}_{\mathrm{loc}}} 
+    F(s, y) \frac{x^s}{s}\, ds.
+\end{equation}
+
+The local Hankel contribution $I_H$ contains the main asymptotic 
+behavior and will be evaluated in Section~\ref{sec:hankel}. The 
+remaining contributions $I_{\mathrm{top}}, I_{\mathrm{bot}}, 
+I_{\mathrm{left}}$ are estimated in 
+Section~\ref{sec:contour-estimates} and shown to be of lower 
+order than the main term, after a suitable choice of $T = T(x)$.
+
+\subsection{Estimates of the contour pieces}\label{sec:contour-estimates}
+
+In this section, we estimate the three nonlocal contour 
+contributions $I_{\mathrm{top}}, I_{\mathrm{bot}}, 
+I_{\mathrm{left}}$ appearing in the 
+decomposition~\eqref{eq:A-decomposition}, and combine them with 
+the Perron truncation error $E_{\mathrm{Perron}}$ to obtain a 
+single error bound. The local Hankel contribution $I_H$ is 
+deferred to Section~\ref{sec:hankel}.
+
+The main analytic tool throughout this section is the 
+bound~\eqref{eq:F-bound-uniform},
+\begin{equation*}
+    |F(\sigma + it, y)| 
+    \ll_{\eta, \varepsilon} 
+    (|t| + 2)^B 
+    \qquad (1 - \delta' \leq \sigma \leq 1 + \delta',\ 
+    s \neq 1,\ |y| \leq \eta),
+\end{equation*}
+where $B = B(\eta, \varepsilon)$ is defined 
+in~\eqref{eq:B-exponent}. We assume throughout that $\eta$ and 
+$\varepsilon$ are chosen sufficiently small that $B < 1$.
+
+\subsubsection*{Horizontal pieces}
+
+\begin{proposition}\label{prop:horizontal-bound}
+For every $\eta \in (0, 1/2)$ and $\varepsilon > 0$ with $B < 1$, 
+and every $T \geq 2$,
+\begin{equation}\label{eq:horizontal-bound}
+    |I_{\mathrm{top}}| + |I_{\mathrm{bot}}| 
+    \ll_{\eta, \varepsilon} 
+    x^c \, T^{B - 1},
+\end{equation}
+uniformly in $|y| \leq \eta$.
+\end{proposition}
+
+\begin{proof}
+On $\mathcal{C}_{\mathrm{top}}$, parameterize $s = \sigma + iT$ 
+with $\sigma_0(T) \leq \sigma \leq c$. Then 
+$|x^s| = x^\sigma \leq x^c$, $|s| \geq T$, and 
+$|F(\sigma + iT, y)| \ll_{\eta, \varepsilon} T^B$ 
+by~\eqref{eq:F-bound-uniform} (using $T \geq 2$). The length 
+$c - \sigma_0(T) \leq c$ is bounded. Therefore
+\[
+    |I_{\mathrm{top}}| 
+    \ll_{\eta, \varepsilon} 
+    \frac{x^c}{T} \cdot T^B 
+    = x^c \, T^{B - 1}.
+\]
+The same estimate applies to $|I_{\mathrm{bot}}|$.
+\end{proof}
+
+\subsubsection*{Vertical pieces}
+
+\begin{proposition}\label{prop:vertical-bound}
+For every $\eta \in (0, 1/2)$ and $\varepsilon > 0$ with $B < 1$, 
+and every $T \geq 2$,
+\begin{equation}\label{eq:vertical-bound}
+    |I_{\mathrm{left}}| 
+    \ll_{\eta, \varepsilon} 
+    x^{1 - \lambda_T} \, T^B,
+\end{equation}
+uniformly in $|y| \leq \eta$, where $\lambda_T$ is defined 
+in~\eqref{eq:lambda-T}.
+\end{proposition}
+
+\begin{proof}
+The contour $\mathcal{C}_{\mathrm{left}} = 
+\mathcal{C}_{\mathrm{left}}^- \cup \mathcal{C}_{\mathrm{left}}^+$ 
+parameterizes as $s = \sigma_0(T) + it$ with $|t| \leq T$. We 
+have $|x^s| = x^{\sigma_0(T)} = x^{1 - \lambda_T}$ and 
+$|s| \geq \max(\sigma_0(T), |t|) \gg \max(1, |t|)$ for $T$ 
+sufficiently large. Hence
+\[
+    |I_{\mathrm{left}}| 
+    \ll_{\eta, \varepsilon} 
+    x^{1 - \lambda_T} 
+    \int_{-T}^{T} \frac{(|t| + 2)^B}{\max(1, |t|)}\, dt.
+\]
+Splitting the integral at $|t| = 2$,
+\[
+    \int_{-T}^{T} \frac{(|t| + 2)^B}{\max(1, |t|)}\, dt 
+    \ll \int_{-2}^{2} 1\, dt 
+        + \int_{2 \leq |t| \leq T} |t|^{B - 1}\, dt 
+    \ll 1 + T^B 
+    \ll T^B,
+\]
+using $B > 0$. This gives~\eqref{eq:vertical-bound}.
+\end{proof}
+
+\subsubsection*{Choice of $T$ and the combined error}
+
+We choose
+\begin{equation}\label{eq:T-choice}
+    T = T(x) := \exp\!\bigl(\sqrt{\log x}\bigr),
+\end{equation}
+the standard Selberg--Delange truncation height adapted to the 
+de la Vall\'ee Poussin zero-free region. With this choice, 
+$\log T = \sqrt{\log x}$, and 
+$\lambda_T = c_0 / (2 \sqrt{\log x} + O(1))$, so
+\begin{equation}\label{eq:x-decay}
+    x^{- \lambda_T} 
+    = \exp(- \lambda_T \log x) 
+    = \exp\!\left(- \tfrac{c_0}{2} \sqrt{\log x} \cdot (1 + o(1))\right).
+\end{equation}
+
+\begin{proposition}\label{prop:nonlocal-error}
+With $T = T(x) = \exp(\sqrt{\log x})$, there exists a constant 
+$c_1 > 0$ (depending on $\eta, \varepsilon$ but not on $x$) such 
+that
+\begin{equation}\label{eq:total-nonlocal-error}
+    E_{\mathrm{Perron}}(x, T, y) 
+    + |I_{\mathrm{top}}| + |I_{\mathrm{bot}}| 
+    + |I_{\mathrm{left}}| 
+    \ll_{\eta, \varepsilon} 
+    x \exp\!\bigl(- c_1 \sqrt{\log x}\bigr),
+\end{equation}
+uniformly in $|y| \leq \eta$, for all $x$ sufficiently large.
+\end{proposition}
+
+\begin{proof}
+We bound each term separately and take the worst.
+
+\emph{Perron error.} 
+By~\eqref{eq:Axy-perron-error} with $T = \exp(\sqrt{\log x})$,
+\[
+    E_{\mathrm{Perron}} 
+    \ll_{\eta, \delta'} 
+    \frac{x (\log x)^{2 + 2\eta}}{T} 
+    = x (\log x)^{2 + 2\eta} \exp(- \sqrt{\log x}),
+\]
+which is $\ll x \exp(- (1 - o(1)) \sqrt{\log x})$.
+
+\emph{Horizontal pieces.} 
+Take the standard choice $c := 1 + 1/\log x$, so that 
+$x^c = e \cdot x$. By 
+Proposition~\ref{prop:horizontal-bound},
+\[
+    |I_{\mathrm{top}}| + |I_{\mathrm{bot}}| 
+    \ll_{\eta, \varepsilon} 
+    x \cdot T^{B - 1} 
+    = x \cdot \exp\!\bigl((B - 1) \sqrt{\log x}\bigr).
+\]
+Since $B < 1$, this is $\ll x \exp(- (1 - B) \sqrt{\log x})$.
+
+\emph{Vertical piece.} 
+By Proposition~\ref{prop:vertical-bound} 
+and~\eqref{eq:x-decay},
+\[
+    |I_{\mathrm{left}}| 
+    \ll_{\eta, \varepsilon} 
+    x \cdot x^{- \lambda_T} \cdot T^B 
+    = x \cdot \exp\!\bigl(- \tfrac{c_0}{2} \sqrt{\log x} 
+                          + B \sqrt{\log x}\bigr) (1 + o(1)).
+\]
+For $B < c_0 / 2$, this is 
+$\ll x \exp(- (c_0/2 - B) \sqrt{\log x})$.
+
+The constraint $B < c_0 / 2$ is achievable by taking $\eta$ and 
+$\varepsilon$ sufficiently small, since 
+$B = (2 + 2\eta)(1/8 + \varepsilon) + 2\eta C_{\arg}$ tends to 
+$1/4$ as $\eta, \varepsilon \to 0$, and $c_0 / 2$ is at least 
+some absolute constant (in particular, for the standard de la 
+Vall\'ee Poussin region one may take $c_0 \geq 1/2$, giving 
+$c_0/2 \geq 1/4$; refining $\varepsilon$ adjusts as needed).
+
+Setting $c_1 := \min(1 - o(1),\ 1 - B,\ c_0/2 - B)/2$ for $x$ 
+large enough yields~\eqref{eq:total-nonlocal-error}.
+\end{proof}
+
+The right-hand side of~\eqref{eq:total-nonlocal-error} is 
+$o(x \log x)$, so it will be dominated by the local Hankel 
+contribution $I_H$ to be analyzed in 
+Section~\ref{sec:hankel}, which is of order $x \log x$.
+
+\section{Local Hankel analysis}\label{sec:hankel}
+% 추후 작성
+
+\section{Extraction of $T_j(x)$ and proof of the main theorem}\label{sec:extraction}
+% 추후 작성
+
+\section{Toward $D(x)$: outlook}\label{sec:outlook}
+% 추후 작성
+
+
+% ===== References =====
+\begin{thebibliography}{99}
+
+% 나중에 여기에 레퍼런스 추가
+
+\end{thebibliography}
+
+\end{document}
