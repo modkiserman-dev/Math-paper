@@ -24,17 +24,16 @@ draft.
 ## Project Aim
 
 The paper starts from the divisor summatory function
-
-\[
+\begin{equation*}
+    D(x) = 1 + \sum_{i \geq 1} (i+1) \pi(x^{1/i})
+         + \sum_{j \geq 2} (-1)^j (j-1) T_j(x),
+\end{equation*}
 $D(x):=\sum_{n\le x} d(n),$
-\]
 
 and studies an exact decomposition according to the number of distinct prime
 factors. The current analytic target is the fixed-\(j\) asymptotic for
 
-\[
-T_j(x):=\sum_{n\le x} d(n)\binom{\omega(n)}{j}.
-\]
+$T_j(x):=\sum_{n\le x} d(n)\binom{\omega(n)}{j}.$
 
 The fixed-\(j\) analysis is a first step toward understanding the alternating
 inclusion--exclusion contribution to \(D(x)\). It does not by itself justify
