@@ -169,30 +169,49 @@ The Perron truncation error must be supplied from the exact Perron theorem used
 in the final writeup. Do not present the global error as finalized until this
 bookkeeping is made explicit.
 
-## Current Draft Caution
+## Current Contour Parameter Convention
 
 The current `main.tex` uses a de la Vallee Poussin zero-free-region setup with
 \[
 T=\exp(\sqrt{\log x})
 \]
-and an exponent
+and a single fixed strip parameter \(\delta'\). The older distinction between
+\(\delta'\) and \(\delta_*\) has been removed.
 
+The current convention is
 \[
-B=(2+2\eta)\left(\frac18+\varepsilon\right)+2\eta C_{\arg}.
+\delta'\in\left(\frac{c_0}{2\log 3},\frac{c_0}{2}\right),
+\]
+and
+\[
+\lambda_T:=\frac{c_0}{2\log(T+2)}.
 \]
 
-Therefore
-
+Thus
 \[
-\inf B=\frac14,
+\lambda_T\le \frac{c_0}{2\log 3}<\delta'.
 \]
 
-but \(B\) has no minimum under \(\eta>0\) and \(\varepsilon>0\).
-
-Any argument requiring \(B<c_0/2\) needs more than \(c_0\ge 1/2\). It requires
+The current growth exponent is
 
 \[
-c_0> \frac12
+B=B(\delta')
+=(2+2\eta)\left(\frac{\delta'}{2}+\varepsilon\right)
++2\eta C_{\arg}.
 \]
 
-or a sharper growth estimate that lowers the infimum of \(B\).
+Since
+
+\[
+B\to\delta'
+\]
+as \(\eta,\varepsilon\to0^+\), the condition \(\delta'<c_0/2\) allows
+
+\[
+B<c_0/2
+\]
+
+after taking \(\eta\) and \(\varepsilon\) sufficiently small.
+
+Branch-dependent estimates involving \(\zeta(s)^{2+2y}\) should be stated only
+on the zero-free slit domain \(\mathcal D\), not on the whole vertical strip.
