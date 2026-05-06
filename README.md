@@ -26,7 +26,7 @@ draft.
 The paper starts from the divisor summatory function
 
 \[
-D(x):=\sum_{n\le x} d(n),
+$D(x):=\sum_{n\le x} d(n),$
 \]
 
 and studies an exact decomposition according to the number of distinct prime
