@@ -24,10 +24,7 @@ draft.
 ## Project Aim
 
 The paper starts from the divisor summatory function
-\begin{equation*}
-    D(x) = 1 + \sum_{i \geq 1} (i+1) \pi(x^{1/i})
-         + \sum_{j \geq 2} (-1)^j (j-1) T_j(x),
-\end{equation*}
+
 $D(x):=\sum_{n\le x} d(n),$
 
 and studies an exact decomposition according to the number of distinct prime
