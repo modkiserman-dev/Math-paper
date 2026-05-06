@@ -1,0 +1,663 @@
+\section{Perron formula and contour deformation}\label{sec:perron}
+
+To extract the asymptotic behavior of $T_j(x)$ from the Dirichlet
+series $F(s, y)$, we work with the generating partial sum
+\begin{equation}\label{eq:Axy-def}
+    A(x, y) := \sum_{n \leq x} d(n) (1 + y)^{\omega(n)},
+\end{equation}
+which satisfies the generating relation
+\begin{equation}\label{eq:Axy-generating}
+    A(x, y) = \sum_{j \geq 0} T_j(x) y^j.
+\end{equation}
+Throughout this section, we fix one parameter:
+\begin{itemize}
+    \item $\eta \in (0, 1/2)$, controlling the size of the disk
+    $|y| \leq \eta$.
+\end{itemize}
+
+The fixed strip depth $\delta'$ and the truncation-dependent
+quantity $\lambda_T$ will be chosen together in
+Section~\ref{sec:contour-decomposition}. This keeps the Euler
+factor estimates, the zero-free region, and the contour growth
+bound tied to the same strip parameter.
+
+We also abbreviate $\alpha := 2 + 2y$. Thus the
+factorization~\eqref{eq:factorization} becomes
+$F(s, y) = \zeta(s)^\alpha H(s, y)$. For $|y| \leq \eta$ with
+$\eta < 1/2$, the exponent $\alpha$ ranges in a disk of radius
+$2\eta < 1$ around $2$, so in particular $\alpha$ is bounded away
+from non-positive integers.
+
+\subsection{The truncated Perron formula}\label{sec:perron-formula}
+
+We quote the following standard form of the truncated Perron
+formula (see, e.g., \cite[Theorem II.2.2]{}).
+
+\begin{theorem}[Truncated Perron formula]\label{thm:perron}
+Let $f(s) = \sum_{n \geq 1} a_n n^{-s}$ be a Dirichlet series with
+abscissa of absolute convergence $\sigma_a$. For real numbers
+$c > \sigma_a$, $x \geq 2$, and $T \geq 1$ with $x \notin \mathbb{Z}$,
+\begin{equation}\label{eq:perron}
+    \sum_{n \leq x} a_n
+    = \frac{1}{2\pi i} \int_{c - iT}^{c + iT} f(s) \frac{x^s}{s} \, ds
+    + R(x, T),
+\end{equation}
+where the truncation error satisfies
+\begin{equation}\label{eq:perron-error}
+    R(x, T) \ll \frac{x^c}{T} \sum_{n \geq 1} \frac{|a_n|}{n^c
+    \left(1 + T \left|\log \frac{x}{n}\right|\right)}
+    + \frac{x^c}{T \log x}.
+\end{equation}
+\end{theorem}
+
+We apply Theorem~\ref{thm:perron} to the Dirichlet series
+$F(s, y) = \sum_{n \geq 1} d(n) (1+y)^{\omega(n)} n^{-s}$. For
+$|y| \leq \eta$ with $\eta$ sufficiently small, the series
+converges absolutely for $\Real(s) > 1$, so we may take any $c > 1$.
+Choose, for instance, $c = 1 + 1/\log x$, which is the standard
+choice to balance the main term size and the truncation error.
+
+\begin{proposition}\label{prop:perron-applied}
+Fix $\delta \in (0, 1/2)$. For $x \geq 2$ with $x \notin \Z$,
+$|y| \leq \eta$, and $T \geq 1$,
+\begin{equation}\label{eq:Axy-perron-error}
+    A(x, y) = \frac{1}{2\pi i} \int_{c - iT}^{c + iT}
+    F(s, y) \frac{x^s}{s}\, ds
+    + E_{\mathrm{Perron}}(x, T, y),
+\end{equation}
+where $c = 1 + 1/\log x$ and the truncation error satisfies
+\begin{equation}\label{eq:Eperron-bound}
+    E_{\mathrm{Perron}}(x, T, y)
+    \ll_{\eta, \delta}
+    \frac{x (\log x)^{2 + 2\eta}}{T}.
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+Apply Theorem~\ref{thm:perron} with
+$a_n = d(n)(1+y)^{\omega(n)}$ and $c = 1 + 1/\log x$. Denote the
+resulting Perron truncation error by $R(x, T, y)$. Using
+$|1 + y| \leq 1 + \eta$ and the trivial bound
+$1 + T |\log(x/n)| \geq 1$, the first term of~\eqref{eq:perron-error}
+satisfies
+\[
+    \frac{x^c}{T} \sum_{n \geq 1}
+    \frac{|d(n)(1+y)^{\omega(n)}|}{n^c} \cdot
+    \frac{1}{1 + T |\log(x/n)|}
+    \leq \frac{x^c}{T} F(c, \eta).
+\]
+Hence
+\begin{equation}\label{eq:R-bound-raw}
+    R(x, T, y) \ll_{\eta, \delta}
+    \frac{x^c}{T} F(c, \eta) + \frac{x^c}{T \log x}.
+\end{equation}
+We estimate $F(c, \eta)$ at $c = 1 + 1/\log x$ via the
+factorization~\eqref{eq:factorization}:
+$F(c, \eta) = \zeta(c)^{2 + 2\eta} H(c, \eta)$. Since $\zeta(s)$
+has a simple pole at $s = 1$ with residue $1$, the standard
+expansion $\zeta(s) = 1/(s-1) + \gamma + O(s-1)$ near $s = 1$
+gives $\zeta(1 + 1/\log x) \sim \log x$. Hence
+$\zeta(c)^{2 + 2\eta} \ll_\eta (\log x)^{2 + 2\eta}$. Moreover,
+Proposition~\ref{prop:H-analytic}, applied with the chosen
+$\delta \in (0, 1/2)$, implies that $H(c, \eta)$ is bounded by
+a constant depending only on $\eta$ and $\delta$. Therefore
+\begin{equation}\label{eq:F-at-c}
+    F(c, \eta) \ll_{\eta, \delta} (\log x)^{2 + 2\eta}.
+\end{equation}
+Substituting~\eqref{eq:F-at-c} into~\eqref{eq:R-bound-raw} and
+using $x^c = x \cdot x^{1/\log x} = e \cdot x$,
+\[
+    R(x, T, y)
+    \ll_{\eta, \delta} \frac{x (\log x)^{2 + 2\eta}}{T}
+    + \frac{x}{T \log x}
+    \ll_{\eta, \delta} \frac{x (\log x)^{2 + 2\eta}}{T},
+\]
+which is~\eqref{eq:Eperron-bound}.
+\end{proof}
+
+The Perron truncation error~\eqref{eq:Eperron-bound} is of size
+$x (\log x)^{2 + 2\eta} / T$. Since $T$ appears in the
+denominator, this term decreases as $T$ grows, and it can be
+made negligible compared to the main term by choosing $T$
+sufficiently large as a function of $x$. The precise choice of
+$T = T(x)$ will be made in Section~\ref{sec:contour-estimates},
+after combining this error with the contributions from the
+contour deformation.
+
+\subsection{Analytic preliminaries}\label{sec:analytic-prelim}
+
+To control the contour integrals arising from the deformation in
+Section~\ref{sec:contour-decomposition}, we will need:
+\begin{itemize}
+    \item[(a)] a region in which $\zeta(s)$ does not vanish, so
+    that the contour can avoid its zeros;
+    \item[(b)] a continuous branch of $\zeta(s)^{2 + 2y}$ on a
+    neighborhood of the contour;
+    \item[(c)] a uniform bound on $|\zeta(s)|$ along vertical
+    lines in the critical strip;
+    \item[(d)] a corresponding bound on $|F(s, y)|$ combining
+    (b) and (c).
+\end{itemize}
+We collect these analytic ingredients here, before constructing
+the contour itself in Section~\ref{sec:contour-decomposition}.
+
+\subsubsection*{Zero-free region}
+
+For the contour deformation to be valid, we need a region in which
+$\zeta(s) \neq 0$. We use the following classical result of
+de la Vall\'ee Poussin, quoted without proof; see, e.g.,
+\cite[Ch.~3]{} or \cite[\S6.6]{}.
+
+\begin{theorem}[de la Vall\'ee Poussin zero-free region]
+\label{thm:zero-free}
+There exists an absolute constant $c_0 \in (0, 1/2)$ such that
+$\zeta(s) \neq 0$ on the open region
+\begin{equation}\label{eq:zero-free-region}
+    \mathcal{Z} := \left\{ s = \sigma + it \in \C :
+    \sigma > 1 - \frac{c_0}{\log(|t| + 2)} \right\}
+    \setminus \{1\}.
+\end{equation}
+\end{theorem}
+
+The boundary of $\mathcal{Z}$ is curved, and integrating along
+it would complicate the estimation of the resulting contour
+pieces. We will instead use a fixed vertical line lying strictly
+inside $\mathcal{Z}$ for all $|t| \leq T$; the precise depth of
+this line is fixed in Section~\ref{sec:contour-decomposition}.
+
+\subsubsection*{Continuous branch of \texorpdfstring{$\zeta(s)^\alpha$}{zeta(s)^alpha}}
+
+To make sense of $\zeta(s)^\alpha = \zeta(s)^{2 + 2y}$ on a
+neighborhood of the contour, we specify a branch on the region
+\begin{equation}\label{eq:D-region}
+    \mathcal{D} := \mathcal{Z} \setminus \mathcal{S},
+\end{equation}
+where $\mathcal{S} := \{s \in \C : \Im(s) = 0,\ \Real(s) \leq 1\}$
+is the slit along the real axis to the left of $s = 1$. The slit
+$\mathcal{S}$ disconnects the segment $\mathcal{Z} \cap \mathcal{S}$
+from the rest of $\mathcal{Z}$ from above and below, rendering
+$\mathcal{D}$ simply connected.\footnote{%
+Indeed, $\mathcal{Z}$ is a slit-once-punctured domain that is not
+simply connected, since a small loop around $s = 1$ inside
+$\mathcal{Z}$ is not nullhomotopic. Removing the
+entire ray $(-\infty, 1]$ (equivalently, the connected component
+$\mathcal{Z} \cap \mathcal{S}$ of $\mathcal{S}$ inside
+$\mathcal{Z}$, which contains $s = 1$) cuts every such loop,
+making the resulting domain simply connected.}
+
+On $\mathcal{D}$, both $\zeta(s)$ and $\zeta'(s)$ are holomorphic,
+and $\zeta(s) \neq 0$. Fix any real number $c_* > 1$ (for
+example $c_* = 2$); since $\zeta(c_*) > 0$, the principal
+logarithm $\log \zeta(c_*) \in \R$ is well-defined. Define
+\begin{equation}\label{eq:L-def}
+    L(s) := \log \zeta(c_*)
+          + \int_{c_*}^{s} \frac{\zeta'(\omega)}{\zeta(\omega)}\, d\omega
+    \qquad (s \in \mathcal{D}),
+\end{equation}
+where the integral is taken along any path in $\mathcal{D}$ from
+$c_*$ to $s$. Since $\mathcal{D}$ is simply connected and
+$\zeta'/\zeta$ is holomorphic on $\mathcal{D}$, the integral is
+path-independent, and $L$ is a well-defined holomorphic function
+on $\mathcal{D}$.
+
+We claim $e^{L(s)} = \zeta(s)$ on $\mathcal{D}$. Indeed,
+$L'(s) = \zeta'(s)/\zeta(s)$ on $\mathcal{D}$, so
+\[
+    \frac{d}{ds}\!\bigl(e^{-L(s)} \zeta(s)\bigr)
+    = e^{-L(s)} \bigl(\zeta'(s) - L'(s) \zeta(s)\bigr)
+    = 0.
+\]
+Hence $e^{-L(s)} \zeta(s)$ is constant on $\mathcal{D}$, and
+evaluating at $s = c_*$ gives
+$e^{-L(c_*)} \zeta(c_*) = e^{-\log\zeta(c_*)} \zeta(c_*) = 1$.
+Therefore $e^{L(s)} = \zeta(s)$ throughout $\mathcal{D}$, so $L$
+serves as a continuous branch of $\log \zeta$ on $\mathcal{D}$.
+
+We define
+\begin{equation}\label{eq:zeta-alpha-def}
+    \zeta(s)^\alpha := e^{\alpha L(s)}
+    \qquad (s \in \mathcal{D},\ \alpha \in \C).
+\end{equation}
+This is single-valued and holomorphic in $s$ on $\mathcal{D}$,
+and entire in $\alpha$. At $\alpha = 2$, the definition reduces
+to $\zeta(s)^2$ in the usual sense.
+
+\subsubsection*{Vertical growth of \texorpdfstring{$\zeta(s)$}{zeta(s)}}
+
+We use the following uniform bound on $|\zeta(s)|$, obtained by
+combining the convexity bound with the trivial estimate
+$\zeta(\sigma + it) \ll \log |t|$ for $\sigma \geq 1$ (see, e.g.,
+\cite[Theorem II.3.8]{} for the convexity bound).
+
+\begin{theorem}[Uniform bound on $\zeta(s)$ in a vertical strip]
+\label{thm:zeta-uniform}
+Fix $\delta \in (0, 1/2)$. For every $\varepsilon > 0$,
+\begin{equation}\label{eq:zeta-uniform}
+    |\zeta(\sigma + it)| \ll_{\delta, \varepsilon}
+    |t|^{\delta/2 + \varepsilon}
+    \quad \text{for } 1 - \delta \leq \sigma \leq 1 + \delta
+    \text{ and } |t| \geq 2,
+\end{equation}
+where the implied constant is independent of $t$.
+\end{theorem}
+
+\begin{proof}[Sketch]
+For $1 - \delta \leq \sigma \leq 1$, the convexity bound gives
+$|\zeta(\sigma + it)| \ll_\varepsilon |t|^{(1-\sigma)/2 + \varepsilon}$.
+Taking the supremum of $(1 - \sigma)/2$ over $\sigma \in [1-\delta, 1]$
+yields $\delta/2$, so
+$|\zeta(\sigma + it)| \ll_\varepsilon |t|^{\delta/2 + \varepsilon}$
+on this subrange.
+
+For $1 \leq \sigma \leq 1 + \delta$, the standard estimate
+$|\zeta(\sigma + it)| \ll \log |t|$ holds, and
+$\log |t| \ll_\varepsilon |t|^\varepsilon \leq |t|^{\delta/2 + \varepsilon}$.
+Combining the two ranges gives~\eqref{eq:zeta-uniform}.
+\end{proof}
+
+\subsubsection*{A bound on \texorpdfstring{$|F(s, y)|$}{|F(s,y)|}}
+
+The branch~\eqref{eq:zeta-alpha-def} yields a clean bound on
+$|F(s, y)|$ on $\mathcal{D}$. Writing $\alpha = 2 + 2y$ with
+$y = \Real(y) + i \Im(y)$,
+\[
+    |\zeta(s)^\alpha|
+    = e^{\Real(\alpha) \Real(L(s)) - \Im(\alpha) \Im(L(s))}
+    = |\zeta(s)|^{\Real(\alpha)} \cdot e^{-\Im(\alpha) \arg \zeta(s)},
+\]
+since $\Real(L(s)) = \log |\zeta(s)|$ and
+$\Im(L(s)) = \arg \zeta(s)$. Using $\Re(\alpha) = 2 + 2\Re(y)$,
+$\Im(\alpha) = 2\Im(y)$, and $|\Im(y)| \leq \eta$, we obtain
+\begin{equation}\label{eq:F-safe-bound}
+    |F(s, y)|
+    \leq |H(s, y)| \cdot |\zeta(s)|^{2 + 2\Real(y)}
+    \cdot \exp\bigl(2 \eta \, |\arg \zeta(s)|\bigr)
+    \qquad (s \in \mathcal{D},\ |y| \leq \eta).
+\end{equation}
+
+Fix $\delta \in (0, 1/2)$. The factor $|H(s, y)|$ is uniformly
+bounded on $\mathcal{R}_{\delta, \eta}$ by
+Proposition~\ref{prop:H-analytic}. The factor
+$|\zeta(s)|^{2 + 2\Real(y)}$ is controlled, on the range
+$|t| \geq 2$, by Theorem~\ref{thm:zeta-uniform}. The factor
+$\exp(2 \eta |\arg \zeta(s)|)$ is controlled, on the same range,
+by the following standard estimate (see, e.g.,
+\cite[\S9.4]{} or \cite[Theorem~II.3.10]{}).
+
+\begin{theorem}[Bound on $\arg \zeta$]
+\label{thm:arg-zeta}
+There exists an absolute constant $C_{\arg} > 0$ such that, for
+every $s = \sigma + it \in \mathcal{D}$ with $|t| \geq 2$,
+\begin{equation}\label{eq:arg-zeta-bound}
+    |\arg \zeta(s)| \leq C_{\arg} \log|t|,
+\end{equation}
+where the branch of $\arg \zeta$ is the one determined by the
+logarithm $L$ on $\mathcal{D}$.
+\end{theorem}
+
+Combining Theorem~\ref{thm:zeta-uniform} and
+Theorem~\ref{thm:arg-zeta} in~\eqref{eq:F-safe-bound}, on the
+range $|t| \geq 2$ and $1 - \delta \leq \sigma \leq 1 + \delta$
+with $s \in \mathcal{D}$,
+\begin{equation}\label{eq:F-bound-large-t}
+    |F(\sigma + it, y)|
+    \ll_{\eta, \delta, \varepsilon}
+    |t|^{(2 + 2\eta)(\delta/2 + \varepsilon) + 2 \eta C_{\arg}}
+    = |t|^{B(\delta)},
+\end{equation}
+where, for $\delta \in (0, 1/2)$,
+\begin{equation}\label{eq:B-exponent}
+    B(\delta) := B(\eta, \delta, \varepsilon)
+       := (2 + 2\eta)\!\left(\tfrac{\delta}{2} + \varepsilon\right)
+        + 2 \eta C_{\arg}.
+\end{equation}
+The implied constant in~\eqref{eq:F-bound-large-t} depends on
+$\eta$, $\delta$, and $\varepsilon$, but not on $t$ or $y$. As
+$\eta, \varepsilon \to 0$, we have $B(\delta) \to \delta$. The
+specific choice of $\delta$ on the contour, and the resulting
+constraint $B(\delta) < c_0/2$ that drives the contour estimates,
+will be made in Section~\ref{sec:contour-decomposition}.
+
+The bound~\eqref{eq:F-bound-large-t} does not extend to
+$|t| \leq 2$, where $|F(s, y)|$ is unbounded as $s \to 1$. On
+the deformed contour the relevant $|t| \leq 2$ behaviour is
+controlled by the distance to $s = 1$, and is treated separately
+in Section~\ref{sec:contour-estimates}.
+
+\subsection{Contour decomposition}\label{sec:contour-decomposition}
+
+We now introduce the parameters governing the contour deformation
+and construct the deformed contour.
+
+\subsubsection*{Depth of the deformation}
+
+Fix once and for all an absolute constant
+\begin{equation}\label{eq:delta-prime}
+    \delta' \in \left( \frac{c_0}{2 \log 3},\ \frac{c_0}{2} \right),
+\end{equation}
+where $c_0$ is the constant of Theorem~\ref{thm:zero-free}; the
+interval is non-empty since $\log 3 > 1$. This range of $\delta'$
+is engineered to satisfy three conditions used in the contour
+estimates of Section~\ref{sec:contour-estimates}.
+
+For each truncation height $T \geq 1$, define
+\begin{equation}\label{eq:lambda-T}
+    \lambda_T := \frac{c_0}{2 \log(T + 2)}.
+\end{equation}
+By construction, $\lambda_T \to 0$ as $T \to \infty$, and for
+every $T \geq 1$,
+\begin{equation}\label{eq:lambda-T-bound}
+    \lambda_T \leq \frac{c_0}{2 \log 3} < \delta',
+\end{equation}
+so the depth $\sigma_0(T) := 1 - \lambda_T$ of the deformed
+contour satisfies $\sigma_0(T) > 1 - \delta'$. Consequently, the
+contour $\mathcal{C}(T, \rho)$ defined below lies in
+$\mathcal{R}_{\delta', \eta}$ for every $T \geq 1$ and every
+$|y| \leq \eta$. In particular,
+Proposition~\ref{prop:H-analytic} applies on the contour with
+$\delta = \delta'$.
+
+The exponent~\eqref{eq:B-exponent} specialized to $\delta'$ is
+\begin{equation}\label{eq:B-spec}
+    B := B(\delta')
+       = (2 + 2\eta)\!\left(\tfrac{\delta'}{2} + \varepsilon\right)
+        + 2 \eta C_{\arg}.
+\end{equation}
+Since $B \to \delta'$ as $\eta, \varepsilon \to 0^+$ and
+$\delta' < c_0 / 2$, we may choose $\eta$ and $\varepsilon$
+sufficiently small that
+\begin{equation}\label{eq:B-small}
+    B < \frac{c_0}{2}.
+\end{equation}
+This range of $\eta$ and $\varepsilon$ is fixed throughout the
+remainder of the paper.
+
+Finally, the choice $c = 1 + 1/\log x$ in
+Proposition~\ref{prop:perron-applied} satisfies $c \leq 1 + \delta'$
+for all $x$ sufficiently large, ensuring that the abscissa $c$
+lies inside the strip $1 - \delta' \leq \sigma \leq 1 + \delta'$
+where the bound on $|F|$ from Section~\ref{sec:analytic-prelim}
+applies. We assume this hereafter.
+
+\subsubsection*{Verification that the contour avoids \texorpdfstring{$\zeta$}{zeta}-zeros}
+
+We claim that $\mathcal{C} \setminus \{1\} \subset \mathcal{Z}$,
+where $\mathcal{Z}$ is the zero-free region of
+Theorem~\ref{thm:zero-free}. For the horizontal pieces
+$\mathcal{C}_{\mathrm{bot}}$ and $\mathcal{C}_{\mathrm{top}}$,
+\begin{equation}\label{eq:zfree-horizontal}
+    \Real(s) \geq \sigma_0(T)
+    = 1 - \frac{c_0}{2\log(T+2)}
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)}.
+\end{equation}
+For the vertical pieces $\mathcal{C}_{\mathrm{left}}^\pm$,
+\begin{equation}\label{eq:zfree-vertical}
+    \Real(s) = \sigma_0(T)
+    = 1 - \frac{c_0}{2\log(T+2)}
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)}.
+\end{equation}
+For the local Hankel contour $\mathcal{H}_{\mathrm{loc}}$, the two
+horizontal arms (3a) and (3c) satisfy $\Real(s) \geq \sigma_0(T)$
+and $|\Im s| \leq \rho$, hence are covered by the same estimate
+as the vertical pieces. For the small circle (3b),
+\begin{equation}\label{eq:zfree-hankel}
+    \Real(s) \geq 1 - \rho
+    > 1 - \lambda_T
+    = 1 - \frac{c_0}{2\log(T+2)}
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)}.
+\end{equation}
+
+Therefore $\mathcal{C} \setminus \{1\} \subset \mathcal{Z}$.
+Combined with the boundary-value convention for the Hankel arms, the
+approximating contours with heights $\pm\varepsilon$ are contained in
+$\mathcal{D}$ away from $s=1$. The integrand $F(s, y)x^s/s$ is
+therefore well-defined and holomorphic on a neighborhood of each
+approximating contour, and the contour $\mathcal{C}$ is understood as
+the corresponding boundary-value limit.
+
+\subsubsection*{Cauchy's theorem}
+
+The Perron contour and $\mathcal{C}$ share the same endpoints
+$c \pm iT$. Together, the Perron contour traversed from $c - iT$
+to $c + iT$ and $\mathcal{C}$ traversed in the reverse direction
+form a closed loop $\Gamma$, oriented counterclockwise. The
+keyhole formed by $\mathcal{H}_{\mathrm{loc}}$ and the slit
+$\mathcal{S}$ excludes the point $s = 1$ from the interior of
+$\Gamma$, so the interior of $\Gamma$ is contained in the
+rectangle
+\begin{equation}\label{eq:Gamma-interior-bound}
+    \mathcal{R}_\Gamma := \{ s = \sigma + it
+    : \sigma_0(T) \leq \sigma \leq c, \ |t| \leq T \}
+    \setminus \{1\},
+\end{equation}
+with the slit further excluded. For every $s \in \mathcal{R}_\Gamma$,
+\begin{equation}\label{eq:zfree-interior}
+    \Real(s) \geq \sigma_0(T)
+    = 1 - \frac{c_0}{2\log(T+2)}
+    > 1 - \frac{c_0}{\log(|\Im s| + 2)},
+\end{equation}
+so $\mathcal{R}_\Gamma \subset \mathcal{Z}$. Combined with the
+on-contour verifications~\eqref{eq:zfree-horizontal}--\eqref{eq:zfree-hankel},
+this shows that $\Gamma$ together with its interior is contained
+in $\mathcal{Z}$. In particular, $F(s, y) x^s / s$ is holomorphic
+on a neighborhood of $\Gamma$ and its interior, with the slit
+$\mathcal{S}$ removed. By Cauchy's theorem,
+\begin{equation}\label{eq:cauchy-zero}
+    \oint_\Gamma F(s, y) \frac{x^s}{s}\, ds = 0,
+\end{equation}
+which yields
+\begin{equation}\label{eq:contour-equality}
+    \int_{c - iT}^{c + iT} F(s, y) \frac{x^s}{s}\, ds
+    = \int_{\mathcal{C}} F(s, y) \frac{x^s}{s}\, ds.
+\end{equation}
+
+\subsubsection*{Decomposition of \texorpdfstring{$A(x, y)$}{A(x,y)}}
+
+Combining~\eqref{eq:contour-equality} with the truncated Perron
+formula (Proposition~\ref{prop:perron-applied}), we obtain
+\begin{equation}\label{eq:A-decomposition}
+    A(x, y) = I_H + I_{\mathrm{top}} + I_{\mathrm{bot}}
+            + I_{\mathrm{left}} + E_{\mathrm{Perron}}(x, T, y),
+\end{equation}
+where, for $* \in \{\mathrm{top},\ \mathrm{bot},\ \mathrm{left}\}$,
+\begin{equation}\label{eq:I-pieces}
+    I_* := \frac{1}{2\pi i} \int_{\mathcal{C}_*}
+    F(s, y) \frac{x^s}{s}\, ds,
+\end{equation}
+with $\mathcal{C}_{\mathrm{left}} := \mathcal{C}_{\mathrm{left}}^-
+\cup \mathcal{C}_{\mathrm{left}}^+$, and
+\begin{equation}\label{eq:I-H}
+    I_H := \frac{1}{2\pi i} \int_{\mathcal{H}_{\mathrm{loc}}}
+    F(s, y) \frac{x^s}{s}\, ds.
+\end{equation}
+
+The local Hankel contribution $I_H$ contains the main asymptotic
+behavior and will be evaluated in Section~\ref{sec:hankel}. The
+remaining contributions $I_{\mathrm{top}}, I_{\mathrm{bot}},
+I_{\mathrm{left}}$ are estimated in
+Section~\ref{sec:contour-estimates} and shown to be of lower
+order than the main term, after a suitable choice of $T = T(x)$.
+
+\subsection{Estimates of the contour pieces}\label{sec:contour-estimates}
+
+In this section, we estimate the three nonlocal contour
+contributions $I_{\mathrm{top}}, I_{\mathrm{bot}},
+I_{\mathrm{left}}$ appearing in the
+decomposition~\eqref{eq:A-decomposition}, and combine them with
+the Perron truncation error $E_{\mathrm{Perron}}$ to obtain a
+single error bound. The local Hankel contribution $I_H$ is
+deferred to Section~\ref{sec:hankel}.
+
+The main analytic tool throughout this section is the
+bound~\eqref{eq:F-bound-large-t}, specialized to
+$\delta = \delta'$:
+\begin{equation}\label{eq:F-bound-on-contour}
+    |F(\sigma + it, y)|
+    \ll_{\eta, \varepsilon}
+    |t|^B
+    \qquad (1 - \delta' \leq \sigma \leq 1 + \delta',\
+    s \in \mathcal{D},\ |t| \geq 2,\ |y| \leq \eta),
+\end{equation}
+where $B = B(\delta')$ is defined in~\eqref{eq:B-spec}. By the
+choice~\eqref{eq:delta-prime} of $\delta'$ together with the
+constraint $B < c_0/2$ (see~\eqref{eq:B-small}), $\eta$ and
+$\varepsilon$ are fixed sufficiently small.
+
+\subsubsection*{Horizontal pieces}
+
+\begin{proposition}\label{prop:horizontal-bound}
+For every $T \geq 2$,
+\begin{equation}\label{eq:horizontal-bound}
+    |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
+    \ll_{\eta, \varepsilon}
+    x^c \, T^{B - 1},
+\end{equation}
+uniformly in $|y| \leq \eta$.
+\end{proposition}
+
+\begin{proof}
+On $\mathcal{C}_{\mathrm{top}}$, parameterize $s = \sigma + iT$
+with $\sigma_0(T) \leq \sigma \leq c$. Then
+$|x^s| = x^\sigma \leq x^c$, $|s| \geq T$, and
+$|F(\sigma + iT, y)| \ll_{\eta, \varepsilon} T^B$
+by~\eqref{eq:F-bound-on-contour} (using $T \geq 2$). The length
+$c - \sigma_0(T) \leq c$ is bounded. Therefore
+\[
+    |I_{\mathrm{top}}|
+    \ll_{\eta, \varepsilon}
+    \frac{x^c}{T} \cdot T^B
+    = x^c \, T^{B - 1}.
+\]
+The same estimate applies to $|I_{\mathrm{bot}}|$.
+\end{proof}
+
+\subsubsection*{Vertical pieces}
+
+\begin{proposition}\label{prop:vertical-bound}
+For every $T \geq 2$,
+\begin{equation}\label{eq:vertical-bound}
+    |I_{\mathrm{left}}|
+    \ll_{\eta, \varepsilon}
+    x^{1 - \lambda_T} \, T^B,
+\end{equation}
+uniformly in $|y| \leq \eta$, where $\lambda_T$ is defined
+in~\eqref{eq:lambda-T}.
+\end{proposition}
+
+\begin{proof}
+The contour $\mathcal{C}_{\mathrm{left}} =
+\mathcal{C}_{\mathrm{left}}^- \cup \mathcal{C}_{\mathrm{left}}^+$
+parameterizes as $s = \sigma_0(T) + it$ with $|t| \leq T$. We
+have $|x^s| = x^{\sigma_0(T)} = x^{1 - \lambda_T}$ and
+$|s| \geq \max(\sigma_0(T), |t|) \gg \max(1, |t|)$ for $T$
+sufficiently large. Hence
+\[
+    |I_{\mathrm{left}}|
+    \ll_{\eta, \varepsilon}
+    x^{1 - \lambda_T}
+    \left(
+    \int_{2 \leq |t| \leq T} \frac{|t|^B}{|t|}\,dt
+    + \int_{|t|\leq 2} \frac{|F(\sigma_0(T)+it,y)|}{1}\,dt
+    \right).
+\]
+For the first integral,
+\[
+    \int_{2 \leq |t| \leq T} |t|^{B-1}\,dt \ll T^B.
+\]
+On the bounded-height part $|t| \leq 2$, the distance from
+$s = 1$ is at least $\lambda_T$, and the factorization
+$F(s, y) = \zeta(s)^\alpha H(s, y)$ together with
+$\zeta(s) \sim 1/(s - 1)$ near $s = 1$ gives
+\[
+    |F(\sigma_0(T) + it, y)|
+    \ll_\eta \lambda_T^{-(2 + 2\eta)}
+    \asymp (\log T)^{2 + 2\eta}.
+\]
+Integrating over $|t| \leq 2$ on which $|s| \asymp 1$ contributes
+at most $\ll_\eta (\log T)^{2 + 2\eta}$, which is $\ll T^B$ for
+any $B > 0$.
+\end{proof}
+
+\subsubsection*{Choice of $T$ and the combined error}
+
+We choose
+\begin{equation}\label{eq:T-choice}
+    T = T(x) := \exp\bigl(\sqrt{\log x}\bigr),
+\end{equation}
+the standard Selberg--Delange truncation height adapted to the
+de la Vall\'ee Poussin zero-free region. With this choice,
+$\log T = \sqrt{\log x}$, and
+$\lambda_T = c_0/(2\sqrt{\log x} + O(1))$, so $\lambda_T < \delta'$
+holds automatically. Moreover, $c = 1 + 1/\log x \leq 1 + \delta'$
+for all $x$ sufficiently large, so the abscissa $c$ lies inside
+the strip used in the growth estimates. We have
+\begin{equation}\label{eq:x-decay}
+    x^{- \lambda_T}
+    = \exp(- \lambda_T \log x)
+    = \exp\left(- \tfrac{c_0}{2} \sqrt{\log x} \cdot (1 + o(1))\right).
+\end{equation}
+
+\begin{proposition}\label{prop:nonlocal-error}
+With $T = T(x) = \exp(\sqrt{\log x})$, there exists a constant
+$c_1 > 0$ (depending on $\eta, \varepsilon$ but not on $x$) such
+that
+\begin{equation}\label{eq:total-nonlocal-error}
+    E_{\mathrm{Perron}}(x, T, y)
+    + |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
+    + |I_{\mathrm{left}}|
+    \ll_{\eta, \varepsilon}
+    x \exp\!\bigl(- c_1 \sqrt{\log x}\bigr),
+\end{equation}
+uniformly in $|y| \leq \eta$, for all $x$ sufficiently large.
+\end{proposition}
+
+\begin{proof}
+We bound each term separately and take the worst.
+
+\emph{Perron error.}
+By~\eqref{eq:Eperron-bound} with $T = \exp(\sqrt{\log x})$ and
+$\delta = \delta'$,
+\[
+    E_{\mathrm{Perron}}
+    \ll_{\eta, \delta'}
+    \frac{x (\log x)^{2 + 2\eta}}{T}
+    = x (\log x)^{2 + 2\eta} \exp(- \sqrt{\log x}),
+\]
+which is $\ll x \exp(- (1 - o(1)) \sqrt{\log x})$.
+
+\emph{Horizontal pieces.}
+With $c = 1 + 1/\log x$ so that $x^c = e \cdot x$, by
+Proposition~\ref{prop:horizontal-bound},
+\[
+    |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
+    \ll_{\eta, \varepsilon}
+    x \cdot T^{B - 1}
+    = x \cdot \exp\!\bigl((B - 1) \sqrt{\log x}\bigr).
+\]
+Since $B < 1$, this is $\ll x \exp(- (1 - B) \sqrt{\log x})$.
+
+\emph{Vertical piece.}
+By Proposition~\ref{prop:vertical-bound}
+and~\eqref{eq:x-decay},
+\[
+    |I_{\mathrm{left}}|
+    \ll_{\eta, \varepsilon}
+    x \cdot x^{- \lambda_T} \cdot T^B
+    = x \cdot \exp\!\bigl(- \tfrac{c_0}{2} \sqrt{\log x}
+                          + B \sqrt{\log x}\bigr) (1 + o(1)).
+\]
+By the choice~\eqref{eq:delta-prime} of $\delta'$ together
+with~\eqref{eq:B-small}, we have $B < c_0/2$. Hence
+$|I_{\mathrm{left}}| \ll x \exp(- (c_0/2 - B) \sqrt{\log x})$.
+
+Choose $c_1 > 0$ smaller than each of $1$, $1 - B$, and
+$c_0/2 - B$. For all sufficiently large $x$, the preceding three
+estimates are then bounded by the right-hand
+side of~\eqref{eq:total-nonlocal-error}.
+\end{proof}
+
+The right-hand side of~\eqref{eq:total-nonlocal-error} is
+$o(x \log x)$, so it will be dominated by the local Hankel
+contribution $I_H$ to be analyzed in
+Section~\ref{sec:hankel}, which is of order $x \log x$.
+

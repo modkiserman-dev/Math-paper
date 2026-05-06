@@ -11,6 +11,7 @@ draft.
 ## Main Files
 
 - `paper/main.tex`: main LaTeX source.
+- `paper/sections/`: section-level LaTeX source files included by `main.tex`.
 - `paper/build/main.pdf`: compiled PDF output, generated locally and not tracked
   by git.
 - `paper/README.md`: build instructions.
@@ -253,6 +254,9 @@ The current theorem for \(\arg\zeta(s)\) should be read with the restriction
 
 ## Writing Rules for Future Edits
 
+- Keep `paper/main.tex` focused on the preamble, title, abstract, section
+  inputs, and bibliography.
+- Put body edits in the matching file under `paper/sections/`.
 - Keep \(F(s,y)\) for the shifted Dirichlet series using
   \((1+y)^{\omega(n)}\).
 - Use \(A(x,y)\) for the corresponding partial-sum generating function.

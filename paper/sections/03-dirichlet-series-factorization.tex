@@ -1,0 +1,264 @@
+\section{Dirichlet series and factorization}\label{sec:dirichlet-series}
+
+In this section, we introduce the two-variable Dirichlet series
+$F(s, y)$ and establish its key analytic properties. The main
+output is the factorization
+$F(s, y) = \zeta(s)^{2+2y} H(s, y)$, where $H(s, y)$ is holomorphic
+in a neighborhood of $s = 1$ and uniformly bounded in a small disk
+around $y = 0$.
+
+\subsection{Euler product}\label{sec:euler-product}
+
+Recall the definition
+\begin{equation}
+    F(s, y) := \sum_{n \geq 1} \frac{d(n)(1+y)^{\omega(n)}}{n^s}.
+\end{equation}
+Since the arithmetic function $n \mapsto d(n)(1+y)^{\omega(n)}$ is
+multiplicative in $n$ for each fixed $y$, the series admits an Euler
+product representation for $\Real(s) > 1$.
+
+\begin{lemma}\label{lem:euler-product}
+For $\Real(s) > 1$ and every $y \in \C$,
+\begin{equation}\label{eq:euler-product}
+    F(s, y) = \prod_p \left(1 + (1+y)\left((1 - p^{-s})^{-2} - 1\right)\right),
+\end{equation}
+where the product is over all primes $p$.
+\end{lemma}
+
+\begin{proof}
+By multiplicativity, for $\Real(s) > 1$ we have
+\[
+    F(s, y) =\sum_{n \geq 1}\frac{d(n)(1+y)^{\omega(n)}}{n^s} = \prod_p \left(\sum_{k \geq 0}
+    \frac{d(p^k)(1+y)^{\omega(p^k)}}{p^{ks}}\right).
+\]
+For $k = 0$, the summand equals $1$. For $k \geq 1$, we have
+$d(p^k) = k + 1$ and $\omega(p^k) = 1$, so the local factor becomes
+\[
+    1 + (1+y) \sum_{k \geq 1} \frac{k+1}{p^{ks}}.
+\]
+Setting $u := p^{-s}$ and using the standard identity
+\[
+    \sum_{k \geq 1} (k+1) u^k = \frac{1}{(1-u)^2} - 1
+    \quad \text{for } |u| < 1,
+\]
+the local factor equals $1 + (1+y)\bigl((1-p^{-s})^{-2} - 1\bigr)$,
+which proves~\eqref{eq:euler-product}.
+\end{proof}
+
+\subsection{Factorization isolating the singularity}\label{sec:factorization}
+
+The Riemann zeta function admits the Euler product
+$\zeta(s) = \prod_p (1 - p^{-s})^{-1}$ for $\Real(s) > 1$, so that
+$\zeta(s)^{2+2y} = \prod_p (1 - p^{-s})^{-(2+2y)}$ on the same
+half-plane, provided a branch of the logarithm is fixed. We use the
+principal branch, which is analytic in $s$ in a neighborhood of
+any point with $\Real(s) > 1$ and in $y$ in a neighborhood of $0$.
+
+Define
+\begin{equation}\label{eq:H-def}
+    H(s, y) := \prod_p (1 - p^{-s})^{2+2y}
+    \left(1 + (1+y)\left((1 - p^{-s})^{-2} - 1\right)\right).
+\end{equation}
+
+\begin{theorem}\label{thm:factorization}
+For $\Real(s) > 1$ and $y$ in a neighborhood of $0$,
+\begin{equation}\label{eq:factorization}
+    F(s, y) = \zeta(s)^{2+2y} H(s, y).
+\end{equation}
+\end{theorem}
+
+\begin{proof}
+This follows by combining Lemma~\ref{lem:euler-product} with the
+Euler product for $\zeta(s)^{2+2y}$ and regrouping factors.
+\end{proof}
+
+The purpose of the factorization~\eqref{eq:factorization} is to
+isolate the singular behavior of $F(s, y)$ at $s = 1$ into the
+factor $\zeta(s)^{2+2y}$, leaving $H(s, y)$ as a well-behaved
+function in a larger region, as we now establish.
+
+\subsection{Analytic properties of \texorpdfstring{$H(s, y)$}{H(s,y)}}\label{sec:H-analytic}
+
+We show that the Euler product~\eqref{eq:H-def} defines a
+holomorphic function on a strip containing $\Real(s) = 1$,
+uniformly for $y$ in a small disk around $0$. The key is that
+each local factor $H_p(s, y)$ deviates from $1$ by a quantity of
+order $p^{-2\Real(s)}$.
+
+\begin{lemma}\label{lem:local-factor-estimate}
+Fix $\eta \in (0, 1/2)$ and $\delta \in (0, 1/2)$. Write
+$u := p^{-s}$ and denote the local factor by
+\[
+    H_p(s, y) := (1 - u)^{2+2y}\left(1 + (1+y)\left((1-u)^{-2} - 1\right)\right).
+\]
+Then for $|y| \leq \eta$ and $\Real(s) \geq 1 - \delta$,
+\begin{equation}\label{eq:local-factor-estimate}
+    H_p(s, y) = 1 + O_{\eta, \delta}(u^2),
+\end{equation}
+where the implied constant depends only on $\eta$ and $\delta$.
+\end{lemma}
+
+\begin{proof}
+The condition $\Real(s) \geq 1 - \delta$ implies that, for every
+prime $p \geq 2$,
+\[
+    |u| = p^{-\Real(s)} \leq p^{-(1 - \delta)} \leq 2^{-(1-\delta)} < 1,
+\]
+since $\delta < 1/2$. In particular, $|u|$ is bounded away from
+$1$, and the power series expansions
+\[
+    (1 - u)^{-2} - 1 = 2u + 3u^2 + 4u^3 + \cdots = 2u + O_\delta(u^2),
+\]
+\[
+    (1 - u)^{2+2y} = 1 - (2+2y)u + \binom{2+2y}{2}u^2 + \cdots
+                   = 1 - (2+2y)u + O_{\eta, \delta}(u^2),
+\]
+converge absolutely, with remainders uniform for $|y| \leq \eta$
+and $\Real(s) \geq 1 - \delta$. Multiplying the expansions:
+\[
+    H_p(s, y) = \bigl(1 - (2+2y)u + O_{\eta, \delta}(u^2)\bigr)
+                \bigl(1 + (1+y)(2u + O_\delta(u^2))\bigr).
+\]
+The coefficient of $u^1$ on the right is $-(2+2y) + 2(1+y) = 0$.
+Hence $H_p(s, y) = 1 + O_{\eta, \delta}(u^2)$,
+proving~\eqref{eq:local-factor-estimate}.
+\end{proof}
+
+% =====================================================
+% Proposition 3.4 (revised): H is jointly holomorphic
+% =====================================================
+
+\begin{proposition}\label{prop:H-analytic}
+Fix $\eta \in (0, 1/2)$ and $\delta \in (0, 1/2)$, and let
+\begin{equation}\label{eq:H-region}
+    \mathcal{R}_{\delta, \eta} := \{(s, y) \in \C^2 :
+    \Real(s) \geq 1 - \delta, \ |y| \leq \eta\}.
+\end{equation}
+Then the partial products of the Euler product~\eqref{eq:H-def}
+converge absolutely and uniformly on $\mathcal{R}_{\delta, \eta}$
+to a function $H(s, y)$. For every $y$ with $|y| \leq \eta$, the
+function $H(s, y)$ is holomorphic in $s$ on the open strip
+$\Real(s) > 1 - \delta$. Moreover, $H(s, y)$ is jointly holomorphic
+in $(s, y)$ on $\operatorname{int}(\mathcal{R}_{\delta, \eta})$,
+and $H$ is uniformly bounded on $\mathcal{R}_{\delta, \eta}$.
+\end{proposition}
+
+\begin{proof}
+By Lemma~\ref{lem:local-factor-estimate}, for every
+$(s, y) \in \mathcal{R}_{\delta, \eta}$ and every prime $p$,
+\begin{equation}\label{eq:Hp-bound}
+    |H_p(s, y) - 1| \leq C_{\eta, \delta} \, p^{-2(1-\delta)},
+\end{equation}
+where the constant $C_{\eta, \delta}$ depends only on $\eta$ and
+$\delta$. Since $\delta < 1/2$, we have $2(1 - \delta) > 1$, and
+the series $\sum_n n^{-2(1-\delta)}$ converges; in particular,
+$\sum_p p^{-2(1-\delta)}$ converges. By the Weierstrass $M$-test,
+the series $\sum_p (H_p(s, y) - 1)$ converges absolutely and
+uniformly on $\mathcal{R}_{\delta, \eta}$. By the standard theorem
+on infinite products---which states that an infinite product
+$\prod_n (1 + u_n)$ converges absolutely if and only if
+$\sum_n u_n$ does, and that the convergence of the partial products
+is uniform on a set whenever the corresponding series converges
+uniformly there---the partial products
+$\prod_{p \leq P} H_p(s, y)$ converge absolutely and uniformly on
+$\mathcal{R}_{\delta, \eta}$ to a limit, which we denote $H(s, y)$.
+
+To deduce holomorphy in $s$, fix $y_0 \in \C$ with $|y_0| \leq \eta$
+and let $s_0 \in \C$ be any point with $\Real(s_0) > 1 - \delta$.
+Choose $r > 0$ small enough that $r < \Real(s_0) - (1 - \delta)$,
+and define
+\begin{equation}\label{eq:K-disk}
+    K := \overline{D}(s_0, r)
+       = \{s \in \C : |s - s_0| \leq r\}.
+\end{equation}
+The set $K$ is closed and bounded in $\C$, so by the Heine--Borel
+theorem it is compact. By the choice of $r$, every $s \in K$
+satisfies
+\[
+    \Real(s) \geq \Real(s_0) - r > 1 - \delta,
+\]
+and hence $K \times \{y_0\} \subset \mathcal{R}_{\delta, \eta}$.
+The uniform convergence of the partial products on
+$\mathcal{R}_{\delta, \eta}$ established above therefore restricts
+to uniform convergence of $\prod_{p \leq P} H_p(s, y_0)$ on $K$
+as $P \to \infty$.
+
+Each finite partial product $\prod_{p \leq P} H_p(s, y_0)$ is
+holomorphic in $s$ on the open disk
+$D(s_0, r) = \operatorname{int}(K)$, since each factor
+$H_p(\cdot, y_0)$ is. By the theorem on uniform limits of
+holomorphic functions (Weierstrass), the limit $H(\cdot, y_0)$ is
+holomorphic on $D(s_0, r)$, and in particular at $s_0$. Since
+$s_0$ with $\Real(s_0) > 1 - \delta$ was arbitrary, $H(\cdot, y_0)$
+is holomorphic on the open strip $\Real(s) > 1 - \delta$. Since
+$y_0$ with $|y_0| \leq \eta$ was also arbitrary, the holomorphy
+claim in $s$ is proved.
+
+For joint holomorphy, each finite partial product
+$\prod_{p \leq P} H_p(s, y)$ is holomorphic in $(s, y)$ on
+$\operatorname{int}(\mathcal{R}_{\delta, \eta})$, since each factor
+$H_p(s, y)$ is. The uniform convergence of the partial products on
+$\mathcal{R}_{\delta, \eta}$ established above restricts to uniform
+convergence on every compact subset of
+$\operatorname{int}(\mathcal{R}_{\delta, \eta})$, since
+$\operatorname{int}(\mathcal{R}_{\delta, \eta}) \subset
+\mathcal{R}_{\delta, \eta}$. By the theorem on uniform limits of
+holomorphic functions in two complex variables, the limit
+$H(s, y)$ is jointly holomorphic on
+$\operatorname{int}(\mathcal{R}_{\delta, \eta})$.
+
+Uniform boundedness on $\mathcal{R}_{\delta, \eta}$ follows
+from~\eqref{eq:Hp-bound}:
+\[
+    |H(s, y)|
+    \leq \prod_p \bigl(1 + |H_p(s, y) - 1|\bigr)
+    \leq \exp\!\left(\sum_p |H_p(s, y) - 1|\right)
+    \leq \exp\!\left(C_{\eta, \delta} \sum_p p^{-2(1-\delta)}\right),
+\]
+the right-hand side being finite and independent of
+$(s, y) \in \mathcal{R}_{\delta, \eta}$.
+\end{proof}
+
+
+% =====================================================
+% Proposition 3.5 (new): H(s, 0) = 1
+% =====================================================
+
+\begin{proposition}\label{prop:H-at-zero}
+The function $H(s, y)$ satisfies
+\begin{equation}\label{eq:H-at-y-zero}
+    H(s, 0) \equiv 1 \quad \text{on } \Real(s) > 1/2.
+\end{equation}
+In particular, $H(1, 0) = 1$.
+\end{proposition}
+
+\begin{proof}
+On $\Real(s) > 1$, the factorization~\eqref{eq:factorization}
+specialized at $y = 0$ reads
+\[
+    F(s, 0) = \zeta(s)^2 \, H(s, 0).
+\]
+On the other hand, the Dirichlet series defining $F$ gives
+\[
+    F(s, 0) = \sum_{n \geq 1} \frac{d(n)}{n^s} = \zeta(s)^2
+    \quad \text{on } \Real(s) > 1.
+\]
+Comparing the two expressions yields
+$\zeta(s)^2 H(s, 0) = \zeta(s)^2$ on $\Real(s) > 1$. Since
+$\zeta(s) \neq 0$ on $\Real(s) > 1$ (which follows directly from
+the Euler product representation of $\zeta$), we may divide both
+sides by $\zeta(s)^2$ to obtain
+\[
+    H(s, 0) \equiv 1 \quad \text{on } \Real(s) > 1.
+\]
+
+By Proposition~\ref{prop:H-analytic}, applied with any
+$\delta \in (0, 1/2)$, the function $H(s, 0)$ is holomorphic on
+$\Real(s) > 1 - \delta$; letting $\delta \to 1/2$ shows that
+$H(s, 0)$ is holomorphic on the connected open set
+$\Real(s) > 1/2$. The constant function $1$ is also holomorphic
+there, and the two functions agree on the open subset
+$\Real(s) > 1$. By the identity theorem, they agree on all of
+$\Real(s) > 1/2$. In particular, $H(1, 0) = 1$.
+\end{proof}
+
