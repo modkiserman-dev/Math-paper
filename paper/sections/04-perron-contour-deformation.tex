@@ -9,11 +9,13 @@ which satisfies the generating relation
 \begin{equation}\label{eq:Axy-generating}
     A(x, y) = \sum_{j \geq 0} T_j(x) y^j.
 \end{equation}
-Throughout this section, we fix one parameter:
+Throughout this section, we initially fix one parameter:
 \begin{itemize}
     \item $\eta \in (0, 1/2)$, controlling the size of the disk
     $|y| \leq \eta$.
 \end{itemize}
+After the contour depth $\delta'$ is fixed, we may shrink $\eta$
+if necessary for the contour estimates.
 
 The fixed strip depth $\delta'$ and the truncation-dependent
 quantity $\lambda_T$ will be chosen together in
@@ -135,8 +137,8 @@ Section~\ref{sec:contour-decomposition}, we will need:
     neighborhood of the contour;
     \item[(c)] a uniform bound on $|\zeta(s)|$ along vertical
     lines in the critical strip;
-    \item[(d)] a corresponding bound on $|F(s, y)|$ combining
-    (b) and (c).
+    \item[(d)] a corresponding bound on $\arg\zeta(s)$ on the
+    chosen branch.
 \end{itemize}
 We collect these analytic ingredients here, before constructing
 the contour itself in Section~\ref{sec:contour-decomposition}.
@@ -255,34 +257,11 @@ $\log |t| \ll_\varepsilon |t|^\varepsilon \leq |t|^{\delta/2 + \varepsilon}$.
 Combining the two ranges gives~\eqref{eq:zeta-uniform}.
 \end{proof}
 
-\subsubsection*{A bound on \texorpdfstring{$|F(s, y)|$}{|F(s,y)|}}
+\subsubsection*{Bound on \texorpdfstring{$\arg \zeta$}{arg zeta}}
 
-The branch~\eqref{eq:zeta-alpha-def} yields a clean bound on
-$|F(s, y)|$ on $\mathcal{D}$. Writing $\alpha = 2 + 2y$ with
-$y = \Real(y) + i \Im(y)$,
-\[
-    |\zeta(s)^\alpha|
-    = e^{\Real(\alpha) \Real(L(s)) - \Im(\alpha) \Im(L(s))}
-    = |\zeta(s)|^{\Real(\alpha)} \cdot e^{-\Im(\alpha) \arg \zeta(s)},
-\]
-since $\Real(L(s)) = \log |\zeta(s)|$ and
-$\Im(L(s)) = \arg \zeta(s)$. Using $\Re(\alpha) = 2 + 2\Re(y)$,
-$\Im(\alpha) = 2\Im(y)$, and $|\Im(y)| \leq \eta$, we obtain
-\begin{equation}\label{eq:F-safe-bound}
-    |F(s, y)|
-    \leq |H(s, y)| \cdot |\zeta(s)|^{2 + 2\Real(y)}
-    \cdot \exp\bigl(2 \eta \, |\arg \zeta(s)|\bigr)
-    \qquad (s \in \mathcal{D},\ |y| \leq \eta).
-\end{equation}
-
-Fix $\delta \in (0, 1/2)$. The factor $|H(s, y)|$ is uniformly
-bounded on $\mathcal{R}_{\delta, \eta}$ by
-Proposition~\ref{prop:H-analytic}. The factor
-$|\zeta(s)|^{2 + 2\Real(y)}$ is controlled, on the range
-$|t| \geq 2$, by Theorem~\ref{thm:zeta-uniform}. The factor
-$\exp(2 \eta |\arg \zeta(s)|)$ is controlled, on the same range,
-by the following standard estimate (see, e.g.,
-\cite[\S9.4]{} or \cite[Theorem~II.3.10]{}).
+We also use the following standard estimate on the branch determined
+by~\eqref{eq:L-def}; see, e.g., \cite[\S9.4]{} or
+\cite[Theorem~II.3.10]{}.
 
 \begin{theorem}[Bound on $\arg \zeta$]
 \label{thm:arg-zeta}
@@ -294,35 +273,6 @@ every $s = \sigma + it \in \mathcal{D}$ with $|t| \geq 2$,
 where the branch of $\arg \zeta$ is the one determined by the
 logarithm $L$ on $\mathcal{D}$.
 \end{theorem}
-
-Combining Theorem~\ref{thm:zeta-uniform} and
-Theorem~\ref{thm:arg-zeta} in~\eqref{eq:F-safe-bound}, on the
-range $|t| \geq 2$ and $1 - \delta \leq \sigma \leq 1 + \delta$
-with $s \in \mathcal{D}$,
-\begin{equation}\label{eq:F-bound-large-t}
-    |F(\sigma + it, y)|
-    \ll_{\eta, \delta, \varepsilon}
-    |t|^{(2 + 2\eta)(\delta/2 + \varepsilon) + 2 \eta C_{\arg}}
-    = |t|^{B(\delta)},
-\end{equation}
-where, for $\delta \in (0, 1/2)$,
-\begin{equation}\label{eq:B-exponent}
-    B(\delta) := B(\eta, \delta, \varepsilon)
-       := (2 + 2\eta)\!\left(\tfrac{\delta}{2} + \varepsilon\right)
-        + 2 \eta C_{\arg}.
-\end{equation}
-The implied constant in~\eqref{eq:F-bound-large-t} depends on
-$\eta$, $\delta$, and $\varepsilon$, but not on $t$ or $y$. As
-$\eta, \varepsilon \to 0$, we have $B(\delta) \to \delta$. The
-specific choice of $\delta$ on the contour, and the resulting
-constraint $B(\delta) < c_0/2$ that drives the contour estimates,
-will be made in Section~\ref{sec:contour-decomposition}.
-
-The bound~\eqref{eq:F-bound-large-t} does not extend to
-$|t| \leq 2$, where $|F(s, y)|$ is unbounded as $s \to 1$. On
-the deformed contour the relevant $|t| \leq 2$ behaviour is
-controlled by the distance to $s = 1$, and is treated separately
-in Section~\ref{sec:contour-estimates}.
 
 \subsection{Contour decomposition}\label{sec:contour-decomposition}
 
@@ -337,8 +287,8 @@ Fix once and for all an absolute constant
 \end{equation}
 where $c_0$ is the constant of Theorem~\ref{thm:zero-free}; the
 interval is non-empty since $\log 3 > 1$. This range of $\delta'$
-is engineered to satisfy three conditions used in the contour
-estimates of Section~\ref{sec:contour-estimates}.
+is chosen so that the deformed contour remains in the fixed strip
+used in Section~\ref{sec:contour-estimates}.
 
 For each truncation height $T \geq 1$, define
 \begin{equation}\label{eq:lambda-T}
@@ -357,27 +307,64 @@ $|y| \leq \eta$. In particular,
 Proposition~\ref{prop:H-analytic} applies on the contour with
 $\delta = \delta'$.
 
-The exponent~\eqref{eq:B-exponent} specialized to $\delta'$ is
-\begin{equation}\label{eq:B-spec}
-    B := B(\delta')
-       = (2 + 2\eta)\!\left(\tfrac{\delta'}{2} + \varepsilon\right)
-        + 2 \eta C_{\arg}.
-\end{equation}
-Since $B \to \delta'$ as $\eta, \varepsilon \to 0^+$ and
-$\delta' < c_0 / 2$, we may choose $\eta$ and $\varepsilon$
-sufficiently small that
-\begin{equation}\label{eq:B-small}
-    B < \frac{c_0}{2}.
-\end{equation}
-This range of $\eta$ and $\varepsilon$ is fixed throughout the
-remainder of the paper.
-
 Finally, the choice $c = 1 + 1/\log x$ in
 Proposition~\ref{prop:perron-applied} satisfies $c \leq 1 + \delta'$
 for all $x$ sufficiently large, ensuring that the abscissa $c$
 lies inside the strip $1 - \delta' \leq \sigma \leq 1 + \delta'$
-where the bound on $|F|$ from Section~\ref{sec:analytic-prelim}
-applies. We assume this hereafter.
+used in the contour estimates. We assume this hereafter.
+
+\subsubsection*{The deformed contour}
+
+Fix a truncation height $T \geq 1$, and set
+\begin{equation}\label{eq:sigma0-T}
+    \sigma_0 := \sigma_0(T) := 1 - \lambda_T.
+\end{equation}
+Choose a parameter $\rho>0$ with $\rho<\lambda_T$; its precise
+choice as a function of $x$ will be made in Section~\ref{sec:hankel}.
+The notation $i0^\pm$ below denotes boundary values: the two
+Hankel arms are first taken at heights $\pm\varepsilon$ with
+$\varepsilon>0$, and the limit $\varepsilon\to0^+$ is taken after
+the corresponding integrals are formed. Thus the approximating
+contours lie in the slit domain $\mathcal D$ before the boundary
+value limit is taken.
+
+We deform the original Perron segment $[c-iT,c+iT]$ leftward,
+around the singularity at $s=1$, into a contour
+$\mathcal C=\mathcal C(T,\rho)$ traversed from $c-iT$ to $c+iT$.
+It consists of the following five pieces:
+\begin{itemize}
+    \item[(1)] $\mathcal C_{\mathrm{bot}}$: the horizontal segment
+    from $c-iT$ to $\sigma_0-iT$.
+
+    \item[(2)] $\mathcal C_{\mathrm{left}}^-$: the vertical segment
+    from $\sigma_0-iT$ to $\sigma_0+i0^-$.
+
+    \item[(3)] $\mathcal H_{\mathrm{loc}}$: a local Hankel contour
+    around $s=1$, consisting of
+    \begin{itemize}
+        \item[(3a)] the lower arm from $\sigma_0+i0^-$ to
+        $1-\rho+i0^-$;
+
+        \item[(3b)] the circle $|s-1|=\rho$, traversed from
+        $1-\rho+i0^-$ to $1-\rho+i0^+$ counterclockwise through
+        the right side of $s=1$;
+
+        \item[(3c)] the upper arm from $1-\rho+i0^+$ to
+        $\sigma_0+i0^+$.
+    \end{itemize}
+
+    \item[(4)] $\mathcal C_{\mathrm{left}}^+$: the vertical segment
+    from $\sigma_0+i0^+$ to $\sigma_0+iT$.
+
+    \item[(5)] $\mathcal C_{\mathrm{top}}$: the horizontal segment
+    from $\sigma_0+iT$ to $c+iT$.
+\end{itemize}
+The five pieces are joined consecutively, so $\mathcal C$ has the
+same initial and terminal points as the original Perron contour.
+The Hankel arms are understood as boundary values along the slit
+$\mathcal S$; in the local representation near $s=1$, their
+discontinuity is carried by the factor $(s-1)^{-2-2y}$ and produces
+the local contribution $I_H$.
 
 \subsubsection*{Verification that the contour avoids \texorpdfstring{$\zeta$}{zeta}-zeros}
 
@@ -488,94 +475,333 @@ the Perron truncation error $E_{\mathrm{Perron}}$ to obtain a
 single error bound. The local Hankel contribution $I_H$ is
 deferred to Section~\ref{sec:hankel}.
 
-The main analytic tool throughout this section is the
-bound~\eqref{eq:F-bound-large-t}, specialized to
-$\delta = \delta'$:
-\begin{equation}\label{eq:F-bound-on-contour}
-    |F(\sigma + it, y)|
-    \ll_{\eta, \varepsilon}
-    |t|^B
-    \qquad (1 - \delta' \leq \sigma \leq 1 + \delta',\
-    s \in \mathcal{D},\ |t| \geq 2,\ |y| \leq \eta),
+We first collect the two bounds for $F(s,y)$ used below.
+
+\begin{lemma}[Bounds for $F(s,y)$ on the deformed contour]
+\label{lem:F-contour-bounds}
+Let $0 < \eta < 1/2$, and let $\delta'$ be fixed as
+in~\eqref{eq:delta-prime}. Let $\varepsilon > 0$ and put
+$\alpha = 2 + 2y$. Define
+\begin{equation}\label{eq:B-exponent}
+    B := B(\eta,\delta',\varepsilon)
+       := (2 + 2\eta)\!\left(\tfrac{\delta'}{2}+\varepsilon\right)
+        + 2\eta C_{\arg}.
 \end{equation}
-where $B = B(\delta')$ is defined in~\eqref{eq:B-spec}. By the
-choice~\eqref{eq:delta-prime} of $\delta'$ together with the
-constraint $B < c_0/2$ (see~\eqref{eq:B-small}), $\eta$ and
-$\varepsilon$ are fixed sufficiently small.
+Then the following estimates hold uniformly for $|y|\leq\eta$.
+\begin{enumerate}
+    \item If $s=\sigma+it\in\mathcal{D}$, $|t|\geq2$, and
+    $1-\delta'\leq\sigma\leq1+\delta'$, then
+    \begin{equation}\label{eq:F-bound-on-contour}
+        |F(s,y)|\ll_{\eta,\delta',\varepsilon}|t|^B.
+    \end{equation}
+    \item If $T\geq1$, $s=1-\lambda_T+it$, and $|t|\leq2$, then
+    \begin{equation}\label{eq:F-low-height-bound}
+        |F(s,y)|
+        \ll_{\eta,\delta'} \lambda_T^{-2-2\eta}
+        \ll_{\eta,\delta'} (\log(T+2))^{2+2\eta}.
+    \end{equation}
+\end{enumerate}
+\end{lemma}
 
-\subsubsection*{Horizontal pieces}
+\begin{proof}
+For the first estimate, let $s=\sigma+it\in\mathcal{D}$ with
+$|t|\geq2$ and $1-\delta'\leq\sigma\leq1+\delta'$. On
+$\mathcal{D}$, the chosen branch gives
+\[
+    F(s,y)=\zeta(s)^\alpha H(s,y),
+    \qquad
+    \zeta(s)^\alpha=\exp(\alpha L(s)).
+\]
+Writing $L(s)=\log|\zeta(s)|+i\arg\zeta(s)$ on this branch,
+\[
+    |\zeta(s)^\alpha|
+    =|\zeta(s)|^{\Real(\alpha)}
+     \exp\bigl(-\Im(\alpha)\arg\zeta(s)\bigr).
+\]
+Since $|y|\leq\eta$, we have $\Real(\alpha)\leq2+2\eta$ and
+$|\Im(\alpha)|\leq2\eta$. Hence
+\[
+    |F(s,y)|
+    \leq |H(s,y)| (1+|\zeta(s)|)^{2+2\eta}
+       \exp\bigl(2\eta|\arg\zeta(s)|\bigr).
+\]
+Here the factor $1+|\zeta(s)|$ avoids any lower-bound assumption on
+$|\zeta(s)|$. Proposition~\ref{prop:H-analytic}, applied with
+$\delta=\delta'$, gives $|H(s,y)|\ll_{\eta,\delta'}1$. Moreover,
+Theorem~\ref{thm:zeta-uniform} gives
+\[
+    |\zeta(s)|\ll_{\delta',\varepsilon}
+    |t|^{\delta'/2+\varepsilon},
+\]
+and Theorem~\ref{thm:arg-zeta} gives
+\[
+    |\arg\zeta(s)|\leq C_{\arg}\log|t|.
+\]
+Since $|t|\geq2$, these estimates imply
+\[
+    |F(s,y)|
+    \ll_{\eta,\delta',\varepsilon}
+    |t|^{(2+2\eta)(\delta'/2+\varepsilon)+2\eta C_{\arg}}
+    = |t|^B,
+\]
+which proves~\eqref{eq:F-bound-on-contour}.
 
-\begin{proposition}\label{prop:horizontal-bound}
-For every $T \geq 2$,
+We now prove the low-height estimate. Let
+\[
+    q(s):=(s-1)\zeta(s),
+    \qquad q(1):=1.
+\]
+Then $q$ is holomorphic at $s=1$. Put
+\[
+    \lambda_0:=\frac{c_0}{2\log 3},
+    \qquad
+    K:=\{s=\sigma+it:1-\lambda_0\leq\sigma\leq1,\ |t|\leq2\}.
+\]
+For $|t|\leq2$ we have $\log(|t|+2)\leq\log4<2\log3$, and hence
+\[
+    \lambda_0=\frac{c_0}{2\log3}<\frac{c_0}{\log(|t|+2)}.
+\]
+Thus $K\setminus\{1\}$ lies in the zero-free region of
+Theorem~\ref{thm:zero-free}. After setting $q(1)=1$, the function
+$q$ is holomorphic and non-vanishing on $K$. Since $K$ is compact,
+there is an open neighborhood $U$ of $K$ on which $q$ is
+non-vanishing. Choose a holomorphic branch
+\[
+    M(s)=\log q(s)
+\]
+on $U$, compatible with $M(s)=L(s)+\operatorname{Log}(s-1)$
+on $U\cap\mathcal{D}$.
+Let
+\[
+    M_K:=\sup_{s\in K}|M(s)|<\infty.
+\]
+For $|y|\leq\eta$,
+\[
+    |q(s)^\alpha|
+    =|\exp(\alpha M(s))|
+    \leq \exp(|\alpha|\,|M(s)|)
+    \leq \exp((2+2\eta)M_K)
+    \qquad (s\in K).
+\]
+Define
+\begin{equation}\label{eq:G-local-def}
+    G(s,y):=q(s)^\alpha H(s,y).
+\end{equation}
+Then, on the chosen branch near the slit,
+\begin{equation}\label{eq:F-local-G-form}
+    F(s,y)=G(s,y)(s-1)^{-\alpha}.
+\end{equation}
+Since $K\subset\{s:\Real(s)\geq1-\delta'\}$, combining the
+preceding bound for $q(s)^\alpha$ with
+Proposition~\ref{prop:H-analytic}, again with $\delta=\delta'$,
+gives
+\[
+    |G(s,y)|=|q(s)^\alpha H(s,y)|\ll_{\eta,\delta'}1
+    \qquad (s\in K,\ |y|\leq\eta).
+\]
+On the left vertical line $s=1-\lambda_T+it$ with $|t|\leq2$,
+we use~\eqref{eq:F-local-G-form}.
+For either boundary value of the logarithm along the slit,
+$|\operatorname{Arg}(s-1)|\leq\pi$, so
+\[
+    |(s-1)^{-\alpha}|
+    = |s-1|^{-\Real(\alpha)}
+      \exp\bigl(\Im(\alpha)\operatorname{Arg}(s-1)\bigr)
+    \ll_\eta |s-1|^{-\Real(\alpha)}.
+\]
+Since $|s-1|\geq\lambda_T$, if $|s-1|\leq1$ then
+\[
+    |s-1|^{-\Real(\alpha)}
+    \leq |s-1|^{-2-2\eta}
+    \leq \lambda_T^{-2-2\eta}.
+\]
+If $|s-1|\geq1$, then $\Real(\alpha)\geq2-2\eta>0$, so
+$|s-1|^{-\Real(\alpha)}\leq1\leq\lambda_T^{-2-2\eta}$. Hence
+\[
+    |F(1-\lambda_T+it,y)|
+    \ll_{\eta,\delta'} \lambda_T^{-2-2\eta}.
+\]
+The definition~\eqref{eq:lambda-T} gives
+\[
+    \lambda_T^{-2-2\eta}
+    = \left(\frac{2\log(T+2)}{c_0}\right)^{2+2\eta}
+    \ll_{\eta,\delta'}(\log(T+2))^{2+2\eta},
+\]
+which proves~\eqref{eq:F-low-height-bound}.
+\end{proof}
+
+Since
+\[
+    B(\eta,\delta',\varepsilon)
+    =(2+2\eta)\left(\tfrac{\delta'}{2}+\varepsilon\right)
+      +2\eta C_{\arg}
+    \longrightarrow \delta'
+    \qquad (\eta,\varepsilon\to0^+),
+\]
+and $\delta'<c_0/2$, we may choose $\eta>0$ and
+$\varepsilon>0$ sufficiently small so that
+\begin{equation}\label{eq:B-small}
+    B<c_0/2.
+\end{equation}
+This choice is fixed throughout the contour estimates.
+
+\subsubsection*{Nonlocal contour pieces}
+
+\begin{lemma}[Bound for the horizontal contour pieces]
+\label{lem:horizontal-contour-bound}
+For all sufficiently large $x$ and every $T \geq 2$,
 \begin{equation}\label{eq:horizontal-bound}
     |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
     \ll_{\eta, \varepsilon}
     x^c \, T^{B - 1},
 \end{equation}
 uniformly in $|y| \leq \eta$.
-\end{proposition}
+\end{lemma}
 
 \begin{proof}
 On $\mathcal{C}_{\mathrm{top}}$, parameterize $s = \sigma + iT$
 with $\sigma_0(T) \leq \sigma \leq c$. Then
-$|x^s| = x^\sigma \leq x^c$, $|s| \geq T$, and
-$|F(\sigma + iT, y)| \ll_{\eta, \varepsilon} T^B$
-by~\eqref{eq:F-bound-on-contour} (using $T \geq 2$). The length
-$c - \sigma_0(T) \leq c$ is bounded. Therefore
 \[
+\begin{aligned}
     |I_{\mathrm{top}}|
-    \ll_{\eta, \varepsilon}
-    \frac{x^c}{T} \cdot T^B
-    = x^c \, T^{B - 1}.
+    &= \left| \frac{1}{2\pi i}
+       \int_{\mathcal{C}_{\mathrm{top}}}
+       F(s,y)\frac{x^s}{s}\,ds \right|  \\
+    &\leq \frac{1}{2\pi}
+       \int_{\sigma_0(T)}^c
+       \left|F(\sigma+iT,y)\frac{x^{\sigma+iT}}{\sigma+iT}\right|
+       \,d\sigma                                      \\
+    &\leq \frac{c-\sigma_0(T)}{2\pi}
+       \sup_{\sigma_0(T)\leq\sigma\leq c}
+       \left|F(\sigma+iT,y)\frac{x^{\sigma+iT}}{\sigma+iT}\right|.
+\end{aligned}
 \]
-The same estimate applies to $|I_{\mathrm{bot}}|$.
+On this segment, $|x^{\sigma+iT}|=x^\sigma\leq x^c$ and
+$|\sigma+iT|\geq T$. Also
+$\sigma_0(T)\geq1-\delta'$ by~\eqref{eq:lambda-T-bound}, while
+$c\leq1+\delta'$ for all sufficiently large $x$. Hence
+Lemma~\ref{lem:F-contour-bounds} gives
+\[
+    \sup_{\sigma_0(T)\leq\sigma\leq c}|F(\sigma+iT,y)|
+    \ll_{\eta,\varepsilon}T^B.
+\]
+Since
+\[
+    c-\sigma_0(T)
+    =\frac{1}{\log x}+\lambda_T
+    =\frac{1}{\log x}+\frac{c_0}{2\log(T+2)}
+    \ll 1,
+\]
+we obtain
+\[
+\begin{aligned}
+    |I_{\mathrm{top}}|
+    &\ll_{\eta,\varepsilon}
+       \frac{x^c}{T}
+       \sup_{\sigma_0(T)\leq\sigma\leq c}|F(\sigma+iT,y)|  \\
+    &\ll_{\eta,\varepsilon} x^c T^{B-1}.
+\end{aligned}
+\]
+The same computation on $\mathcal{C}_{\mathrm{bot}}$, with
+$s=\sigma-iT$, gives
+\[
+    |I_{\mathrm{bot}}|\ll_{\eta,\varepsilon}x^cT^{B-1}.
+\]
+This proves~\eqref{eq:horizontal-bound}.
 \end{proof}
 
-\subsubsection*{Vertical pieces}
-
-\begin{proposition}\label{prop:vertical-bound}
+\begin{lemma}[Bound for the left vertical contour piece]
+\label{lem:left-vertical-contour-bound}
 For every $T \geq 2$,
 \begin{equation}\label{eq:vertical-bound}
     |I_{\mathrm{left}}|
     \ll_{\eta, \varepsilon}
     x^{1 - \lambda_T} \, T^B,
 \end{equation}
-uniformly in $|y| \leq \eta$, where $\lambda_T$ is defined
-in~\eqref{eq:lambda-T}.
-\end{proposition}
+uniformly in $|y| \leq \eta$.
+\end{lemma}
 
 \begin{proof}
 The contour $\mathcal{C}_{\mathrm{left}} =
 \mathcal{C}_{\mathrm{left}}^- \cup \mathcal{C}_{\mathrm{left}}^+$
-parameterizes as $s = \sigma_0(T) + it$ with $|t| \leq T$. We
-have $|x^s| = x^{\sigma_0(T)} = x^{1 - \lambda_T}$ and
-$|s| \geq \max(\sigma_0(T), |t|) \gg \max(1, |t|)$ for $T$
-sufficiently large. Hence
+is parameterized by $s=\sigma_0(T)+it$, $-T\leq t\leq T$.
+Using $\sigma_0(T)=1-\lambda_T$, we first write
 \[
+\begin{aligned}
     |I_{\mathrm{left}}|
-    \ll_{\eta, \varepsilon}
-    x^{1 - \lambda_T}
-    \left(
-    \int_{2 \leq |t| \leq T} \frac{|t|^B}{|t|}\,dt
-    + \int_{|t|\leq 2} \frac{|F(\sigma_0(T)+it,y)|}{1}\,dt
-    \right).
+    &= \left| \frac{1}{2\pi i}
+       \int_{\mathcal C_{\mathrm{left}}}
+       F(s,y)\frac{x^s}{s}\,ds \right| \\
+    &\leq \frac{1}{2\pi}
+       \int_{-T}^{T}
+       \left|F(\sigma_0(T)+it,y)
+       \frac{x^{\sigma_0(T)+it}}{\sigma_0(T)+it}\right|\,dt \\
+    &= \frac{x^{1-\lambda_T}}{2\pi}
+       \int_{-T}^{T}
+       \left|\frac{F(\sigma_0(T)+it,y)}
+       {\sigma_0(T)+it}\right|\,dt.
+\end{aligned}
 \]
-For the first integral,
+Since $\sigma_0(T)>1-\delta'>1/2$, we have
+$|\sigma_0(T)+it|\gg1$ for $|t|\leq2$ and
+$|\sigma_0(T)+it|\gg |t|$ for $2\leq |t|\leq T$. Hence
 \[
-    \int_{2 \leq |t| \leq T} |t|^{B-1}\,dt \ll T^B.
+\begin{aligned}
+    |I_{\mathrm{left}}|
+    &\ll x^{1-\lambda_T}
+    \left(
+        \int_{|t|\leq2}|F(\sigma_0(T)+it,y)|\,dt \right. \\
+    &\hspace{4.5cm}\left.
+        + \int_{2\leq |t|\leq T}
+        \frac{|F(\sigma_0(T)+it,y)|}{|t|}\,dt
+    \right).
+\end{aligned}
 \]
-On the bounded-height part $|t| \leq 2$, the distance from
-$s = 1$ is at least $\lambda_T$, and the factorization
-$F(s, y) = \zeta(s)^\alpha H(s, y)$ together with
-$\zeta(s) \sim 1/(s - 1)$ near $s = 1$ gives
+On $|t|\leq2$, Lemma~\ref{lem:F-contour-bounds} gives
+\[
+    |F(\sigma_0(T)+it,y)|
+    \ll_{\eta,\delta'}(\log(T+2))^{2+2\eta}.
+\]
+On $2\leq |t|\leq T$, the point $\sigma_0(T)+it$ lies in
+$\mathcal D$ as a boundary-value limit and satisfies
+$1-\delta'\leq\sigma_0(T)\leq1+\delta'$, so
+Lemma~\ref{lem:F-contour-bounds} gives
 \[
     |F(\sigma_0(T) + it, y)|
-    \ll_\eta \lambda_T^{-(2 + 2\eta)}
-    \asymp (\log T)^{2 + 2\eta}.
+    \ll_{\eta,\varepsilon}|t|^B.
 \]
-Integrating over $|t| \leq 2$ on which $|s| \asymp 1$ contributes
-at most $\ll_\eta (\log T)^{2 + 2\eta}$, which is $\ll T^B$ for
-any $B > 0$.
+Therefore
+\[
+\begin{aligned}
+    |I_{\mathrm{left}}|
+    &\ll_{\eta,\delta',\varepsilon}
+    x^{1-\lambda_T}
+    \left(
+        (\log(T+2))^{2+2\eta}
+        + \int_{2\leq |t|\leq T}|t|^{B-1}\,dt
+    \right) \\
+    &\ll_{\eta,\delta',\varepsilon}
+    x^{1-\lambda_T}
+    \left(
+        (\log(T+2))^{2+2\eta}
+        + 2\int_2^T t^{B-1}\,dt
+    \right).
+\end{aligned}
+\]
+Since $B>0$,
+\[
+    2\int_2^T t^{B-1}\,dt
+    = \frac{2}{B}\bigl(T^B-2^B\bigr)
+    \ll_B T^B.
+\]
+Also $(\log(T+2))^{2+2\eta}\ll_{\eta,B}T^B$ for $T\geq2$.
+Combining these estimates gives
+\[
+    |I_{\mathrm{left}}|
+    \ll_{\eta,\delta',\varepsilon}
+    x^{1-\lambda_T}T^B.
+\]
+This proves~\eqref{eq:vertical-bound}.
 \end{proof}
 
 \subsubsection*{Choice of $T$ and the combined error}
@@ -627,7 +853,7 @@ which is $\ll x \exp(- (1 - o(1)) \sqrt{\log x})$.
 
 \emph{Horizontal pieces.}
 With $c = 1 + 1/\log x$ so that $x^c = e \cdot x$, by
-Proposition~\ref{prop:horizontal-bound},
+Lemma~\ref{lem:horizontal-contour-bound},
 \[
     |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
     \ll_{\eta, \varepsilon}
@@ -637,8 +863,7 @@ Proposition~\ref{prop:horizontal-bound},
 Since $B < 1$, this is $\ll x \exp(- (1 - B) \sqrt{\log x})$.
 
 \emph{Vertical piece.}
-By Proposition~\ref{prop:vertical-bound}
-and~\eqref{eq:x-decay},
+By Lemma~\ref{lem:left-vertical-contour-bound} and~\eqref{eq:x-decay},
 \[
     |I_{\mathrm{left}}|
     \ll_{\eta, \varepsilon}
