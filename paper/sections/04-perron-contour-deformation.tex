@@ -750,8 +750,7 @@ $|\sigma_0(T)+it|\gg |t|$ for $2\leq |t|\leq T$. Hence
     |I_{\mathrm{left}}|
     &\ll x^{1-\lambda_T}
     \left(
-        \int_{|t|\leq2}|F(\sigma_0(T)+it,y)|\,dt \right. \\
-    &\hspace{4.5cm}\left.
+        \int_{|t|\leq2}|F(\sigma_0(T)+it,y)|\,dt
         + \int_{2\leq |t|\leq T}
         \frac{|F(\sigma_0(T)+it,y)|}{|t|}\,dt
     \right).
@@ -832,7 +831,7 @@ that
     + |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
     + |I_{\mathrm{left}}|
     \ll_{\eta, \varepsilon}
-    x \exp\!\bigl(- c_1 \sqrt{\log x}\bigr),
+    x \exp\bigl(- c_1 \sqrt{\log x}\bigr),
 \end{equation}
 uniformly in $|y| \leq \eta$, for all $x$ sufficiently large.
 \end{proposition}
@@ -858,7 +857,7 @@ Lemma~\ref{lem:horizontal-contour-bound},
     |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
     \ll_{\eta, \varepsilon}
     x \cdot T^{B - 1}
-    = x \cdot \exp\!\bigl((B - 1) \sqrt{\log x}\bigr).
+    = x \cdot \exp\bigl((B - 1) \sqrt{\log x}\bigr).
 \]
 Since $B < 1$, this is $\ll x \exp(- (1 - B) \sqrt{\log x})$.
 
@@ -868,7 +867,7 @@ By Lemma~\ref{lem:left-vertical-contour-bound} and~\eqref{eq:x-decay},
     |I_{\mathrm{left}}|
     \ll_{\eta, \varepsilon}
     x \cdot x^{- \lambda_T} \cdot T^B
-    = x \cdot \exp\!\bigl(- \tfrac{c_0}{2} \sqrt{\log x}
+    = x \cdot \exp\bigl(- \tfrac{c_0}{2} \sqrt{\log x}
                           + B \sqrt{\log x}\bigr) (1 + o(1)).
 \]
 By the choice~\eqref{eq:delta-prime} of $\delta'$ together
