@@ -52,6 +52,24 @@ where the truncation error satisfies
 \end{equation}
 \end{theorem}
 
+If $x=N$ is an integer, we do not apply the Perron formula directly
+at $N$. Instead, we apply it at
+\[
+    X := N+\frac12.
+\]
+Then $X\notin\mathbb Z$ and
+\[
+    A(N,y)=A(X,y),
+\]
+because the integers satisfying $n\leq N$ are exactly the integers
+satisfying $n\leq N+1/2$. Moreover,
+\[
+    X=N+O(1),\qquad \log X=\log N+O(1/N),
+\]
+so every asymptotic estimate obtained for $X$ transfers back to
+$N$. Thus it is enough in the Perron argument to work with
+non-integral $x$; the integer case follows from this replacement.
+
 We apply Theorem~\ref{thm:perron} to the Dirichlet series
 $F(s, y) = \sum_{n \geq 1} d(n) (1+y)^{\omega(n)} n^{-s}$. For
 $|y| \leq \eta$ with $\eta$ sufficiently small, the series
@@ -60,25 +78,25 @@ Choose, for instance, $c = 1 + 1/\log x$, which is the standard
 choice to balance the main term size and the truncation error.
 
 \begin{proposition}\label{prop:perron-applied}
-Fix $\delta \in (0, 1/2)$. For $x \geq 2$ with $x \notin \Z$,
-$|y| \leq \eta$, and $T \geq 1$,
+For $x \geq 2$ with $x \notin \Z$, $|y| \leq \eta$, and $T \geq 1$,
 \begin{equation}\label{eq:Axy-perron-error}
     A(x, y) = \frac{1}{2\pi i} \int_{c - iT}^{c + iT}
     F(s, y) \frac{x^s}{s}\, ds
     + E_{\mathrm{Perron}}(x, T, y),
 \end{equation}
-where $c = 1 + 1/\log x$ and the truncation error satisfies
-\begin{equation}\label{eq:Eperron-bound}
+where $c = 1 + 1/\log x$ and
+\begin{equation}\label{eq:R-bound-raw}
     E_{\mathrm{Perron}}(x, T, y)
-    \ll_{\eta, \delta}
-    \frac{x (\log x)^{2 + 2\eta}}{T}.
+    \ll
+    \frac{x^c}{T} F(c,\eta)+\frac{x^c}{T\log x}.
 \end{equation}
 \end{proposition}
 
 \begin{proof}
 Apply Theorem~\ref{thm:perron} with
-$a_n = d(n)(1+y)^{\omega(n)}$ and $c = 1 + 1/\log x$. Denote the
-resulting Perron truncation error by $R(x, T, y)$. Using
+$a_n = d(n)(1+y)^{\omega(n)}$ and $c = 1 + 1/\log x$. Denote
+the resulting truncation error by $E_{\mathrm{Perron}}(x,T,y)$.
+Using
 $|1 + y| \leq 1 + \eta$ and the trivial bound
 $1 + T |\log(x/n)| \geq 1$, the first term of~\eqref{eq:perron-error}
 satisfies
@@ -88,43 +106,9 @@ satisfies
     \frac{1}{1 + T |\log(x/n)|}
     \leq \frac{x^c}{T} F(c, \eta).
 \]
-Hence
-\begin{equation}\label{eq:R-bound-raw}
-    R(x, T, y) \ll_{\eta, \delta}
-    \frac{x^c}{T} F(c, \eta) + \frac{x^c}{T \log x}.
-\end{equation}
-We estimate $F(c, \eta)$ at $c = 1 + 1/\log x$ via the
-factorization~\eqref{eq:factorization}:
-$F(c, \eta) = \zeta(c)^{2 + 2\eta} H(c, \eta)$. Since $\zeta(s)$
-has a simple pole at $s = 1$ with residue $1$, the standard
-expansion $\zeta(s) = 1/(s-1) + \gamma + O(s-1)$ near $s = 1$
-gives $\zeta(1 + 1/\log x) \sim \log x$. Hence
-$\zeta(c)^{2 + 2\eta} \ll_\eta (\log x)^{2 + 2\eta}$. Moreover,
-Proposition~\ref{prop:H-analytic}, applied with the chosen
-$\delta \in (0, 1/2)$, implies that $H(c, \eta)$ is bounded by
-a constant depending only on $\eta$ and $\delta$. Therefore
-\begin{equation}\label{eq:F-at-c}
-    F(c, \eta) \ll_{\eta, \delta} (\log x)^{2 + 2\eta}.
-\end{equation}
-Substituting~\eqref{eq:F-at-c} into~\eqref{eq:R-bound-raw} and
-using $x^c = x \cdot x^{1/\log x} = e \cdot x$,
-\[
-    R(x, T, y)
-    \ll_{\eta, \delta} \frac{x (\log x)^{2 + 2\eta}}{T}
-    + \frac{x}{T \log x}
-    \ll_{\eta, \delta} \frac{x (\log x)^{2 + 2\eta}}{T},
-\]
-which is~\eqref{eq:Eperron-bound}.
+The second term in~\eqref{eq:perron-error} is already
+$x^c/(T\log x)$. This gives~\eqref{eq:R-bound-raw}.
 \end{proof}
-
-The Perron truncation error~\eqref{eq:Eperron-bound} is of size
-$x (\log x)^{2 + 2\eta} / T$. Since $T$ appears in the
-denominator, this term decreases as $T$ grows, and it can be
-made negligible compared to the main term by choosing $T$
-sufficiently large as a function of $x$. The precise choice of
-$T = T(x)$ will be made in Section~\ref{sec:contour-estimates},
-after combining this error with the contributions from the
-contour deformation.
 
 \subsection{Analytic preliminaries}\label{sec:analytic-prelim}
 
@@ -822,6 +806,59 @@ the strip used in the growth estimates. We have
     = \exp\left(- \tfrac{c_0}{2} \sqrt{\log x} \cdot (1 + o(1))\right).
 \end{equation}
 
+\begin{lemma}[Perron truncation error]\label{lem:perron-error}
+For $x\geq2$, $|y|\leq\eta$, $T\geq1$, and
+$c=1+1/\log x$, we have
+\begin{equation}\label{eq:Eperron-bound}
+    E_{\mathrm{Perron}}(x,T,y)
+    \ll_{\eta,\delta'}
+    \frac{x(\log x)^{2+2\eta}}{T}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Starting from the raw Perron error bound~\eqref{eq:R-bound-raw},
+\[
+    E_{\mathrm{Perron}}(x,T,y)
+    \ll
+    \frac{x^c}{T}F(c,\eta)+\frac{x^c}{T\log x}.
+\]
+On the line $\Real(s)=c>1$, the Dirichlet series is absolutely
+convergent and the factorization is controlled directly. For
+sufficiently large $x$, we have $c\leq1+\delta'$. Since
+\[
+    F(c,\eta)=\zeta(c)^{2+2\eta}H(c,\eta),
+\]
+and $c=1+1/\log x$, the pole of $\zeta(s)$ at $s=1$ gives
+\[
+    \zeta(c)\ll\frac{1}{c-1}\ll\log x.
+\]
+Also, by Proposition~\ref{prop:H-analytic}, applied with the fixed
+strip depth $\delta'$, we have
+\[
+    H(c,\eta)\ll_{\eta,\delta'}1.
+\]
+Therefore
+\[
+    F(c,\eta)\ll_{\eta,\delta'}(\log x)^{2+2\eta}.
+\]
+For the remaining bounded range of $x$, the same estimate follows
+after enlarging the implied constant, because $c$ then ranges over
+a compact subinterval of $(1,\infty)$ and $F(c,\eta)$ is bounded
+there by absolute convergence.
+Finally,
+\[
+    x^c=x^{1+1/\log x}=ex\asymp x.
+\]
+Substituting these estimates into the raw Perron error bound gives
+\[
+    E_{\mathrm{Perron}}(x,T,y)
+    \ll_{\eta,\delta'}
+    \frac{x(\log x)^{2+2\eta}}{T},
+\]
+as claimed.
+\end{proof}
+
 \begin{proposition}\label{prop:nonlocal-error}
 With $T = T(x) = \exp(\sqrt{\log x})$, there exists a constant
 $c_1 > 0$ (depending on $\eta, \varepsilon$ but not on $x$) such
@@ -840,8 +877,7 @@ uniformly in $|y| \leq \eta$, for all $x$ sufficiently large.
 We bound each term separately and take the worst.
 
 \emph{Perron error.}
-By~\eqref{eq:Eperron-bound} with $T = \exp(\sqrt{\log x})$ and
-$\delta = \delta'$,
+By Lemma~\ref{lem:perron-error} with $T = \exp(\sqrt{\log x})$,
 \[
     E_{\mathrm{Perron}}
     \ll_{\eta, \delta'}
