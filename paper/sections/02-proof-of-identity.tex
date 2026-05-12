@@ -40,13 +40,13 @@ recall the definition
     T_j(x) = \sum_{n \leq x} d(n) \binom{\omega(n)}{j}.
 \]
 We claim that
-\begin{equation}
+\begin{equation}\label{eq:composite-part-identity}
     \sum_{\substack{n \leq x \\ \omega(n) \geq 2}} d(n)
     = \sum_{j \geq 2} (-1)^j (j-1) T_j(x).
 \end{equation}
 
-To prove~(2.3), interchange the order of summation on the
-right-hand side:
+To prove~\eqref{eq:composite-part-identity}, interchange the order
+of summation on the right-hand side:
 \[
     \sum_{j \geq 2} (-1)^j (j-1) T_j(x)
     = \sum_{n \leq x} d(n) \sum_{j \geq 2} (-1)^j (j-1)
@@ -93,7 +93,7 @@ Applying the lemma, we obtain
     \binom{\omega(n)}{j}
     = \sum_{\substack{n \leq x \\ \omega(n) \geq 2}} d(n) \cdot 1,
 \]
-which establishes~(2.3).
+which establishes~\eqref{eq:composite-part-identity}.
 
 Combining the contributions from all three classes yields
 \[

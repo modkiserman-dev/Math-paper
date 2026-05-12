@@ -96,18 +96,40 @@ where $c = 1 + 1/\log x$ and
 Apply Theorem~\ref{thm:perron} with
 $a_n = d(n)(1+y)^{\omega(n)}$ and $c = 1 + 1/\log x$. Denote
 the resulting truncation error by $E_{\mathrm{Perron}}(x,T,y)$.
-Using
-$|1 + y| \leq 1 + \eta$ and the trivial bound
-$1 + T |\log(x/n)| \geq 1$, the first term of~\eqref{eq:perron-error}
-satisfies
+The error term in~\eqref{eq:perron-error} gives
 \[
-    \frac{x^c}{T} \sum_{n \geq 1}
-    \frac{|d(n)(1+y)^{\omega(n)}|}{n^c} \cdot
-    \frac{1}{1 + T |\log(x/n)|}
-    \leq \frac{x^c}{T} F(c, \eta).
+    E_{\mathrm{Perron}}(x,T,y)
+    \ll
+    \frac{x^c}{T}
+    \sum_{n\geq1}
+    \frac{|d(n)(1+y)^{\omega(n)}|}
+    {n^c\left(1+T\left|\log\frac{x}{n}\right|\right)}
+    +\frac{x^c}{T\log x}.
 \]
-The second term in~\eqref{eq:perron-error} is already
-$x^c/(T\log x)$. This gives~\eqref{eq:R-bound-raw}.
+Since $|1+y|\leq 1+\eta$, we have
+\[
+    |d(n)(1+y)^{\omega(n)}|
+    \leq d(n)(1+\eta)^{\omega(n)}.
+\]
+Using only the trivial inequality
+\[
+    1+T\left|\log\frac{x}{n}\right|\geq1,
+\]
+we get
+\[
+\begin{aligned}
+    E_{\mathrm{Perron}}(x,T,y)
+    &\ll
+    \frac{x^c}{T}
+    \sum_{n\geq1}
+    \frac{d(n)(1+\eta)^{\omega(n)}}{n^c}
+    +\frac{x^c}{T\log x}  \\
+    &=
+    \frac{x^c}{T}F(c,\eta)
+    +\frac{x^c}{T\log x},
+\end{aligned}
+\]
+which is~\eqref{eq:R-bound-raw}.
 \end{proof}
 
 \subsection{Analytic preliminaries}\label{sec:analytic-prelim}
@@ -424,8 +446,9 @@ which yields
 
 \subsubsection*{Decomposition of \texorpdfstring{$A(x, y)$}{A(x,y)}}
 
-Combining~\eqref{eq:contour-equality} with the truncated Perron
-formula (Proposition~\ref{prop:perron-applied}), we obtain
+For non-integral $x$, combining~\eqref{eq:contour-equality} with
+the truncated Perron formula (Proposition~\ref{prop:perron-applied}),
+we obtain
 \begin{equation}\label{eq:A-decomposition}
     A(x, y) = I_H + I_{\mathrm{top}} + I_{\mathrm{bot}}
             + I_{\mathrm{left}} + E_{\mathrm{Perron}}(x, T, y),
@@ -807,8 +830,8 @@ the strip used in the growth estimates. We have
 \end{equation}
 
 \begin{lemma}[Perron truncation error]\label{lem:perron-error}
-For $x\geq2$, $|y|\leq\eta$, $T\geq1$, and
-$c=1+1/\log x$, we have
+For $x\geq2$ with $x\notin\mathbb Z$, $|y|\leq\eta$, $T\geq1$,
+and $c=1+1/\log x$, we have
 \begin{equation}\label{eq:Eperron-bound}
     E_{\mathrm{Perron}}(x,T,y)
     \ll_{\eta,\delta'}
@@ -829,9 +852,9 @@ sufficiently large $x$, we have $c\leq1+\delta'$. Since
 \[
     F(c,\eta)=\zeta(c)^{2+2\eta}H(c,\eta),
 \]
-and $c=1+1/\log x$, the pole of $\zeta(s)$ at $s=1$ gives
+and $c=1+1/\log x>1$, we have
 \[
-    \zeta(c)\ll\frac{1}{c-1}\ll\log x.
+    \zeta(c)\leq\frac{c}{c-1}\ll\log x.
 \]
 Also, by Proposition~\ref{prop:H-analytic}, applied with the fixed
 strip depth $\delta'$, we have
@@ -870,7 +893,8 @@ that
     \ll_{\eta, \varepsilon}
     x \exp\bigl(- c_1 \sqrt{\log x}\bigr),
 \end{equation}
-uniformly in $|y| \leq \eta$, for all $x$ sufficiently large.
+uniformly in $|y| \leq \eta$, for all sufficiently large
+$x\notin\mathbb Z$.
 \end{proposition}
 
 \begin{proof}
@@ -910,9 +934,13 @@ By the choice~\eqref{eq:delta-prime} of $\delta'$ together
 with~\eqref{eq:B-small}, we have $B < c_0/2$. Hence
 $|I_{\mathrm{left}}| \ll x \exp(- (c_0/2 - B) \sqrt{\log x})$.
 
-Choose $c_1 > 0$ smaller than each of $1$, $1 - B$, and
-$c_0/2 - B$. For all sufficiently large $x$, the preceding three
-estimates are then bounded by the right-hand
+Set
+\[
+    c_1:=\frac12\left(\frac{c_0}{2}-B\right)>0.
+\]
+Since $0<c_0<1/2$ and $B>0$, the constant $c_0/2-B$ is smaller
+than both $1$ and $1-B$. Therefore, for all sufficiently large
+$x$, the preceding three estimates are bounded by the right-hand
 side of~\eqref{eq:total-nonlocal-error}.
 \end{proof}
 
