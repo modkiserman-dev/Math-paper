@@ -7,6 +7,10 @@ $\omega(n)$, and then applying an inclusion--exclusion argument
 to the composite part.
 
 \begin{proof}[Proof of Theorem~\ref{thm:identity}]
+For fixed $x$, all sums below are finite. Indeed,
+$\pi(x^{1/i})=0$ for all sufficiently large $i$, and
+$\binom{\omega(n)}{j}=0$ whenever $j>\omega(n)$.
+
 Partition the integers $n$ with $1 \leq n \leq x$ into three
 disjoint classes:
 \begin{itemize}
@@ -46,7 +50,8 @@ We claim that
 \end{equation}
 
 To prove~\eqref{eq:composite-part-identity}, interchange the order
-of summation on the right-hand side:
+of summation on the right-hand side. This involves only finite sums,
+so no convergence issue occurs:
 \[
     \sum_{j \geq 2} (-1)^j (j-1) T_j(x)
     = \sum_{n \leq x} d(n) \sum_{j \geq 2} (-1)^j (j-1)

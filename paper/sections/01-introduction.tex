@@ -19,7 +19,7 @@ Hardy \cite{} proved in 1916 that $\theta \geq 1/4$, and it is
 conjectured that $\theta = 1/4$. In the other direction,
 Vorono\"i \cite{} first improved Dirichlet's bound to $\theta \leq 1/3$
 in 1904, and subsequent refinements based on Vinogradov's method of
-exponential sums \cite{} led to the current best estimate, due to
+exponential sums \cite{} led to the classical published bound due to
 Huxley \cite{} in 2003:
 \begin{equation}
     \theta \leq 131/416.
@@ -42,8 +42,11 @@ where $\binom{\omega(n)}{j}$ is the binomial coefficient. The main identity of t
     For every real number $x\geq1$,
     \begin{equation}\label{eq:main-identity}
         D(x)=1+\sum_{i\geq 1}(i+1)\pi(x^{1/i})+\sum_{j\geq 2}(-1)^j(j-1)T_j(x)
-    \end{equation}
-    where $\pi(x)$ denotes the prime-counting function.
+\end{equation}
+where $\pi(x)$ denotes the prime-counting function. Both sums are
+effectively finite for each fixed $x$: we have $\pi(x^{1/i})=0$
+for all sufficiently large $i$, and $T_j(x)=0$ once $j$ exceeds
+the maximum possible value of $\omega(n)$ among integers $n\leq x$.
 \end{theorem}
 
 The three terms on the right-hand side of \eqref{eq:main-identity} correspond, respectively, to $n = 1$, prime powers $\omega(n) = 1$, and integers with $\omega(n)\geq 2$. The proof of Theorem~\ref{thm:identity} is given in Section~\ref{sec:identity}.
@@ -60,12 +63,12 @@ main asymptotic of $D(x)$, and the third sum
 \begin{equation}
     \sum_{j \geq 2} (-1)^j (j-1) T_j(x)
 \end{equation}
-must constitute the main term of $D(x)$. Individually,
-each $T_j(x)$ grows rapidly with $j$, but the alternating coefficients
-$(-1)^j (j-1)$ induce substantial cancellation, reducing the total
-contribution to the order $x \log x$. Understanding the
-asymptotic behavior of each $T_j(x)$ is therefore the first step toward
-an asymptotic formula for $D(x)$ itself.
+is responsible for the remaining main scale after cancellation.
+Individually, each $T_j(x)$ grows rapidly with $j$, but the
+alternating coefficients $(-1)^j (j-1)$ induce substantial
+cancellation in the full finite sum. The fixed-$j$ asymptotics
+proved below give information about individual terms, but they do
+not by themselves determine this whole alternating sum.
 
 \begin{example}
     At $x=10000$, direct computation gives
@@ -79,7 +82,8 @@ $2{,}711$, and the identity \eqref{eq:main-identity} yields
         1+2{,}711+(T_2-2T_3+3T_4-4T_5)=1+2{,}711+90{,}956=93{,}668=D(10000),
     \end{align*}
     confirming Theorem~\ref{thm:identity} numerically. Moreover, the ratio between
-$T_j(x)$ and its conjectured asymptotic $\frac{2^j}{j!}x\log x(\log\log x)^j$ converges to 1 only very slowly: at $x=10^9$, this ratio is 0.43 for
+$T_j(x)$ and the leading term later proved in Theorem~\ref{thm:main},
+$\frac{2^j}{j!}x\log x(\log\log x)^j$, converges to 1 only very slowly: at $x=10^9$, this ratio is 0.43 for
 $j=2$ and 0.21 for $j=3$. This slow convergence motivates the refined
 asymptotic expansion of $T_j(x)$ developed in Section~\ref{sec:extraction}.
 \end{example}
@@ -130,9 +134,16 @@ $s = 1$, and a local Hankel analysis in the $w$-plane obtained
 via the substitution $w = (s - 1) \log x$. The coefficient $\partial_y H(1, 0)$ admits an explicit expression as an absolutely convergent series over primes; we record this
 expression in Section~\ref{sec:extraction}, where it is used in the proof of Theorem~\ref{thm:main}.
 
-Combining Theorem~\ref{thm:main} with the identity~\eqref{eq:main-identity},
-we hope to obtain an asymptotic formula for $D(x)$ itself. We
-discuss this direction in Section~\ref{sec:outlook}.
+Theorem~\ref{thm:main} is a fixed-$j$ result. Combining it with
+the identity~\eqref{eq:main-identity} does not by itself give an
+asymptotic formula for $D(x)$, because the identity involves values
+of $j$ that grow with $x$. In terms of the generating function
+$A(x,y)=\sum_{j\geq0}T_j(x)y^j$, the alternating combination in
+the identity is governed by values near $y=-1$, whereas the analytic
+work below is carried out in a small disk around $y=0$. Recovering
+$D(x)$ from the identity is therefore left as a future problem,
+requiring estimates uniform in $j$ or a direct analysis near
+$y=-1$.
 
 \subsection{Outline of the paper}
 
@@ -155,9 +166,9 @@ Section~\ref{sec:extraction}, we extract the asymptotic formula for
 $T_j(x)$ from that of $A(x, y)$ by differentiating in $y$, thereby
 completing the proof of Theorem~\ref{thm:main}.
 
-Finally, in Section~\ref{sec:outlook}, we combine
-Theorem~\ref{thm:main} with the identity~\eqref{eq:main-identity}
-and discuss the remaining obstacles toward an asymptotic formula
-for $D(x)$.
+Finally, in Section~\ref{sec:outlook}, we discuss why the fixed-$j$
+asymptotics and the identity do not yet determine the full
+alternating sum for $D(x)$, and what additional uniform estimates
+would be needed.
 
 % ===== Section 2 =====

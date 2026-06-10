@@ -46,9 +46,9 @@ $c > \sigma_a$, $x \geq 2$, and $T \geq 1$ with $x \notin \mathbb{Z}$,
 \end{equation}
 where the truncation error satisfies
 \begin{equation}\label{eq:perron-error}
-    R(x, T) \ll \frac{x^c}{T} \sum_{n \geq 1} \frac{|a_n|}{n^c
-    \left(1 + T \left|\log \frac{x}{n}\right|\right)}
-    + \frac{x^c}{T \log x}.
+    R(x, T) \ll
+    x^c \sum_{n \geq 1} \frac{|a_n|}{n^c}
+    \frac{1}{1 + T \left|\log \frac{x}{n}\right|}.
 \end{equation}
 \end{theorem}
 
@@ -77,60 +77,25 @@ converges absolutely for $\Real(s) > 1$, so we may take any $c > 1$.
 Choose, for instance, $c = 1 + 1/\log x$, which is the standard
 choice to balance the main term size and the truncation error.
 
-\begin{proposition}\label{prop:perron-applied}
 For $x \geq 2$ with $x \notin \Z$, $|y| \leq \eta$, and $T \geq 1$,
-\begin{equation}\label{eq:Axy-perron-error}
+put $c = 1+1/\log x$. Theorem~\ref{thm:perron} gives
+\begin{equation}\label{eq:Axy-perron-representation}
     A(x, y) = \frac{1}{2\pi i} \int_{c - iT}^{c + iT}
     F(s, y) \frac{x^s}{s}\, ds
     + E_{\mathrm{Perron}}(x, T, y),
 \end{equation}
-where $c = 1 + 1/\log x$ and
-\begin{equation}\label{eq:R-bound-raw}
+where
+\begin{equation}\label{eq:Eperron-weighted-raw}
     E_{\mathrm{Perron}}(x, T, y)
-    \ll
-    \frac{x^c}{T} F(c,\eta)+\frac{x^c}{T\log x}.
-\end{equation}
-\end{proposition}
-
-\begin{proof}
-Apply Theorem~\ref{thm:perron} with
-$a_n = d(n)(1+y)^{\omega(n)}$ and $c = 1 + 1/\log x$. Denote
-the resulting truncation error by $E_{\mathrm{Perron}}(x,T,y)$.
-The error term in~\eqref{eq:perron-error} gives
-\[
-    E_{\mathrm{Perron}}(x,T,y)
-    \ll
-    \frac{x^c}{T}
-    \sum_{n\geq1}
-    \frac{|d(n)(1+y)^{\omega(n)}|}
-    {n^c\left(1+T\left|\log\frac{x}{n}\right|\right)}
-    +\frac{x^c}{T\log x}.
-\]
-Since $|1+y|\leq 1+\eta$, we have
-\[
-    |d(n)(1+y)^{\omega(n)}|
-    \leq d(n)(1+\eta)^{\omega(n)}.
-\]
-Using only the trivial inequality
-\[
-    1+T\left|\log\frac{x}{n}\right|\geq1,
-\]
-we get
-\[
-\begin{aligned}
-    E_{\mathrm{Perron}}(x,T,y)
-    &\ll
-    \frac{x^c}{T}
+    \ll_{\eta}
+    x^c
     \sum_{n\geq1}
     \frac{d(n)(1+\eta)^{\omega(n)}}{n^c}
-    +\frac{x^c}{T\log x}  \\
-    &=
-    \frac{x^c}{T}F(c,\eta)
-    +\frac{x^c}{T\log x},
-\end{aligned}
-\]
-which is~\eqref{eq:R-bound-raw}.
-\end{proof}
+    \frac{1}{1+T\left|\log\frac{x}{n}\right|}.
+\end{equation}
+Indeed, applying~\eqref{eq:perron-error} with
+$a_n=d(n)(1+y)^{\omega(n)}$ and using $|1+y|\leq1+\eta$ gives
+the displayed bound.
 
 \subsection{Analytic preliminaries}\label{sec:analytic-prelim}
 
@@ -185,13 +150,11 @@ is the slit along the real axis to the left of $s = 1$. The slit
 $\mathcal{S}$ disconnects the segment $\mathcal{Z} \cap \mathcal{S}$
 from the rest of $\mathcal{Z}$ from above and below, rendering
 $\mathcal{D}$ simply connected.\footnote{%
-Indeed, $\mathcal{Z}$ is a slit-once-punctured domain that is not
-simply connected, since a small loop around $s = 1$ inside
-$\mathcal{Z}$ is not nullhomotopic. Removing the
-entire ray $(-\infty, 1]$ (equivalently, the connected component
-$\mathcal{Z} \cap \mathcal{S}$ of $\mathcal{S}$ inside
-$\mathcal{Z}$, which contains $s = 1$) cuts every such loop,
-making the resulting domain simply connected.}
+Removing the slit from $s=1$ to the boundary cuts the only
+possible loop around the puncture $s=1$, just as
+$\C\setminus(-\infty,0]$ is the standard simply connected branch
+domain for the logarithm. This is the topological input needed
+for path independence in the definition of $L(s)$.}
 
 On $\mathcal{D}$, both $\zeta(s)$ and $\zeta'(s)$ are holomorphic,
 and $\zeta(s) \neq 0$. Fix any real number $c_* > 1$ (for
@@ -313,8 +276,9 @@ $|y| \leq \eta$. In particular,
 Proposition~\ref{prop:H-analytic} applies on the contour with
 $\delta = \delta'$.
 
-Finally, the choice $c = 1 + 1/\log x$ in
-Proposition~\ref{prop:perron-applied} satisfies $c \leq 1 + \delta'$
+Finally, the choice $c = 1 + 1/\log x$ in the Perron
+representation~\eqref{eq:Axy-perron-representation} satisfies
+$c \leq 1 + \delta'$
 for all $x$ sufficiently large, ensuring that the abscissa $c$
 lies inside the strip $1 - \delta' \leq \sigma \leq 1 + \delta'$
 used in the contour estimates. We assume this hereafter.
@@ -410,14 +374,17 @@ the corresponding boundary-value limit.
 
 \subsubsection*{Cauchy's theorem}
 
-The Perron contour and $\mathcal{C}$ share the same endpoints
-$c \pm iT$. Together, the Perron contour traversed from $c - iT$
-to $c + iT$ and $\mathcal{C}$ traversed in the reverse direction
-form a closed loop $\Gamma$, oriented counterclockwise. The
-keyhole formed by $\mathcal{H}_{\mathrm{loc}}$ and the slit
-$\mathcal{S}$ excludes the point $s = 1$ from the interior of
-$\Gamma$, so the interior of $\Gamma$ is contained in the
-rectangle
+For $\varepsilon>0$, replace the two Hankel arms along the slit by
+parallel paths at heights $-\varepsilon$ and $+\varepsilon$, and
+denote the resulting deformed contour by $\mathcal{C}_\varepsilon$.
+The Perron contour and $\mathcal{C}_\varepsilon$ share the same
+endpoints $c \pm iT$. Together, the Perron contour traversed from
+$c - iT$ to $c + iT$ and $\mathcal{C}_\varepsilon$ traversed in
+the reverse direction form a closed loop $\Gamma_\varepsilon$,
+oriented counterclockwise. The keyhole formed by the approximating
+Hankel contour and the slit $\mathcal{S}$ excludes the point
+$s = 1$ from the interior of $\Gamma_\varepsilon$, so the interior
+of $\Gamma_\varepsilon$ is contained in the rectangle
 \begin{equation}\label{eq:Gamma-interior-bound}
     \mathcal{R}_\Gamma := \{ s = \sigma + it
     : \sigma_0(T) \leq \sigma \leq c, \ |t| \leq T \}
@@ -431,14 +398,21 @@ with the slit further excluded. For every $s \in \mathcal{R}_\Gamma$,
 \end{equation}
 so $\mathcal{R}_\Gamma \subset \mathcal{Z}$. Combined with the
 on-contour verifications~\eqref{eq:zfree-horizontal}--\eqref{eq:zfree-hankel},
-this shows that $\Gamma$ together with its interior is contained
-in $\mathcal{Z}$. In particular, $F(s, y) x^s / s$ is holomorphic
-on a neighborhood of $\Gamma$ and its interior, with the slit
-$\mathcal{S}$ removed. By Cauchy's theorem,
+this shows that $\Gamma_\varepsilon$ together with its interior,
+with the slit removed, is contained in the slit domain
+$\mathcal{D}$. Hence $F(s, y) x^s / s$ is holomorphic on an open
+neighborhood of $\Gamma_\varepsilon$ and its interior. By Cauchy's
+theorem,
 \begin{equation}\label{eq:cauchy-zero}
-    \oint_\Gamma F(s, y) \frac{x^s}{s}\, ds = 0,
+    \oint_{\Gamma_\varepsilon} F(s, y) \frac{x^s}{s}\, ds = 0,
 \end{equation}
 which yields
+\[
+    \int_{c - iT}^{c + iT} F(s, y) \frac{x^s}{s}\, ds
+    = \int_{\mathcal{C}_\varepsilon} F(s, y) \frac{x^s}{s}\, ds.
+\]
+Letting $\varepsilon\to0^+$ gives the boundary-value contour
+$\mathcal{C}$ and hence
 \begin{equation}\label{eq:contour-equality}
     \int_{c - iT}^{c + iT} F(s, y) \frac{x^s}{s}\, ds
     = \int_{\mathcal{C}} F(s, y) \frac{x^s}{s}\, ds.
@@ -447,7 +421,7 @@ which yields
 \subsubsection*{Decomposition of \texorpdfstring{$A(x, y)$}{A(x,y)}}
 
 For non-integral $x$, combining~\eqref{eq:contour-equality} with
-the truncated Perron formula (Proposition~\ref{prop:perron-applied}),
+the Perron representation~\eqref{eq:Axy-perron-representation},
 we obtain
 \begin{equation}\label{eq:A-decomposition}
     A(x, y) = I_H + I_{\mathrm{top}} + I_{\mathrm{bot}}
@@ -464,6 +438,22 @@ with $\mathcal{C}_{\mathrm{left}} := \mathcal{C}_{\mathrm{left}}^-
     I_H := \frac{1}{2\pi i} \int_{\mathcal{H}_{\mathrm{loc}}}
     F(s, y) \frac{x^s}{s}\, ds.
 \end{equation}
+Writing $\mathcal{H}_{\mathrm{loc}}
+=\mathcal{H}_{\mathrm{loc}}^-\cup\mathcal{H}_{\mathrm{loc}}^\circ
+\cup\mathcal{H}_{\mathrm{loc}}^+$ for the lower arm, the small
+circle, and the upper arm, respectively, we also write
+\[
+    I_H=I_H^-+I_H^\circ+I_H^+,
+    \qquad
+    I_H^\bullet:=\frac{1}{2\pi i}
+    \int_{\mathcal{H}_{\mathrm{loc}}^\bullet}
+    F(s,y)\frac{x^s}{s}\,ds
+    \quad(\bullet\in\{-,\circ,+\}).
+\]
+The lower arm is oriented from $\sigma_0+i0^-$ to $1-\rho+i0^-$,
+the small circle is oriented counterclockwise from $1-\rho+i0^-$
+to $1-\rho+i0^+$ through the right side of $s=1$, and the upper
+arm is oriented from $1-\rho+i0^+$ to $\sigma_0+i0^+$.
 
 The local Hankel contribution $I_H$ contains the main asymptotic
 behavior and will be evaluated in Section~\ref{sec:hankel}. The
@@ -731,8 +721,11 @@ uniformly in $|y| \leq \eta$.
 \begin{proof}
 The contour $\mathcal{C}_{\mathrm{left}} =
 \mathcal{C}_{\mathrm{left}}^- \cup \mathcal{C}_{\mathrm{left}}^+$
-is parameterized by $s=\sigma_0(T)+it$, $-T\leq t\leq T$.
-Using $\sigma_0(T)=1-\lambda_T$, we first write
+is estimated by parameterizing the two boundary-value pieces as
+$s=\sigma_0(T)+it$, with $-T\leq t<0$ on
+$\mathcal{C}_{\mathrm{left}}^-$ and $0<t\leq T$ on
+$\mathcal{C}_{\mathrm{left}}^+$. Using
+$\sigma_0(T)=1-\lambda_T$, we first write
 \[
 \begin{aligned}
     |I_{\mathrm{left}}|
@@ -740,13 +733,25 @@ Using $\sigma_0(T)=1-\lambda_T$, we first write
        \int_{\mathcal C_{\mathrm{left}}}
        F(s,y)\frac{x^s}{s}\,ds \right| \\
     &\leq \frac{1}{2\pi}
-       \int_{-T}^{T}
+       \left(
+       \int_{-T}^{0^-}
        \left|F(\sigma_0(T)+it,y)
-       \frac{x^{\sigma_0(T)+it}}{\sigma_0(T)+it}\right|\,dt \\
+       \frac{x^{\sigma_0(T)+it}}{\sigma_0(T)+it}\right|\,dt
+       +
+       \int_{0^+}^{T}
+       \left|F(\sigma_0(T)+it,y)
+       \frac{x^{\sigma_0(T)+it}}{\sigma_0(T)+it}\right|\,dt
+       \right) \\
     &= \frac{x^{1-\lambda_T}}{2\pi}
-       \int_{-T}^{T}
+       \left(
+       \int_{-T}^{0^-}
        \left|\frac{F(\sigma_0(T)+it,y)}
-       {\sigma_0(T)+it}\right|\,dt.
+       {\sigma_0(T)+it}\right|\,dt
+       +
+       \int_{0^+}^{T}
+       \left|\frac{F(\sigma_0(T)+it,y)}
+       {\sigma_0(T)+it}\right|\,dt
+       \right).
 \end{aligned}
 \]
 Since $\sigma_0(T)>1-\delta'>1/2$, we have
@@ -829,57 +834,178 @@ the strip used in the growth estimates. We have
     = \exp\left(- \tfrac{c_0}{2} \sqrt{\log x} \cdot (1 + o(1))\right).
 \end{equation}
 
+\begin{lemma}[Short interval bound for $d_K$]\label{lem:short-interval-dK}
+For each fixed integer $K\geq1$, there exists a constant $C_K>0$
+such that, for all sufficiently large $X$, if
+\[
+    C_K X^{1-1/(2K)}\leq H\leq X,
+\]
+then
+\[
+    \sum_{X<n\leq X+H} d_K(n)
+    \ll_K H(\log X)^{K-1}.
+\]
+Here $d_K(n)$ is defined by
+\[
+    \zeta(s)^K=\sum_{n\geq1}d_K(n)n^{-s}
+    \qquad (\Real(s)>1),
+\]
+or equivalently as the number of ordered $K$-tuples of positive
+integers whose product is $n$.
+\end{lemma}
+
+\begin{proof}
+We prove the assertion by induction on $K$. For $K=1$, we have
+$d_1(n)=1$, so the estimate is immediate.
+
+Assume $K\geq2$ and that the result is known for $K-1$. Put
+\[
+    D_K(X,H):=\sum_{X<n\leq X+H}d_K(n).
+\]
+This counts ordered $K$-tuples $(m_1,\ldots,m_K)$ satisfying
+\[
+    X<m_1\cdots m_K\leq X+H.
+\]
+Since $H\leq X$, the product is at most $2X$, so at least one
+factor is at most $(2X)^{1/K}$. By the union bound over the
+$K$ possible positions of such a factor,
+\[
+    D_K(X,H)
+    \leq
+    K\sum_{m\leq(2X)^{1/K}}
+    \sum_{X/m<r\leq(X+H)/m}d_{K-1}(r).
+\]
+Let $Y=X/m$ and $L=H/m$. Choose $C_K$ large enough, in terms of
+$K$ and $C_{K-1}$, so that whenever
+$H\geq C_KX^{1-1/(2K)}$ and $m\leq(2X)^{1/K}$, we have
+\[
+    L\geq C_{K-1}Y^{1-1/(2(K-1))}.
+\]
+Also $L\leq Y$, since $H\leq X$. Hence the induction hypothesis
+applies to the inner sum and gives
+\[
+    \sum_{X/m<r\leq(X+H)/m}d_{K-1}(r)
+    \ll_K \frac{H}{m}(\log X)^{K-2}.
+\]
+Therefore
+\[
+    D_K(X,H)
+    \ll_K
+    H(\log X)^{K-2}
+    \sum_{m\leq(2X)^{1/K}}\frac1m
+    \ll_K H(\log X)^{K-1}.
+\]
+\end{proof}
+
 \begin{lemma}[Perron truncation error]\label{lem:perron-error}
-For $x\geq2$ with $x\notin\mathbb Z$, $|y|\leq\eta$, $T\geq1$,
-and $c=1+1/\log x$, we have
+Let $T=T(x)=\exp(\sqrt{\log x})$ and $c=1+1/\log x$. For
+$x\geq2$ with $x\notin\mathbb Z$ and $|y|\leq\eta$, there exists
+a fixed integer $K=K(\eta)$ such that
 \begin{equation}\label{eq:Eperron-bound}
     E_{\mathrm{Perron}}(x,T,y)
-    \ll_{\eta,\delta'}
-    \frac{x(\log x)^{2+2\eta}}{T}.
+    \ll_\eta
+    \frac{x}{T}(\log x)^K.
 \end{equation}
 \end{lemma}
 
 \begin{proof}
-Starting from the raw Perron error bound~\eqref{eq:R-bound-raw},
+Set $M=1+\eta$ and choose an integer $K=K(\eta)$ with
+$K\geq2M$ and $K\geq2$. We first show that
+\[
+    d(n)M^{\omega(n)}\leq d_K(n)
+    \qquad(n\geq1).
+\]
+For a prime power $p^a$ with $a\geq1$,
+\[
+    d(p^a)M^{\omega(p^a)}=(a+1)M,
+    \qquad
+    d_K(p^a)=\binom{a+K-1}{K-1}.
+\]
+The quantity
+\[
+    \frac{1}{a+1}\binom{a+K-1}{K-1}
+\]
+is increasing in $a$ for $K\geq2$, and at $a=1$ it equals $K/2$.
+Thus $(a+1)M\leq d_K(p^a)$ for every $a\geq1$. Extending
+multiplicatively gives the claimed coefficient domination.
+
+Using~\eqref{eq:Eperron-weighted-raw}, we obtain
 \[
     E_{\mathrm{Perron}}(x,T,y)
+    \ll_\eta
+    x^c\sum_{n\geq1}
+    \frac{d_K(n)}{n^c}
+    \frac{1}{1+T\left|\log\frac{x}{n}\right|}.
+\]
+We split the sum into the ranges $n\leq x/2$, $x/2<n<2x$, and
+$n\geq2x$.
+
+If $n\leq x/2$ or $n\geq2x$, then
+$|\log(x/n)|\geq\log2$, and hence the weight is $\ll 1/T$.
+The contribution of these two far ranges is therefore
+\[
     \ll
-    \frac{x^c}{T}F(c,\eta)+\frac{x^c}{T\log x}.
+    \frac{x^c}{T}\sum_{n\geq1}\frac{d_K(n)}{n^c}
+    =
+    \frac{x^c}{T}\zeta(c)^K.
 \]
-On the line $\Real(s)=c>1$, the Dirichlet series is absolutely
-convergent and the factorization is controlled directly. For
-sufficiently large $x$, we have $c\leq1+\delta'$. Since
+Since $c=1+1/\log x$, we have $x^c\asymp x$ and
+$\zeta(c)\ll\log x$, so the far contribution is
 \[
-    F(c,\eta)=\zeta(c)^{2+2\eta}H(c,\eta),
+    \ll_K \frac{x}{T}(\log x)^K.
 \]
-and $c=1+1/\log x>1$, we have
+
+It remains to estimate the central range $x/2<n<2x$. There
+$x^c n^{-c}=(x/n)^c\ll1$, so it is enough to bound
 \[
-    \zeta(c)\leq\frac{c}{c-1}\ll\log x.
+    \sum_{x/2<n<2x}
+    d_K(n)\frac{1}{1+T\left|\log\frac{x}{n}\right|}.
 \]
-Also, by Proposition~\ref{prop:H-analytic}, applied with the fixed
-strip depth $\delta'$, we have
+Put $H=x/T$. Cover the central range by the right intervals
 \[
-    H(c,\eta)\ll_{\eta,\delta'}1.
+    I_r^+=(x+rH,\ x+(r+1)H]
 \]
-Therefore
+and the left intervals
 \[
-    F(c,\eta)\ll_{\eta,\delta'}(\log x)^{2+2\eta}.
+    I_r^-=[x-(r+1)H,\ x-rH),
 \]
-For the remaining bounded range of $x$, the same estimate follows
-after enlarging the implied constant, because $c$ then ranges over
-a compact subinterval of $(1,\infty)$ and $F(c,\eta)$ is bounded
-there by absolute convergence.
-Finally,
+with $r=0,1,2,\ldots$ and only $O(T)$ intervals needed. For
+$n\in I_r^\pm$,
 \[
-    x^c=x^{1+1/\log x}=ex\asymp x.
+    \frac{1}{1+T\left|\log\frac{x}{n}\right|}
+    \ll \frac{1}{1+r}.
 \]
-Substituting these estimates into the raw Perron error bound gives
+For $r=0$ this is trivial. For $r\geq1$, since $x/2<n<2x$,
+we have
 \[
-    E_{\mathrm{Perron}}(x,T,y)
-    \ll_{\eta,\delta'}
-    \frac{x(\log x)^{2+2\eta}}{T},
+    \left|\log\frac{x}{n}\right|
+    \asymp \frac{|n-x|}{x}
+    \asymp \frac{rH}{x}
+    =\frac{r}{T}.
 \]
-as claimed.
+Because $T=\exp(\sqrt{\log x})$, the length
+$H=x\exp(-\sqrt{\log x})$ is larger than
+$C_K x^{1-1/(2K)}$ for all sufficiently large $x$. Each interval
+lies in $x/2<n<2x$, so Lemma~\ref{lem:short-interval-dK} applies
+with a starting point comparable to $x$, and gives
+\[
+    \sum_{n\in I_r^\pm}d_K(n)
+    \ll_K H(\log x)^{K-1}.
+\]
+Therefore the central contribution is
+\[
+    \ll_K
+    H(\log x)^{K-1}
+    \sum_{r\ll T}\frac1{1+r}
+    \ll_K
+    \frac{x}{T}(\log x)^{K-1}\log T.
+\]
+Since $\log T=\sqrt{\log x}\leq\log x$ for sufficiently large
+$x$, this is
+\[
+    \ll_K \frac{x}{T}(\log x)^K.
+\]
+Combining the far and central estimates proves~\eqref{eq:Eperron-bound}.
 \end{proof}
 
 \begin{proposition}\label{prop:nonlocal-error}
@@ -904,11 +1030,19 @@ We bound each term separately and take the worst.
 By Lemma~\ref{lem:perron-error} with $T = \exp(\sqrt{\log x})$,
 \[
     E_{\mathrm{Perron}}
-    \ll_{\eta, \delta'}
-    \frac{x (\log x)^{2 + 2\eta}}{T}
-    = x (\log x)^{2 + 2\eta} \exp(- \sqrt{\log x}),
+    \ll_\eta
+    x\exp(-\sqrt{\log x})(\log x)^K.
 \]
-which is $\ll x \exp(- (1 - o(1)) \sqrt{\log x})$.
+Since $(\log x)^K=\exp(K\log\log x)$ and, for sufficiently large
+$x$,
+\[
+    K\log\log x\leq\frac12\sqrt{\log x},
+\]
+we have
+\[
+    E_{\mathrm{Perron}}
+    \ll_\eta x\exp\left(-\frac12\sqrt{\log x}\right).
+\]
 
 \emph{Horizontal pieces.}
 With $c = 1 + 1/\log x$ so that $x^c = e \cdot x$, by
@@ -936,16 +1070,15 @@ $|I_{\mathrm{left}}| \ll x \exp(- (c_0/2 - B) \sqrt{\log x})$.
 
 Set
 \[
-    c_1:=\frac12\left(\frac{c_0}{2}-B\right)>0.
+    c_1:=\frac12\min\left(\frac12,\ 1-B,\ \frac{c_0}{2}-B\right)>0.
 \]
-Since $0<c_0<1/2$ and $B>0$, the constant $c_0/2-B$ is smaller
-than both $1$ and $1-B$. Therefore, for all sufficiently large
-$x$, the preceding three estimates are bounded by the right-hand
-side of~\eqref{eq:total-nonlocal-error}.
+For all sufficiently large $x$, the preceding three estimates are
+bounded by the right-hand side of~\eqref{eq:total-nonlocal-error}.
 \end{proof}
 
 The right-hand side of~\eqref{eq:total-nonlocal-error} is
-$o(x \log x)$, so it will be dominated by the local Hankel
-contribution $I_H$ to be analyzed in
-Section~\ref{sec:hankel}, which is of order $x \log x$.
+exponentially smaller than the local contribution on the
+$A(x,y)$ level. The local Hankel contribution $I_H$, analyzed in
+Section~\ref{sec:hankel}, contains the main term from which the
+asymptotic formula for each fixed $T_j(x)$ will later be extracted.
 

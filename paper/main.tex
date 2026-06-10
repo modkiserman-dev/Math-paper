@@ -34,7 +34,7 @@
 \newcommand{\Real}{\operatorname{Re}}
 
 % ===== Title / author =====
-\title{\textbf{A New Decomposition of the Divisor Summatory Function and Its Asymptotic Formula}}
+\title{\textbf{An Exact Decomposition of the Divisor Summatory Function and Fixed-$j$ Asymptotics}}
 \author{GUEHERN HWANG \\ Department of Mathematics, Ajou University}
 \date{\today}
 
@@ -46,7 +46,7 @@
 \begin{quote}
 \noindent
 \textsc{Abstract.}
-In this paper, we study the asymptotic behavior of the divisor summatory
+In this paper, we study a decomposition of the divisor summatory
 function $D(x)$. We establish the exact identity
 \begin{equation*}
     D(x) = 1 + \sum_{i \geq 1} (i+1) \pi(x^{1/i})
@@ -54,11 +54,10 @@ function $D(x)$. We establish the exact identity
 \end{equation*}
 which decomposes $D(x)$ via inclusion--exclusion according to the number
 of distinct prime factors of $n$. The three terms correspond respectively
-to $n = 1$, prime powers, and integers with $\omega(n) \geq 2$, where the
-last sum constitutes the main term.
+to $n = 1$, prime powers, and integers with $\omega(n) \geq 2$.
 
-As the first step toward analyzing $D(x)$, we establish an asymptotic
-formula with an explicit error term for $T_j(x)$ with fixed $j \geq 2$.
+We then establish an asymptotic formula with an explicit error term for
+$T_j(x)$ with fixed $j \geq 2$.
 We consider the two-variable Dirichlet series $F(s, y)$ and obtain the
 factorization $F(s, y) = \zeta(s)^{2+2y} H(s, y)$, where $H$ is
 holomorphic near $s = 1$. Applying the Selberg--Delange
@@ -68,8 +67,10 @@ Hankel analysis---we prove that
     T_j(x) \sim \frac{2^j}{j!} \, x \log x \, (\log \log x)^j
     \quad \text{as } x \to \infty.
 \end{equation*}
-We hope to extend our results to obtain an asymptotic formula for
-$D(x)$ itself.
+The fixed-$j$ estimates do not by themselves yield an asymptotic formula
+for $D(x)$; recovering $D(x)$ from the identity would require estimates
+uniform in $j$, or a direct analysis of the generating function near
+$y=-1$.
 \end{quote}
 
 % ===== Body sections =====

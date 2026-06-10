@@ -153,13 +153,15 @@ where the constant $C_{\eta, \delta}$ depends only on $\eta$ and
 $\delta$. Since $\delta < 1/2$, we have $2(1 - \delta) > 1$, and
 the series $\sum_n n^{-2(1-\delta)}$ converges; in particular,
 $\sum_p p^{-2(1-\delta)}$ converges. By the Weierstrass $M$-test,
-the series $\sum_p (H_p(s, y) - 1)$ converges absolutely and
-uniformly on $\mathcal{R}_{\delta, \eta}$. By the standard theorem
-on infinite products---which states that an infinite product
-$\prod_n (1 + u_n)$ converges absolutely if and only if
-$\sum_n u_n$ does, and that the convergence of the partial products
-is uniform on a set whenever the corresponding series converges
-uniformly there---the partial products
+the series
+\[
+    \sum_p |H_p(s,y)-1|
+\]
+converges uniformly on $\mathcal{R}_{\delta, \eta}$. Hence the
+infinite product criterion applies: if
+$\sum_n |u_n|$ converges uniformly, then the product
+$\prod_n(1+u_n)$ converges absolutely and uniformly. Therefore
+the partial products
 $\prod_{p \leq P} H_p(s, y)$ converge absolutely and uniformly on
 $\mathcal{R}_{\delta, \eta}$ to a limit, which we denote $H(s, y)$.
 
