@@ -142,3 +142,191 @@ uniformly for $|s-1|\leq r/2$ and $|y|\leq\eta$. Therefore
 uniformly in the stated range.
 \end{proof}
 
+\subsection{Evaluation of the local Hankel contribution}
+\label{sec:local-hankel-evaluation}
+
+\begin{proposition}[Local Hankel contribution]\label{prop:local-hankel}
+With $\eta$ fixed as in Section~\ref{sec:perron}, put
+\[
+    T=\exp(\sqrt{\log x}),\qquad \rho:=\frac1{\log x}.
+\]
+For all sufficiently large $x$, uniformly for $|y|\leq\eta$, we have
+\[
+    I_H
+    =
+    xH(1,y)\frac{(\log x)^{1+2y}}{\Gamma(2+2y)}
+    +O_\eta\left(x(\log x)^{2\eta}\right).
+\]
+\end{proposition}
+
+\begin{proof}
+Put $\alpha=2+2y$. We apply
+Lemmas~\ref{lem:G-local-analytic} and~\ref{lem:G-local-values}
+with the fixed strip depth $\delta'$ from
+Section~\ref{sec:contour-decomposition}; since $\delta'$ is fixed,
+the constants below depend only on $\eta$. Let $r$ be the local
+radius supplied by these lemmas. With
+$T=\exp(\sqrt{\log x})$, we have
+\[
+    \lambda_T=\frac{c_0}{2\log(T+2)}
+    \asymp \frac1{\sqrt{\log x}}.
+\]
+Thus $\rho=1/\log x<\lambda_T$ and $\rho<r/2$ for all sufficiently
+large $x$.
+
+By the definition of $I_H$ in~\eqref{eq:I-H},
+\[
+    I_H
+    =
+    \frac{1}{2\pi i}
+    \int_{\mathcal H_{\mathrm{loc}}}
+    F(s,y)\frac{x^s}{s}\,ds.
+\]
+Using the local factorization recorded in
+Lemma~\ref{lem:G-local-analytic}, namely
+\[
+    F(s,y)=G(s,y)(s-1)^{-\alpha},
+\]
+and setting $s=1+z$, we obtain
+\[
+    I_H
+    =
+    \frac{x}{2\pi i}
+    \int_{\mathcal H_z}
+    \frac{G(1+z,y)}{1+z}
+    z^{-\alpha}e^{z\log x}\,dz,
+\]
+where $\mathcal H_z$ is the image of $\mathcal H_{\mathrm{loc}}$
+under $z=s-1$. Thus $\mathcal H_z$ is the truncated Hankel contour
+whose arms run along the negative real axis from $-\lambda_T$ to
+$-\rho$, with the circle $|z|=\rho$ oriented counterclockwise
+through the right side of the origin.
+
+For $z$ on $\mathcal H_z$, Lemma~\ref{lem:G-local-values} gives
+\[
+    G(1+z,y)=G(1,y)+O_\eta(|z|).
+\]
+Also, since $|z|\leq\lambda_T<1/2$ for large $x$,
+\[
+    \frac1{1+z}=1+O(|z|).
+\]
+Using the uniform boundedness of $G(1,y)$, we obtain
+\begin{equation}\label{eq:hankel-local-error-factor}
+    \frac{G(1+z,y)}{1+z}
+    =G(1,y)+E(z,y),
+    \qquad E(z,y)=O_\eta(|z|),
+\end{equation}
+uniformly for $|y|\leq\eta$ and $z\in\mathcal H_z$.
+
+Accordingly, write
+\[
+    I_H=M_H+R_H,
+\]
+where
+\[
+    M_H
+    :=
+    \frac{xG(1,y)}{2\pi i}
+    \int_{\mathcal H_z}z^{-\alpha}e^{z\log x}\,dz
+\]
+and
+\[
+    R_H
+    :=
+    \frac{x}{2\pi i}
+    \int_{\mathcal H_z}E(z,y)z^{-\alpha}e^{z\log x}\,dz.
+\]
+
+We first evaluate $M_H$. Under the change of variables
+$w=z\log x$, the contour $\mathcal H_z$ is mapped to a truncated
+Hankel contour $\mathcal H_w$ in the $w$-plane, whose arms run
+from $-\lambda_T\log x$ to $-1$ and whose circular part is
+$|w|=1$. Then
+\[
+    M_H
+    =
+    xG(1,y)(\log x)^{\alpha-1}
+    \frac1{2\pi i}
+    \int_{\mathcal H_w}e^w w^{-\alpha}\,dw.
+\]
+By the standard Hankel representation of $1/\Gamma(\alpha)$~\textup{[]},
+\[
+    \frac1{2\pi i}
+    \int_{\mathcal H_w}e^w w^{-\alpha}\,dw
+    =
+    \frac1{\Gamma(\alpha)}
+    +O_\eta\left(e^{-\lambda_T\log x/2}\right).
+\]
+Therefore
+\[
+    M_H
+    =
+    xG(1,y)\frac{(\log x)^{\alpha-1}}{\Gamma(\alpha)}
+    +O_\eta\left(
+        x(\log x)^{\Real(\alpha)-1}
+        e^{-\lambda_T\log x/2}
+    \right).
+\]
+Since $\lambda_T\log x\asymp\sqrt{\log x}$, this tail error is
+absorbed into $O_\eta(x(\log x)^{2\eta})$.
+
+It remains to estimate $R_H$. From~\eqref{eq:hankel-local-error-factor},
+\[
+    |R_H|
+    \ll_\eta
+    x\int_{\mathcal H_z}
+    |z|\,|z^{-\alpha}|\,e^{\Real(z)\log x}\,|dz|.
+\]
+On the Hankel contour, $|\operatorname{Arg}z|\leq\pi$ and
+$|\Im\alpha|\leq2\eta$, so
+\[
+    |z^{-\alpha}|\ll_\eta |z|^{-\Real(\alpha)}.
+\]
+Thus
+\[
+    |R_H|
+    \ll_\eta
+    x\int_{\mathcal H_z}
+    |z|^{1-\Real(\alpha)}e^{\Real(z)\log x}\,|dz|.
+\]
+Changing variables again by $w=z\log x$ gives
+\[
+    |R_H|
+    \ll_\eta
+    x(\log x)^{\Real(\alpha)-2}
+    \int_{\mathcal H_w}
+    |w|^{1-\Real(\alpha)}e^{\Real w}\,|dw|.
+\]
+The last integral is $O_\eta(1)$: this is immediate on $|w|=1$,
+and on the arms it is bounded by
+\[
+    \int_1^{\lambda_T\log x} u^{1-\Real(\alpha)}e^{-u}\,du
+    \leq
+    \int_1^\infty u^{1-\Real(\alpha)}e^{-u}\,du
+    \ll_\eta 1.
+\]
+Consequently,
+\[
+    R_H=O_\eta\left(x(\log x)^{\Real(\alpha)-2}\right).
+\]
+Since $\alpha=2+2y$, we have
+\[
+    \Real(\alpha)-2=2\Real(y)\leq2\eta,
+\]
+and hence
+\[
+    R_H=O_\eta(x(\log x)^{2\eta}).
+\]
+
+Combining the estimates for $M_H$ and $R_H$, and using
+Lemma~\ref{lem:G-local-values} to replace $G(1,y)$ by $H(1,y)$,
+we obtain
+\[
+    I_H
+    =
+    xH(1,y)\frac{(\log x)^{1+2y}}{\Gamma(2+2y)}
+    +O_\eta(x(\log x)^{2\eta}),
+\]
+uniformly for $|y|\leq\eta$.
+\end{proof}
+
