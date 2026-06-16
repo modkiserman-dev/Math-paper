@@ -1,3 +1,138 @@
 \section{Extraction of \texorpdfstring{$T_j(x)$}{Tj(x)} and proof of the main theorem}\label{sec:extraction}
-% To be written
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+By Proposition~\ref{prop:Axy-asymptotic}, uniformly for
+$|y|\leq\eta$,
+\[
+    A(x,y)
+    =
+    xH(1,y)
+    \frac{(\log x)^{1+2y}}{\Gamma(2+2y)}
+    +O_\eta\left(x(\log x)^{2\eta}\right).
+\]
+Define
+\[
+    K(y):=\frac{H(1,y)}{\Gamma(2+2y)}.
+\]
+Then $K$ is holomorphic in a neighborhood of $0$, and
+\[
+    A(x,y)
+    =
+    x\log x\, K(y)e^{2y\log\log x}
+    +O_\eta\left(x(\log x)^{2\eta}\right).
+\]
+
+The generating relation
+\[
+    A(x,y)=\sum_{j\geq0}T_j(x)y^j
+\]
+gives the coefficient identity below. Here $[y^j]$ denotes the
+coefficient of $y^j$ in the power series expansion:
+\[
+    T_j(x)=[y^j]A(x,y).
+\]
+Write
+\[
+    K(y)=\sum_{r\geq0}k_r y^r,
+    \qquad
+    k_r=\frac{K^{(r)}(0)}{r!},
+\]
+and
+\[
+    e^{2y\log\log x}
+    =
+    \sum_{m\geq0}
+    \frac{(2\log\log x)^m}{m!}y^m.
+\]
+For fixed $j$,
+\[
+    [y^j]\left(K(y)e^{2y\log\log x}\right)
+    =
+    \sum_{r=0}^{j}
+    k_r
+    \frac{(2\log\log x)^{j-r}}{(j-r)!}.
+\]
+Therefore
+\[
+    [y^j]\left(K(y)e^{2y\log\log x}\right)
+    =
+    k_0\frac{(2\log\log x)^j}{j!}
+    +
+    k_1\frac{(2\log\log x)^{j-1}}{(j-1)!}
+    +
+    O_j\left((\log\log x)^{j-2}\right).
+\]
+
+It remains to compute $k_0$ and $k_1$. By
+Lemma~\ref{prop:H-at-zero}, $H(1,0)=1$. Also $\Gamma(2)=1$.
+Hence
+\[
+    k_0=K(0)=1.
+\]
+Next,
+\[
+\begin{aligned}
+    k_1=K'(0)
+    &=
+    \partial_y H(1,0)
+    +
+    H(1,0)
+    \left.
+    \frac{d}{dy}\frac{1}{\Gamma(2+2y)}
+    \right|_{y=0}.
+\end{aligned}
+\]
+Here $\psi=\Gamma'/\Gamma$ denotes the digamma function. Since
+\[
+    \left.
+    \frac{d}{dy}\frac{1}{\Gamma(2+2y)}
+    \right|_{y=0}
+    =
+    -2\psi(2)
+    =
+    -2(1-\gamma),
+\]
+we get
+\[
+    k_1=\partial_y H(1,0)-2(1-\gamma).
+\]
+
+We also need to extract coefficients from the error term. Choose a
+fixed radius $\rho_y$ with $0<\rho_y<\eta$. Since the error in
+Proposition~\ref{prop:Axy-asymptotic} is uniform for
+$|y|\leq\eta$, Cauchy's coefficient estimate on $|y|=\rho_y$
+gives, for each fixed $j$,
+\[
+    [y^j]\,O_\eta\left(x(\log x)^{2\eta}\right)
+    =
+    O_{\eta,j,\rho_y}\left(x(\log x)^{2\eta}\right).
+\]
+Because $0<\eta<1/2$, for fixed $j\geq2$,
+\[
+    x(\log x)^{2\eta}
+    =
+    O_j\left(x\log x(\log\log x)^{j-2}\right).
+\]
+Thus this error is absorbed into the final error term.
+
+Combining the preceding estimates gives, for each fixed $j\geq2$,
+\[
+\begin{aligned}
+    T_j(x)
+    &=
+    \frac{2^j}{j!}
+    x\log x(\log\log x)^j  \\
+    &\quad+
+    \frac{2^{j-1}}{(j-1)!}
+    \left(\partial_y H(1,0)-2(1-\gamma)\right)
+    x\log x(\log\log x)^{j-1}  \\
+    &\quad+
+    O_j\left(x\log x(\log\log x)^{j-2}\right).
+\end{aligned}
+\]
+In particular,
+\[
+    T_j(x)\sim \frac{2^j}{j!}x\log x(\log\log x)^j.
+\]
+\end{proof}
 

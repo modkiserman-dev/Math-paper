@@ -123,7 +123,7 @@ have
 \[
     G(1,y)=q(1)^{2+2y}H(1,y)=H(1,y).
 \]
-By Proposition~\ref{prop:H-at-zero}, $H(1,0)=1$. Therefore
+By Lemma~\ref{prop:H-at-zero}, $H(1,0)=1$. Therefore
 $G(1,0)=H(1,0)=1$.
 
 For the first-order estimate, use Lemma~\ref{lem:G-local-analytic}.
@@ -174,33 +174,33 @@ $T=\exp(\sqrt{\log x})$, we have
 Thus $\rho=1/\log x<\lambda_T$ and $\rho<r/2$ for all sufficiently
 large $x$.
 
-By the definition of $I_H$ in~\eqref{eq:I-H},
+By the definition of $I_H$ in~\eqref{eq:I-H}, together with the
+local factorization recorded in Lemma~\ref{lem:G-local-analytic},
 \[
+\begin{aligned}
     I_H
-    =
+    &:=
     \frac{1}{2\pi i}
     \int_{\mathcal H_{\mathrm{loc}}}
-    F(s,y)\frac{x^s}{s}\,ds.
-\]
-Using the local factorization recorded in
-Lemma~\ref{lem:G-local-analytic}, namely
-\[
-    F(s,y)=G(s,y)(s-1)^{-\alpha},
-\]
-and setting $s=1+z$, we obtain
-\[
-    I_H
-    =
+    F(s,y)\frac{x^s}{s}\,ds                                      \\
+    &=
+    \frac{1}{2\pi i}
+    \int_{\mathcal H_{\mathrm{loc}}}
+    G(s,y)(s-1)^{-\alpha}\frac{x^s}{s}\,ds                         \\
+    &=
     \frac{x}{2\pi i}
     \int_{\mathcal H_z}
     \frac{G(1+z,y)}{1+z}
     z^{-\alpha}e^{z\log x}\,dz,
+\end{aligned}
 \]
-where $\mathcal H_z$ is the image of $\mathcal H_{\mathrm{loc}}$
-under $z=s-1$. Thus $\mathcal H_z$ is the truncated Hankel contour
-whose arms run along the negative real axis from $-\lambda_T$ to
-$-\rho$, with the circle $|z|=\rho$ oriented counterclockwise
-through the right side of the origin.
+where the last equality follows from the change of variables
+$z=s-1$. Here $\mathcal H_z$ is the image of
+$\mathcal H_{\mathrm{loc}}$ under this change of variables.
+Thus $\mathcal H_z$ is the truncated Hankel contour whose arms run
+along the negative real axis from $-\lambda_T$ to $-\rho$, with the
+circle $|z|=\rho$ oriented counterclockwise through the right side
+of the origin.
 
 For $z$ on $\mathcal H_z$, Lemma~\ref{lem:G-local-values} gives
 \[
@@ -237,38 +237,91 @@ and
     \int_{\mathcal H_z}E(z,y)z^{-\alpha}e^{z\log x}\,dz.
 \]
 
-We first evaluate $M_H$. Under the change of variables
-$w=z\log x$, the contour $\mathcal H_z$ is mapped to a truncated
-Hankel contour $\mathcal H_w$ in the $w$-plane, whose arms run
-from $-\lambda_T\log x$ to $-1$ and whose circular part is
-$|w|=1$. Then
+We first evaluate $M_H$. Put
+\[
+    U:=\lambda_T\log x.
+\]
+Under the change of variables $w=z\log x$, the contour
+$\mathcal H_z$ is mapped to a truncated Hankel contour
+$\mathcal H_U$ in the $w$-plane, whose arms run from $-U$ to
+$-1$ and whose circular part is $|w|=1$. Then
 \[
     M_H
     =
     xG(1,y)(\log x)^{\alpha-1}
     \frac1{2\pi i}
-    \int_{\mathcal H_w}e^w w^{-\alpha}\,dw.
+    \int_{\mathcal H_U}e^w w^{-\alpha}\,dw.
 \]
-By the standard Hankel representation of $1/\Gamma(\alpha)$~\textup{[]},
+Let $\mathcal H_\infty$ be the corresponding infinite Hankel
+contour. By the standard Hankel representation of
+$1/\Gamma(\alpha)$~\textup{[]},
 \[
     \frac1{2\pi i}
-    \int_{\mathcal H_w}e^w w^{-\alpha}\,dw
+    \int_{\mathcal H_\infty}e^w w^{-\alpha}\,dw
     =
+    \frac1{\Gamma(\alpha)}.
+\]
+The difference between $\mathcal H_\infty$ and $\mathcal H_U$
+consists of the upper and lower tails over $(-\infty,-U]$. On
+these tails write $w=-u\pm i0$, with $u\geq U$. Then
+$|e^w|=e^{-u}$. Also, since $|y|\leq\eta$ and
+$\alpha=2+2y$, the branch factors $e^{\pm i\pi\alpha}$ are
+bounded by a constant depending only on $\eta$, and hence
+\[
+    |w^{-\alpha}|\ll_\eta u^{-\Real(\alpha)}.
+\]
+After taking absolute values, the two tails and the factor
+$1/(2\pi i)$ are absorbed into the $O_\eta$-constant, giving
+\[
+    \left|
+    \frac1{2\pi i}
+    \int_{\mathcal H_U}e^w w^{-\alpha}\,dw
+    -
     \frac1{\Gamma(\alpha)}
-    +O_\eta\left(e^{-\lambda_T\log x/2}\right).
+    \right|
+    \ll_\eta
+    \int_U^\infty e^{-u}u^{-\Real(\alpha)}\,du.
+\]
+Since
+\[
+    \Real(\alpha)=2+2\Real(y)\geq2-2\eta>1
+\]
+and $U\geq1$ for sufficiently large $x$, we have
+\[
+    \int_U^\infty e^{-u}u^{-\Real(\alpha)}\,du
+    \leq
+    \int_U^\infty e^{-u}\,du
+    =
+    e^{-U}.
 \]
 Therefore
+\[
+    \frac1{2\pi i}
+    \int_{\mathcal H_U}e^w w^{-\alpha}\,dw
+    =
+    \frac1{\Gamma(\alpha)}
+    +O_\eta(e^{-U}).
+\]
+It follows that
 \[
     M_H
     =
     xG(1,y)\frac{(\log x)^{\alpha-1}}{\Gamma(\alpha)}
     +O_\eta\left(
         x(\log x)^{\Real(\alpha)-1}
-        e^{-\lambda_T\log x/2}
+        e^{-U}
     \right).
 \]
-Since $\lambda_T\log x\asymp\sqrt{\log x}$, this tail error is
-absorbed into $O_\eta(x(\log x)^{2\eta})$.
+Since $U=\lambda_T\log x\asymp\sqrt{\log x}$, there is a constant
+$c>0$ such that $e^{-U}\ll e^{-c\sqrt{\log x}}$. Also
+$\Real(\alpha)-1\leq1+2\eta$. Hence the tail contribution is
+\[
+    \ll_\eta
+    x(\log x)^{1+2\eta}e^{-c\sqrt{\log x}}
+    =
+    O_\eta\left(x(\log x)^{2\eta}\right),
+\]
+because $(\log x)e^{-c\sqrt{\log x}}=O(1)$.
 
 It remains to estimate $R_H$. From~\eqref{eq:hankel-local-error-factor},
 \[
@@ -294,13 +347,13 @@ Changing variables again by $w=z\log x$ gives
     |R_H|
     \ll_\eta
     x(\log x)^{\Real(\alpha)-2}
-    \int_{\mathcal H_w}
+    \int_{\mathcal H_U}
     |w|^{1-\Real(\alpha)}e^{\Real w}\,|dw|.
 \]
 The last integral is $O_\eta(1)$: this is immediate on $|w|=1$,
 and on the arms it is bounded by
 \[
-    \int_1^{\lambda_T\log x} u^{1-\Real(\alpha)}e^{-u}\,du
+    \int_1^U u^{1-\Real(\alpha)}e^{-u}\,du
     \leq
     \int_1^\infty u^{1-\Real(\alpha)}e^{-u}\,du
     \ll_\eta 1.
@@ -328,5 +381,55 @@ we obtain
     +O_\eta(x(\log x)^{2\eta}),
 \]
 uniformly for $|y|\leq\eta$.
+\end{proof}
+
+\begin{proposition}[Generating-function asymptotic]
+\label{prop:Axy-asymptotic}
+With the parameters chosen as in Sections~\ref{sec:perron}
+and~\ref{sec:hankel}, and with the fixed contour parameters
+suppressed in the implied constant, uniformly for $|y|\leq\eta$,
+as $x\to\infty$,
+\[
+    A(x,y)
+    =
+    xH(1,y)
+    \frac{(\log x)^{1+2y}}{\Gamma(2+2y)}
+    +O_\eta\left(x(\log x)^{2\eta}\right).
+\]
+\end{proposition}
+
+\begin{proof}
+For non-integral $x$, the contour decomposition
+\eqref{eq:A-decomposition} gives
+\[
+    A(x,y)
+    =
+    I_H+I_{\mathrm{top}}+I_{\mathrm{bot}}+I_{\mathrm{left}}
+    +E_{\mathrm{Perron}}(x,T,y).
+\]
+By Proposition~\ref{prop:nonlocal-error}, for some $c_1>0$,
+\[
+    E_{\mathrm{Perron}}(x,T,y)
+    +|I_{\mathrm{top}}|+|I_{\mathrm{bot}}|+|I_{\mathrm{left}}|
+    \ll_\eta
+    x\exp(-c_1\sqrt{\log x}),
+\]
+uniformly for $|y|\leq\eta$. Proposition~\ref{prop:local-hankel}
+gives
+\[
+    I_H
+    =
+    xH(1,y)
+    \frac{(\log x)^{1+2y}}{\Gamma(2+2y)}
+    +O_\eta\left(x(\log x)^{2\eta}\right).
+\]
+The exponentially small nonlocal and Perron error is absorbed into
+$O_\eta(x(\log x)^{2\eta})$. Therefore the asserted asymptotic
+holds for non-integral $x$.
+
+For integral $x$, the replacement by $x+1/2$ described in
+Section~\ref{sec:perron-formula} gives the same estimate, since
+$A(x,y)=A(x+1/2,y)$ and replacing $x+1/2$ by $x$ changes the
+displayed main term by an amount absorbed into the same error term.
 \end{proof}
 
