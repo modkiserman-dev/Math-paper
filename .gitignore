@@ -1,4 +1,7 @@
-# LaTeX build artifacts
+# LaTeX build directory
+paper/build/
+
+# LaTeX auxiliary files
 *.aux
 *.bbl
 *.bcf
@@ -11,9 +14,7 @@
 *.synctex.gz
 *.toc
 
-# Project build directories
-build/
-paper/build/
-
-# Local editor files
+# Editor / OS files
+.DS_Store
+Thumbs.db
 .vscode/
