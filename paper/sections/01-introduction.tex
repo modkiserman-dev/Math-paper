@@ -22,8 +22,8 @@ Vorono\"i~\cite{Voronoi1903} proved the classical estimate
 \begin{equation}
     \Delta(x)=O(x^{1/3}\log x),
 \end{equation}
-which implies $\theta\leq 1/3$. Further refinements eventually led
-to the classical published bound of Huxley~\cite{Huxley2003}:
+which implies $\theta\leq 1/3$. In 2003, Huxley~\cite{Huxley2003}
+proved the bound
 \begin{equation}
     \theta \leq 131/416.
 \end{equation}
@@ -39,39 +39,39 @@ For a positive integer $n$, let $\omega(n)$ denote the number of distinct prime 
 \begin{equation}\label{eq:Tj-def}
     T_j(x) := \sum_{n \leq x}d(n)\binom{\omega(n)}{j}
 \end{equation}
-where $\binom{\omega(n)}{j}$ is the binomial coefficient. The main identity of this paper is the following.
+where $\binom{\omega(n)}{j}$ denotes the usual binomial coefficient.
+The main identity of this paper is the following.
 
 \begin{theorem}\label{thm:identity}
     For every real number $x\geq1$,
     \begin{equation}\label{eq:main-identity}
         D(x)=1+\sum_{i\geq 1}(i+1)\pi(x^{1/i})+\sum_{j\geq 2}(-1)^j(j-1)T_j(x)
 \end{equation}
-where $\pi(x)$ denotes the prime-counting function. Both sums are
-effectively finite for each fixed $x$: we have $\pi(x^{1/i})=0$
-for all sufficiently large $i$, and $T_j(x)=0$ once $j$ exceeds
-the maximum possible value of $\omega(n)$ among integers $n\leq x$.
+where $\pi(x)$ denotes the prime-counting function. Both sums have
+only finitely many nonzero terms for each fixed $x$: we have
+$\pi(x^{1/i})=0$ for all sufficiently large $i$, and $T_j(x)=0$
+once $j$ exceeds the maximum possible value of $\omega(n)$ among
+integers $n\leq x$.
 \end{theorem}
 
 The three terms on the right-hand side of \eqref{eq:main-identity} correspond, respectively, to $n = 1$, prime powers $\omega(n) = 1$, and integers with $\omega(n)\geq 2$. The proof of Theorem~\ref{thm:identity} is given in Section~\ref{sec:identity}.
 
-Classical results of Dirichlet give the asymptotic
-$D(x) \sim x \log x$. By the prime number
+Dirichlet's estimate gives $D(x)\sim x\log x$. By the prime number
 theorem~\cite{Apostol1976}, the prime-power contribution satisfies
 \begin{equation}
-     \sum_{i \geq 1} (i+1) \pi(x^{1/i}) \sim \frac{2x}{\log x},
+     \sum_{i \geq 1} (i+1) \pi(x^{1/i}) \sim \frac{2x}{\log x}.
 \end{equation}
-which is of strictly smaller order than $x \log x$. Hence the
-first two terms in the identity are negligible compared with the
-main asymptotic of $D(x)$, and the third sum
+This is $o(x\log x)$. Thus the first two terms in the identity are
+negligible on the scale $x\log x$. The main contribution must
+therefore come from the alternating sum
 \begin{equation}
     \sum_{j \geq 2} (-1)^j (j-1) T_j(x)
 \end{equation}
-is responsible for the remaining main scale after cancellation.
-Individually, each $T_j(x)$ grows rapidly with $j$, but the
-alternating coefficients $(-1)^j (j-1)$ induce substantial
-cancellation in the full finite sum. The fixed-$j$ asymptotics
-proved below give information about individual terms, but they do
-not by themselves determine this whole alternating sum.
+after cancellation. As the asymptotics below show, the individual
+terms $T_j(x)$ are large, and substantial cancellation is needed in
+the full alternating sum. The fixed-$j$ asymptotics proved below give
+information about individual terms, but they do not by themselves
+determine the full alternating sum.
 
 \begin{example}
     At $x=10000$, direct computation gives
@@ -84,11 +84,12 @@ $2{,}711$, and the identity \eqref{eq:main-identity} yields
     \begin{align*}
         1+2{,}711+(T_2-2T_3+3T_4-4T_5)=1+2{,}711+90{,}956=93{,}668=D(10000),
     \end{align*}
-    confirming Theorem~\ref{thm:identity} numerically. Moreover, the ratio between
-$T_j(x)$ and the leading term later proved in Theorem~\ref{thm:main},
-$\frac{2^j}{j!}x\log x(\log\log x)^j$, converges to 1 only very slowly: at $x=10^9$, this ratio is 0.43 for
-$j=2$ and 0.21 for $j=3$. This slow convergence motivates the refined
-asymptotic expansion of $T_j(x)$ developed in Section~\ref{sec:extraction}.
+    illustrating Theorem~\ref{thm:identity}. Moreover, the ratio of
+$T_j(x)$ to the leading term in Theorem~\ref{thm:main} converges to
+1 only very slowly: at $x=10^9$, this ratio is 0.43 for $j=2$ and
+0.21 for $j=3$. This slow convergence motivates the refined
+asymptotic expansion of $T_j(x)$ developed in
+Section~\ref{sec:extraction}.
 \end{example}
 
 \subsection{Main results}
