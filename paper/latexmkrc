@@ -1,10 +1,11 @@
 $pdf_mode = 1;
 
-# Final PDF goes to the repository root.
-$out_dir = '..';
-
-# Auxiliary files stay inside paper/build.
+# Put all LaTeX-generated output into build/
+$out_dir = 'build';
 $aux_dir = 'build';
 
 $interaction = 'nonstopmode';
 $halt_on_error = 1;
+
+# Copy the final PDF to the repository root after successful compilation.
+$success_cmd = 'cmd /c copy /Y build\main.pdf ..\main.pdf';

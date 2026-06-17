@@ -1,6 +1,9 @@
 # LaTeX build directory
 paper/build/
 
+# Wrong-place PDF generated inside paper/
+paper/main.pdf
+
 # LaTeX auxiliary files
 *.aux
 *.bbl
@@ -14,7 +17,7 @@ paper/build/
 *.synctex.gz
 *.toc
 
-# Editor / OS files
+# OS / editor files
 .DS_Store
 Thumbs.db
 .vscode/
