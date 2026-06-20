@@ -8,4 +8,6 @@ $interaction = 'nonstopmode';
 $halt_on_error = 1;
 
 # Copy the final PDF to the repository root after successful compilation.
-$success_cmd = 'cmd /c copy /Y build\main.pdf ..\main.pdf';
+# The generated build/main.pdf remains a build artifact; the repository-root
+# copy uses the manuscript title.
+$success_cmd = 'cmd /c copy /Y "build\main.pdf" "..\An_Exact_Decomposition_of_the_Divisor_Summatory_Function_and_Fixed-j_Asymptotics.pdf" && if exist "..\main.pdf" del /F /Q "..\main.pdf"';

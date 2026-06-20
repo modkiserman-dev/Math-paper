@@ -2,10 +2,9 @@
 
 In this section, we introduce the two-variable Dirichlet series
 $F(s, y)$ and establish its key analytic properties. The main
-output is the factorization
+result is the factorization
 $F(s, y) = \zeta(s)^{2+2y} H(s, y)$, where $H(s, y)$ is holomorphic
-in a neighborhood of $s = 1$ and uniformly bounded in a small disk
-around $y = 0$.
+and uniformly bounded for $s$ near 1 and $y$ near 0.
 
 \subsection{Euler product}\label{sec:euler-product}
 
@@ -50,9 +49,9 @@ which proves~\eqref{eq:euler-product}.
 The Riemann zeta function admits the Euler product~\cite{Apostol1976}
 $\zeta(s) = \prod_p (1 - p^{-s})^{-1}$ for $\Real(s) > 1$, so that
 $\zeta(s)^{2+2y} = \prod_p (1 - p^{-s})^{-(2+2y)}$ on the same
-half-plane, provided a branch of the logarithm is fixed. We use the
-principal branch, which is analytic in $s$ in a neighborhood of
-any point with $\Real(s) > 1$ and in $y$ in a neighborhood of $0$.
+half-plane, provided a branch of the logarithm is fixed. We take these powers using the principal branch of the logarithm. 
+With this convention, each local factor is analytic in $s$ 
+for $\Real(s) > 1$ and in $y$ near $0$.
 
 Define
 \begin{equation}\label{eq:H-def}
@@ -73,7 +72,7 @@ Euler product for $\zeta(s)^{2+2y}$ and regrouping factors.
 \end{proof}
 
 The purpose of the factorization~\eqref{eq:factorization} is to
-isolate the singular behavior of $F(s, y)$ at $s = 1$ into the
+isolate the singular behavior of $F(s, y)$ at $s = 1$ in the
 factor $\zeta(s)^{2+2y}$, leaving $H(s, y)$ as a well-behaved
 function in a larger region, as we now establish.
 
@@ -160,10 +159,11 @@ the series
 converges uniformly on $\mathcal{R}_{\delta, \eta}$. Hence the
 infinite product criterion applies: if
 $\sum_n |u_n|$ converges uniformly, then the product
-$\prod_n(1+u_n)$ converges absolutely and uniformly. Therefore
-the partial products
-$\prod_{p \leq P} H_p(s, y)$ converge absolutely and uniformly on
-$\mathcal{R}_{\delta, \eta}$ to a limit, which we denote $H(s, y)$.
+$\prod_n(1+u_n)$ converges absolutely and uniformly. Therefore the infinite product
+$\prod_{p} H_p(s, y)$ converge absolutely and uniformly on
+$\mathcal{R}_{\delta, \eta}$. In particular, the partial products $\prod_{p\leq P} H_p(s,y)$ converge uniformly to a limit, which we denote by $H(s, y)$.
+
+
 
 To deduce holomorphy in $s$, fix $y_0 \in \C$ with $|y_0| \leq \eta$
 and let $s_0 \in \C$ be any point with $\Real(s_0) > 1 - \delta$.

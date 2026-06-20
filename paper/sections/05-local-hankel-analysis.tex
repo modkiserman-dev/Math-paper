@@ -142,6 +142,79 @@ uniformly for $|s-1|\leq r/2$ and $|y|\leq\eta$. Therefore
 uniformly in the stated range.
 \end{proof}
 
+\begin{corollary}\label{cor:Hy-constant}
+Let
+\[
+    B_1=\gamma+\sum_p\left(\log\left(1-\frac1p\right)+\frac1p\right)
+\]
+be the Meissel--Mertens constant, and let
+\[
+    P(2)=\sum_p\frac1{p^2}
+\]
+be the value of the prime zeta function at $2$. Then
+\[
+    \partial_y H(1,0)=2(B_1-\gamma)-P(2).
+\]
+Consequently,
+\[
+    \partial_y H(1,0)-2(1-\gamma)=2(B_1-1)-P(2).
+\]
+\end{corollary}
+
+\begin{proof}
+For $u=p^{-s}$, the local factor in the Euler product for $H$ is
+\[
+    H_p(s,y)
+    =
+    (1-u)^{2+2y}
+    \left(1+(1+y)\left((1-u)^{-2}-1\right)\right).
+\]
+For every prime $p$, we have $H_p(1,0)=1$, and hence
+$H(1,0)=1$. Logarithmic differentiation of the Euler product gives
+\[
+    \partial_y H(1,0)=\sum_p \partial_y\log H_p(1,0).
+\]
+Indeed, the summand computed below is $O(p^{-2})$, so the series
+converges absolutely and the logarithmic differentiation is justified.
+
+We compute
+\[
+    \left.\partial_y\log H_p(s,y)\right|_{y=0}
+    =
+    2\log(1-u)
+    +
+    \frac{(1-u)^{-2}-1}{(1-u)^{-2}}.
+\]
+Substituting $u=1/p$ gives
+\[
+    \partial_y\log H_p(1,0)
+    =
+    2\log\left(1-\frac1p\right)
+    +
+    \frac2p-\frac1{p^2}.
+\]
+Therefore
+\[
+    \partial_y H(1,0)
+    =
+    \sum_p
+    \left(
+    2\log\left(1-\frac1p\right)
+    +
+    \frac2p-\frac1{p^2}
+    \right).
+\]
+Using the defining relation
+\[
+    \sum_p\left(\log\left(1-\frac1p\right)+\frac1p\right)=B_1-\gamma,
+\]
+we obtain
+\[
+    \partial_y H(1,0)=2(B_1-\gamma)-P(2).
+\]
+Subtracting $2(1-\gamma)$ gives the final displayed identity.
+\end{proof}
+
 \subsection{Evaluation of the local Hankel contribution}
 \label{sec:local-hankel-evaluation}
 
@@ -432,4 +505,3 @@ Section~\ref{sec:perron-formula} gives the same estimate, since
 $A(x,y)=A(x+1/2,y)$ and replacing $x+1/2$ by $x$ changes the
 displayed main term by an amount absorbed into the same error term.
 \end{proof}
-
