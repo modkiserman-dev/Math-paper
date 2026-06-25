@@ -9,33 +9,17 @@ which satisfies the generating relation
 \begin{equation}\label{eq:Axy-generating}
     A(x, y) = \sum_{j \geq 0} T_j(x) y^j.
 \end{equation}
-Throughout this section, we initially fix one parameter:
-\begin{itemize}
-    \item $\eta \in (0, 1/2)$, controlling the size of the disk
-    $|y| \leq \eta$.
-\end{itemize}
-After the contour depth $\delta'$ is fixed, we may shrink $\eta$
-if necessary for the contour estimates.
+We abbrevaite $\alpha=2+2y$.
 
-The fixed strip depth $\delta'$ and the truncation-dependent
-quantity $\lambda_T$ will be chosen together in
-Section~\ref{sec:contour-decomposition}. This keeps the Euler
-factor estimates, the zero-free region, and the contour growth
-bound tied to the same strip parameter.
+We treat the parameters $\eta, \delta \in (0,1/2)$ that appeared as local parameters in Lemma~\ref{lem:local-factor-estimate} and Proposition~\ref{prop:H-analytic} as global constants for the remainder of the paper. The entire analysis of Section~\ref{sec:perron} takes place within the region $\mathcal{R_{\delta, \eta}}$, on which the conclusions of Proposition~\ref{prop:H-analytic} apply to $H(s,y)$.
 
-We also abbreviate $\alpha := 2 + 2y$. Thus the
-factorization~\eqref{eq:factorization} becomes
-$F(s, y) = \zeta(s)^\alpha H(s, y)$. For $|y| \leq \eta$ with
-$\eta < 1/2$, the exponent $\alpha$ ranges in a disk of radius
-$2\eta < 1$ around $2$, so in particular $\alpha$ is bounded away
-from non-positive integers.
+In Section~\ref{sec:contour-decomposition} we make a specific choice $\delta^{\prime} \in (0,1/2)$ of $\delta$, constrained by zero-free region constant $c_0$, together with a truncation-dependent $\lambda_T < \delta^{\prime}$. Since $\delta^{\prime}$ is a particular admissible value of $\delta$, the conclusions of Proposition~\ref{prop:H-analytic} hold on $\mathcal{R}_{\delta^{\prime}, \eta}$. After $\delta^{\prime}$ is fixed, we may shrink $\eta$ if necessary for the contour estimates.
+
+For $|y| \leq \eta$, the exponent $\alpha = 2+2y$ lies in the disk of radius $2\eta$ centered ad 2; since $2\eta < 1$, it is bounded away from non-positive integers. 
 
 \subsection{The truncated Perron formula}\label{sec:perron-formula}
 
-We quote the following standard form of the truncated Perron
-formula (see, e.g., \textup{[]}).
-
-\begin{theorem}[Truncated Perron formula]\label{thm:perron}
+\begin{theorem}[Truncated Perron formula~\cite{Tenenbaum2015}]\label{thm:perron}
 Let $f(s) = \sum_{n \geq 1} a_n n^{-s}$ be a Dirichlet series with
 abscissa of absolute convergence $\sigma_a$. For real numbers
 $c > \sigma_a$, $x \geq 2$, and $T \geq 1$ with $x \notin \mathbb{Z}$,
@@ -74,8 +58,6 @@ We apply Theorem~\ref{thm:perron} to the Dirichlet series
 $F(s, y) = \sum_{n \geq 1} d(n) (1+y)^{\omega(n)} n^{-s}$. For
 $|y| \leq \eta$ with $\eta$ sufficiently small, the series
 converges absolutely for $\Real(s) > 1$, so we may take any $c > 1$.
-Choose, for instance, $c = 1 + 1/\log x$, which is the standard
-choice to balance the main term size and the truncation error.
 
 For $x \geq 2$ with $x \notin \Z$, $|y| \leq \eta$, and $T \geq 1$,
 put $c = 1+1/\log x$. Theorem~\ref{thm:perron} gives
@@ -118,10 +100,9 @@ the contour itself in Section~\ref{sec:contour-decomposition}.
 
 For the contour deformation to be valid, we need a region in which
 $\zeta(s) \neq 0$. We use the following classical result of
-de la Vall\'ee Poussin, quoted without proof; see, e.g.,
-\textup{[]}.
+de la Vall\'ee Poussin, quoted without proof.
 
-\begin{theorem}[de la Vall\'ee Poussin zero-free region]
+\begin{theorem}[de la Vall\'ee Poussin zero-free region~\cite{Titchmarsh1986}]
 \label{thm:zero-free}
 There exists an absolute constant $c_0 \in (0, 1/2)$ such that
 $\zeta(s) \neq 0$ on the open region
@@ -146,10 +127,7 @@ neighborhood of the contour, we specify a branch on the region
     \mathcal{D} := \mathcal{Z} \setminus \mathcal{S},
 \end{equation}
 where $\mathcal{S} := \{s \in \C : \Im(s) = 0,\ \Real(s) \leq 1\}$
-is the slit along the real axis to the left of $s = 1$. The slit
-$\mathcal{S}$ disconnects the segment $\mathcal{Z} \cap \mathcal{S}$
-from the rest of $\mathcal{Z}$ from above and below, rendering
-$\mathcal{D}$ simply connected.\footnote{%
+is the slit along the real axis to the left of $s = 1$. Cutting $\mathcal{Z}$ along $\mathcal{S}$ breaks the only loop around the puncture $s=1$, so that $\mathcal{D}$ is simply connected.\footnote{%
 Removing the slit from $s=1$ to the boundary cuts the only
 possible loop around the puncture $s=1$, just as
 $\C\setminus(-\infty,0]$ is the standard simply connected branch
@@ -197,10 +175,9 @@ to $\zeta(s)^2$ in the usual sense.
 
 We use the following uniform bound on $|\zeta(s)|$, obtained by
 combining the convexity bound with the trivial estimate
-$\zeta(\sigma + it) \ll \log |t|$ for $\sigma \geq 1$ (see, e.g.,
-\textup{[]} for the convexity bound).
+$\zeta(\sigma + it) \ll \log |t|$ for $\sigma \geq 1$.
 
-\begin{theorem}[Uniform bound on $\zeta(s)$ in a vertical strip]
+\begin{theorem}[Uniform bound on $\zeta(s)$ in a vertical strip~\cite{Titchmarsh1986}]
 \label{thm:zeta-uniform}
 Fix $\delta \in (0, 1/2)$. For every $\varepsilon > 0$,
 \begin{equation}\label{eq:zeta-uniform}
@@ -229,9 +206,9 @@ Combining the two ranges gives~\eqref{eq:zeta-uniform}.
 \subsubsection*{Bound on \texorpdfstring{$\arg \zeta$}{arg zeta}}
 
 We also use the following standard estimate on the branch determined
-by~\eqref{eq:L-def}; see, e.g., \textup{[]}.
+by~\eqref{eq:L-def}.
 
-\begin{theorem}[Bound on $\arg \zeta$]
+\begin{theorem}[Bound on $\arg \zeta$~\cite{Titchmarsh1986}]
 \label{thm:arg-zeta}
 There exists an absolute constant $C_{\arg} > 0$ such that, for
 every $s = \sigma + it \in \mathcal{D}$ with $|t| \geq 2$,
@@ -253,8 +230,7 @@ Fix once and for all an absolute constant
 \begin{equation}\label{eq:delta-prime}
     \delta' \in \left( \frac{c_0}{2 \log 3},\ \frac{c_0}{2} \right),
 \end{equation}
-where $c_0$ is the constant of Theorem~\ref{thm:zero-free}; the
-interval is non-empty since $\log 3 > 1$. This range of $\delta'$
+where $c_0$ is the constant of Theorem~\ref{thm:zero-free}. This range of $\delta'$
 is chosen so that the deformed contour remains in the fixed strip
 used in Section~\ref{sec:contour-estimates}.
 
@@ -280,7 +256,7 @@ representation~\eqref{eq:Axy-perron-representation} satisfies
 $c \leq 1 + \delta'$
 for all $x$ sufficiently large, ensuring that the abscissa $c$
 lies inside the strip $1 - \delta' \leq \sigma \leq 1 + \delta'$
-used in the contour estimates. We assume this hereafter.
+used in the contour estimates. We assume $x$ is large enough for this throughout.
 
 \subsubsection*{The deformed contour}
 
@@ -293,9 +269,7 @@ choice as a function of $x$ will be made in Section~\ref{sec:hankel}.
 The notation $i0^\pm$ below denotes boundary values: the two
 Hankel arms are first taken at heights $\pm\varepsilon$ with
 $\varepsilon>0$, and the limit $\varepsilon\to0^+$ is taken after
-the corresponding integrals are formed. Thus the approximating
-contours lie in the slit domain $\mathcal D$ before the boundary
-value limit is taken.
+the corresponding integrals are formed. Thus, for each $\varepsilon > 0$, the approximating contour lies in the slit domain $\mathcal{D}$, and the limit $\varepsilon \to 0^+$ is taken only afterwards.
 
 We deform the original Perron segment $[c-iT,c+iT]$ leftward,
 around the singularity at $s=1$, into a contour
@@ -387,9 +361,9 @@ of $\Gamma_\varepsilon$ is contained in the rectangle
 \begin{equation}\label{eq:Gamma-interior-bound}
     \mathcal{R}_\Gamma := \{ s = \sigma + it
     : \sigma_0(T) \leq \sigma \leq c, \ |t| \leq T \}
-    \setminus \{1\},
+    \setminus \mathcal{S}.
 \end{equation}
-with the slit further excluded. For every $s \in \mathcal{R}_\Gamma$,
+For every $s \in \mathcal{R}_\Gamma$,
 \begin{equation}\label{eq:zfree-interior}
     \Real(s) \geq \sigma_0(T)
     = 1 - \frac{c_0}{2\log(T+2)}
@@ -437,11 +411,10 @@ with $\mathcal{C}_{\mathrm{left}} := \mathcal{C}_{\mathrm{left}}^-
     I_H := \frac{1}{2\pi i} \int_{\mathcal{H}_{\mathrm{loc}}}
     F(s, y) \frac{x^s}{s}\, ds.
 \end{equation}
-Writing $\mathcal{H}_{\mathrm{loc}}
+We write $\mathcal{H}_{\mathrm{loc}}
 =\mathcal{H}_{\mathrm{loc}}^-\cup\mathcal{H}_{\mathrm{loc}}^\circ
 \cup\mathcal{H}_{\mathrm{loc}}^+$ for the lower arm, the small
-circle, and the upper arm, respectively, fixes the geometric
-decomposition of the local contour.
+circle, and the upper arm, respectively.
 The lower arm is oriented from $\sigma_0+i0^-$ to $1-\rho+i0^-$,
 the small circle is oriented counterclockwise from $1-\rho+i0^-$
 to $1-\rho+i0^+$ through the right side of $s=1$, and the upper
@@ -468,9 +441,7 @@ We first collect the two bounds for $F(s,y)$ used below.
 
 \begin{lemma}[Bounds for $F(s,y)$ on the deformed contour]
 \label{lem:F-contour-bounds}
-Let $0 < \eta < 1/2$, and let $\delta'$ be fixed as
-in~\eqref{eq:delta-prime}. Let $\varepsilon > 0$ and put
-$\alpha = 2 + 2y$. Define
+Let $\varepsilon > 0$. Define
 \begin{equation}\label{eq:B-exponent}
     B := B(\eta,\delta',\varepsilon)
        := (2 + 2\eta)\!\left(\tfrac{\delta'}{2}+\varepsilon\right)
@@ -902,7 +873,7 @@ a fixed integer $K=K(\eta)$ such that
 
 \begin{proof}
 Set $M=1+\eta$ and choose an integer $K=K(\eta)$ with
-$K\geq2M$ and $K\geq2$. We first show that
+$K\geq2M$. We first show that
 \[
     d(n)M^{\omega(n)}\leq d_K(n)
     \qquad(n\geq1).
@@ -917,7 +888,7 @@ The quantity
 \[
     \frac{1}{a+1}\binom{a+K-1}{K-1}
 \]
-is increasing in $a$ for $K\geq2$, and at $a=1$ it equals $K/2$.
+is increasing in $a$ for $K\geq3$, and at $a=1$ it equals $K/2$.
 Thus $(a+1)M\leq d_K(p^a)$ for every $a\geq1$. Extending
 multiplicatively gives the claimed coefficient domination.
 
@@ -1053,8 +1024,7 @@ By Lemma~\ref{lem:left-vertical-contour-bound} and~\eqref{eq:x-decay},
     |I_{\mathrm{left}}|
     \ll_{\eta, \varepsilon}
     x \cdot x^{- \lambda_T} \cdot T^B
-    = x \cdot \exp\bigl(- \tfrac{c_0}{2} \sqrt{\log x}
-                          + B \sqrt{\log x}\bigr) (1 + o(1)).
+    = x \cdot \exp\bigl((- \tfrac{c_0}{2}+B+o(1))\sqrt{\log x})\bigr).
 \]
 By the choice~\eqref{eq:delta-prime} of $\delta'$ together
 with~\eqref{eq:B-small}, we have $B < c_0/2$. Hence
@@ -1069,8 +1039,8 @@ bounded by the right-hand side of~\eqref{eq:total-nonlocal-error}.
 \end{proof}
 
 The right-hand side of~\eqref{eq:total-nonlocal-error} is
-exponentially smaller than the local contribution on the
-$A(x,y)$ level. The local Hankel contribution $I_H$, analyzed in
+exponentially smaller than the main contribution to
+$A(x,y)$. The local Hankel contribution $I_H$, analyzed in
 Section~\ref{sec:hankel}, contains the main term from which the
 asymptotic formula for each fixed $T_j(x)$ will later be extracted.
 
