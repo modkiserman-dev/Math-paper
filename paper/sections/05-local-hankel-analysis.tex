@@ -5,16 +5,10 @@ contribution $I_H$ around the singular point $s=1$. Recall that
 \[
     F(s,y)=\zeta(s)^{2+2y}H(s,y).
 \]
-The singular part is carried by the power of $\zeta(s)$; the
-remaining factor should be made regular at $s=1$ before the local
-Hankel integral is evaluated.
+The singular behavior is carried by the power of $\zeta(s)$. To isolate it, we factor the remaining part as $G(s,y):=\big((s-1)\zeta(s)\big)^{\alpha}H(s,y)$, which extends holomorphically to $s=1$.
 
 \subsection{The local regular factor}\label{sec:local-regular-factor}
 
-We keep the abbreviation
-\[
-    \alpha=2+2y.
-\]
 Define
 \begin{equation}\label{eq:q-local-def}
     q(s):=(s-1)\zeta(s),\qquad q(1):=1.
@@ -42,10 +36,9 @@ Here the branch of $(s-1)^{-2-2y}$ is the local Hankel branch
 induced by the contour and branch conventions already fixed in
 Section~\ref{sec:contour-decomposition}.
 
-\begin{lemma}[Analyticity and boundedness of the local factor]
+\begin{lemma}
 \label{lem:G-local-analytic}
-Fix $0<\eta<1/2$ and $0<\delta<1/2$. There exist
-$r\in(0,\delta)$ and $C_{\eta,\delta}>0$ such that $G(s,y)$ is
+There exist $r\in(0,\delta)$ and $C_{\eta,\delta}>0$ such that $G(s,y)$ is
 holomorphic in $(s,y)$ for $|s-1|<r$ and $|y|<\eta$, and
 \[
     |G(s,y)|\leq C_{\eta,\delta}
@@ -98,15 +91,14 @@ Hankel contour. Combining this identity with
 $F(s,y)=\zeta(s)^{2+2y}H(s,y)$ proves the asserted factorization.
 \end{proof}
 
-\begin{lemma}[First-order approximation of the local factor]
+\begin{lemma}
 \label{lem:G-local-values}
-Fix $0<\eta<1/2$ and $0<\delta<1/2$, and let
-$r\in(0,\delta)$ be chosen as in Lemma~\ref{lem:G-local-analytic}.
+Let $r\in(0,\delta)$ be chosen as in Lemma~\ref{lem:G-local-analytic}.
 Then
 \[
     G(1,y)=H(1,y)
 \]
-uniformly for $|y|\leq\eta$, and
+for $|y|\leq\eta$, and
 \[
     G(1,0)=1.
 \]
@@ -147,7 +139,7 @@ Let
 \[
     B_1=\gamma+\sum_p\left(\log\left(1-\frac1p\right)+\frac1p\right)
 \]
-be the Meissel--Mertens constant, and let
+be the Meissel--Mertens constant~\cite{Tenenbaum2015}, and let
 \[
     P(2)=\sum_p\frac1{p^2}
 \]
@@ -218,8 +210,8 @@ Subtracting $2(1-\gamma)$ gives the final displayed identity.
 \subsection{Evaluation of the local Hankel contribution}
 \label{sec:local-hankel-evaluation}
 
-\begin{proposition}[Local Hankel contribution]\label{prop:local-hankel}
-With $\eta$ fixed as in Section~\ref{sec:perron}, put
+\begin{proposition}\label{prop:local-hankel}
+Put
 \[
     T=\exp(\sqrt{\log x}),\qquad \rho:=\frac1{\log x}.
 \]
@@ -233,10 +225,8 @@ For all sufficiently large $x$, uniformly for $|y|\leq\eta$, we have
 \end{proposition}
 
 \begin{proof}
-Put $\alpha=2+2y$. We apply
-Lemmas~\ref{lem:G-local-analytic} and~\ref{lem:G-local-values}
-with the fixed strip depth $\delta'$ from
-Section~\ref{sec:contour-decomposition}; since $\delta'$ is fixed,
+We apply
+Lemmas~\ref{lem:G-local-analytic} and~\ref{lem:G-local-values},
 the constants below depend only on $\eta$. Let $r$ be the local
 radius supplied by these lemmas. With
 $T=\exp(\sqrt{\log x})$, we have
@@ -327,7 +317,7 @@ $-1$ and whose circular part is $|w|=1$. Then
 \]
 Let $\mathcal H_\infty$ be the corresponding infinite Hankel
 contour. By the standard Hankel representation of
-$1/\Gamma(\alpha)$~\textup{[]},
+$1/\Gamma(\alpha)$~\cite[p.139]{NIST:DLMF},
 \[
     \frac1{2\pi i}
     \int_{\mathcal H_\infty}e^w w^{-\alpha}\,dw
