@@ -19,7 +19,7 @@ For $|y| \leq \eta$, the exponent $\alpha = 2+2y$ lies in the disk of radius $2\
 
 \subsection{The truncated Perron formula}\label{sec:perron-formula}
 
-\begin{theorem}[Truncated Perron formula~\cite{Tenenbaum2015}]\label{thm:perron}
+\begin{theorem}[Truncated Perron formula{~\cite[pp.~132--133]{Tenenbaum1995}}]\label{thm:perron}
 Let $f(s) = \sum_{n \geq 1} a_n n^{-s}$ be a Dirichlet series with
 abscissa of absolute convergence $\sigma_a$. For real numbers
 $c > \sigma_a$, $x \geq 2$, and $T \geq 1$ with $x \notin \mathbb{Z}$,
@@ -102,7 +102,7 @@ For the contour deformation to be valid, we need a region in which
 $\zeta(s) \neq 0$. We use the following classical result of
 de la Vall\'ee Poussin, quoted without proof.
 
-\begin{theorem}[de la Vall\'ee Poussin zero-free region~\cite{Titchmarsh1986}]
+\begin{theorem}[de la Vall\'ee Poussin zero-free region{\cite[pp.157--158]{Tenenbaum1995}}]
 \label{thm:zero-free}
 There exists an absolute constant $c_0 \in (0, 1/2)$ such that
 $\zeta(s) \neq 0$ on the open region
@@ -177,9 +177,9 @@ We use the following uniform bound on $|\zeta(s)|$, obtained by
 combining the convexity bound with the trivial estimate
 $\zeta(\sigma + it) \ll \log |t|$ for $\sigma \geq 1$.
 
-\begin{theorem}[Uniform bound on $\zeta(s)$ in a vertical strip~\cite{Titchmarsh1986}]
+\begin{theorem}[Uniform bound on $\zeta(s)$ in a vertical strip{~\cite[pp.~49--50, 95--96]{Titchmarsh1986}}]
 \label{thm:zeta-uniform}
-Fix $\delta \in (0, 1/2)$. For every $\varepsilon > 0$,
+For every $\varepsilon > 0$,
 \begin{equation}\label{eq:zeta-uniform}
     |\zeta(\sigma + it)| \ll_{\delta, \varepsilon}
     |t|^{\delta/2 + \varepsilon}
@@ -203,12 +203,8 @@ $\log |t| \ll_\varepsilon |t|^\varepsilon \leq |t|^{\delta/2 + \varepsilon}$.
 Combining the two ranges gives~\eqref{eq:zeta-uniform}.
 \end{proof}
 
-\subsubsection*{Bound on \texorpdfstring{$\arg \zeta$}{arg zeta}}
-
-We also use the following standard estimate on the branch determined
-by~\eqref{eq:L-def}.
-
-\begin{theorem}[Bound on $\arg \zeta$~\cite{Titchmarsh1986}]
+\subsubsection*{Bound on \texorpdfstring{$\arg \zeta$}}
+\begin{theorem}[Bound on $\arg \zeta${\cite[pp.~174--175]{MontgomeryVaughan2007}}]
 \label{thm:arg-zeta}
 There exists an absolute constant $C_{\arg} > 0$ such that, for
 every $s = \sigma + it \in \mathcal{D}$ with $|t| \geq 2$,
@@ -218,6 +214,21 @@ every $s = \sigma + it \in \mathcal{D}$ with $|t| \geq 2$,
 where the branch of $\arg \zeta$ is the one determined by the
 logarithm $L$ on $\mathcal{D}$.
 \end{theorem}
+
+\begin{proof}[Sketch]
+By choosing $c_0$ sufficiently small, we can apply 
+\[
+|\log\zeta(s)| \leq \log\log(|t|+4)+O(1).
+\]
+Taking imaginary parts,
+\[
+    |\arg\zeta(s)| = |\Im L(s)| \leq |L(s)|
+        \leq \log\log(|t|+4) + O(1). \ll \log{|t|} \qquad (|t| \geq 2)
+\]
+so the
+right-hand side is bounded by $C_{\arg}\log|t|$ with some absolute
+constant $C_{\arg}$.
+\end{proof}
 
 \subsection{Contour decomposition}\label{sec:contour-decomposition}
 
