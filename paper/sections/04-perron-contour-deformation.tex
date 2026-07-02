@@ -167,6 +167,10 @@ We define
     \zeta(s)^\alpha := e^{\alpha L(s)}
     \qquad (s \in \mathcal{D},\ \alpha \in \C).
 \end{equation}
+On $\Real(s) > 1$, this agrees with the local-factor definition of
+Section~\ref{sec:factorization}, since $L(s)$ and
+$-\sum_p \log(1 - p^{-s})$ are both holomorphic logarithms of
+$\zeta(s)$ taking the value $\log\zeta(c_*)$ at $c_*$.
 This is single-valued and holomorphic in $s$ on $\mathcal{D}$,
 and entire in $\alpha$. At $\alpha = 2$, the definition reduces
 to $\zeta(s)^2$ in the usual sense.
@@ -216,7 +220,11 @@ logarithm $L$ on $\mathcal{D}$.
 \end{theorem}
 
 \begin{proof}[Sketch]
-By choosing $c_0$ sufficiently small, we can apply 
+Taking the absolute constant $c_0$ in
+Theorem~\ref{thm:zero-free} with $c_0 \leq c_{\scriptscriptstyle\mathrm{MV}}/4$,
+where $c_{\scriptscriptstyle\mathrm{MV}}$ is the constant of
+\cite[Theorem 6.6]{MontgomeryVaughan2007}, the region $\mathcal{D}$
+lies within the domain of validity of the following estimate.
 \[
 |\log\zeta(s)| \leq \log\log(|t|+4)+O(1).
 \]
@@ -535,7 +543,7 @@ For $|t|\leq2$ we have $\log(|t|+2)\leq\log4<2\log3$, and hence
 Thus $K\setminus\{1\}$ lies in the zero-free region of
 Theorem~\ref{thm:zero-free}. After setting $q(1)=1$, the function
 $q$ is holomorphic and non-vanishing on $K$. Since $K$ is compact,
-there is an open neighborhood $U$ of $K$ on which $q$ is
+there is a simply connected open neighborhood $U$ of $K$ on which $q$ is
 non-vanishing. Choose a holomorphic branch
 \[
     M(s)=\log q(s)
@@ -883,27 +891,7 @@ a fixed integer $K=K(\eta)$ such that
 \end{lemma}
 
 \begin{proof}
-Set $M=1+\eta$ and choose an integer $K=K(\eta)$ with
-$K\geq2M$. We first show that
-\[
-    d(n)M^{\omega(n)}\leq d_K(n)
-    \qquad(n\geq1).
-\]
-For a prime power $p^a$ with $a\geq1$,
-\[
-    d(p^a)M^{\omega(p^a)}=(a+1)M,
-    \qquad
-    d_K(p^a)=\binom{a+K-1}{K-1}.
-\]
-The quantity
-\[
-    \frac{1}{a+1}\binom{a+K-1}{K-1}
-\]
-is increasing in $a$ for $K\geq3$, and at $a=1$ it equals $K/2$.
-Thus $(a+1)M\leq d_K(p^a)$ for every $a\geq1$. Extending
-multiplicatively gives the claimed coefficient domination.
-
-Using~\eqref{eq:Eperron-weighted-raw}, we obtain
+Using~\eqref{eq:Eperron-weighted-raw} and Lemma~\ref{lem:euler-product-conv}, we obtain
 \[
     E_{\mathrm{Perron}}(x,T,y)
     \ll_\eta

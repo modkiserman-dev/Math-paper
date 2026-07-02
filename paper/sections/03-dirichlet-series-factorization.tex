@@ -16,6 +16,46 @@ Since the arithmetic function $n \mapsto d(n)(1+y)^{\omega(n)}$ is
 multiplicative in $n$ for each fixed $y$, the series admits an Euler
 product representation for $\Real(s) > 1$~\cite{Apostol1976}.
 
+\begin{lemma}\label{lem:euler-product-conv}
+Fix $\eta\in(0,1/2)$ and choose an integer $K=K(\eta)$ with
+$K\geq3$. Then, for every $y$ with $|y|\leq\eta$,
+\[
+    \bigl|d(n)(1+y)^{\omega(n)}\bigr|\leq d_K(n)
+    \qquad(n\geq1),
+\]
+where $d_K(n)$ is defined by
+\[
+    \zeta(s)^K=\sum_{n\geq1}d_K(n)n^{-s}
+    \qquad (\Real(s)>1).
+\]
+Consequently, the Dirichlet series $F(s,y)$
+converges absolutely for $\Real(s)>1$, uniformly for $|y|\leq\eta$.
+\end{lemma}
+
+\begin{proof}
+Put $M=1+\eta$. Since $|y|\leq\eta$,
+\[
+    \bigl|d(n)(1+y)^{\omega(n)}\bigr|
+        = d(n)\,|1+y|^{\omega(n)}
+        \leq d(n)\,M^{\omega(n)}.
+\]
+Both sides are multiplicative in $n$. For a prime power $p^a$ with $a\geq1$,
+\[
+    d(p^a)M^{\omega(p^a)}=(a+1)M,
+    \qquad
+    d_K(p^a)=\binom{a+K-1}{K-1}.
+\]
+The quantity $\frac{1}{a+1}\binom{a+K-1}{K-1}$ is increasing in $a$
+for $K\geq3$, and at $a=1$ it equals $K/2$. Since $K/2>M$, we obtain $(a+1)M\leq d_K(p^a)$ for every
+$a\geq1$. Extending multiplicatively yields
+$d(n)M^{\omega(n)}\leq d_K(n)$, and hence the claimed domination.
+
+Since $\zeta(s)^K$ converges absolutely for $\Real(s)>1$, the
+domination gives the asserted absolute convergence of $F(s,y)$,
+uniformly for $|y|\leq\eta$.
+\end{proof}
+
+
 \begin{lemma}\label{lem:euler-product}
 For $\Real(s) > 1$ and every $y \in \C$,
 \begin{equation}\label{eq:euler-product}
@@ -47,9 +87,19 @@ which proves~\eqref{eq:euler-product}.
 \subsection{Factorization isolating the singularity}\label{sec:factorization}
 
 The Riemann zeta function admits the Euler product~\cite{Apostol1976}
-$\zeta(s) = \prod_p (1 - p^{-s})^{-1}$ for $\Real(s) > 1$, so that
-$\zeta(s)^{2+2y} = \prod_p (1 - p^{-s})^{-(2+2y)}$ on the same
-half-plane, provided a branch of the logarithm is fixed. We take these powers using the principal branch of the logarithm. 
+$\zeta(s) = \prod_p (1 - p^{-s})^{-1}$ for $\Real(s) > 1$. We define the corresponding power through its local
+factors:
+\[
+    \zeta(s)^{2+2y}
+        := \prod_p (1 - p^{-s})^{-2-2y},
+    \qquad
+    (1 - p^{-s})^{-2-2y}
+        := \exp\bigl((-2-2y)\,\log(1 - p^{-s})\bigr),
+\]
+where $\log$ denotes the principal branch of the logarithm.
+This is well-defined because $|p^{-s}| < 1$ for $\Real(s) > 1$, so
+$1 - p^{-s}$ lies in the open disk of radius $1$ centered at $1$,
+which avoids the branch cut $(-\infty, 0]$ of $\log$.
 With this convention, each local factor is analytic in $s$ 
 for $\Real(s) > 1$ and in $y$ near $0$.
 
@@ -87,12 +137,12 @@ order $p^{-2\Real(s)}$.
 \begin{lemma}\label{lem:local-factor-estimate}
 Fix $\eta \in (0, 1/2)$ and $\delta \in (0, 1/2)$. Write
 $u := p^{-s}$ and denote the local factor by
-\[
+\begin{equation}\label{eq:Hp-def}
     H_p(s, y) := (1 - u)^{2+2y}\left(1 + (1+y)\left((1-u)^{-2} - 1\right)\right).
-\]
+\end{equation}
 Then for $|y| \leq \eta$ and $\Real(s) \geq 1 - \delta$,
 \begin{equation}\label{eq:local-factor-estimate}
-    H_p(s, y) = 1 + O_{\eta, \delta}(u^2),
+    H_p(s, y) = 1 + O_{\eta, \delta}(|u|^2),
 \end{equation}
 where the implied constant depends only on $\eta$ and $\delta$.
 \end{lemma}
@@ -106,20 +156,20 @@ prime $p \geq 2$,
 since $\delta < 1/2$. In particular, $|u|$ is bounded away from
 $1$, and the power series expansions
 \[
-    (1 - u)^{-2} - 1 = 2u + 3u^2 + 4u^3 + \cdots = 2u + O_\delta(u^2),
+    (1 - u)^{-2} - 1 = 2u + 3u^2 + 4u^3 + \cdots = 2u + O_\delta(|u|^2),
 \]
 \[
     (1 - u)^{2+2y} = 1 - (2+2y)u + \binom{2+2y}{2}u^2 + \cdots
-                   = 1 - (2+2y)u + O_{\eta, \delta}(u^2),
+                   = 1 - (2+2y)u + O_{\eta, \delta}(|u|^2),
 \]
 converge absolutely, with remainders uniform for $|y| \leq \eta$
 and $\Real(s) \geq 1 - \delta$. Multiplying the expansions:
 \[
-    H_p(s, y) = \bigl(1 - (2+2y)u + O_{\eta, \delta}(u^2)\bigr)
-                \bigl(1 + (1+y)(2u + O_\delta(u^2))\bigr).
+    H_p(s, y) = \bigl(1 - (2+2y)u + O_{\eta, \delta}(|u|^2)\bigr)
+                \bigl(1 + (1+y)(2u + O_\delta(|u|^2))\bigr).
 \]
 The coefficient of $u^1$ on the right is $-(2+2y) + 2(1+y) = 0$.
-Hence $H_p(s, y) = 1 + O_{\eta, \delta}(u^2)$,
+Hence $H_p(s, y) = 1 + O_{\eta, \delta}(|u|^2)$,
 proving~\eqref{eq:local-factor-estimate}.
 \end{proof}
 
@@ -254,11 +304,13 @@ sides by $\zeta(s)^2$ to obtain
     H(s, 0) \equiv 1 \quad \text{on } \Real(s) > 1.
 \]
 
-By Proposition~\ref{prop:H-analytic}, applied with any
-$\delta \in (0, 1/2)$, the function $H(s, 0)$ is holomorphic on
-$\Real(s) > 1 - \delta$; letting $\delta \to 1/2$ shows that
-$H(s, 0)$ is holomorphic on the connected open set
-$\Real(s) > 1/2$. The constant function $1$ is also holomorphic
+By Proposition~\ref{prop:H-analytic}, for each $\delta \in (0, 1/2)$
+the Euler product defines a holomorphic function on
+$\Real(s) > 1 - \delta$. Since these are uniform limits of the same
+partial products for different $\delta$, they form a single
+holomorphic function $H(s, y)$ on $\Real(s) > 1/2$.
+In particular $H(s, 0)$ is holomorphic on the connected open set $\Real(s) > 1/2$.
+The constant function $1$ is also holomorphic
 there, and the two functions agree on the open subset
 $\Real(s) > 1$. By the identity theorem, they agree on all of
 $\Real(s) > 1/2$. In particular, $H(1, 0) = 1$.
