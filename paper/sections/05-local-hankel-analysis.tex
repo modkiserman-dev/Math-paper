@@ -161,13 +161,26 @@ For $u=p^{-s}$, the local factor in the Euler product for $H$ is
     (1-u)^{2+2y}
     \left(1+(1+y)\left((1-u)^{-2}-1\right)\right).
 \]
-For every prime $p$, we have $H_p(1,0)=1$, and hence
-$H(1,0)=1$. Logarithmic differentiation of the Euler product gives
+For every prime $p$, we have $H_p(1,0)=1$, and hence $H(1,0)=1$.
+
+By the displayed formula, each $H_p(1,y)$ is a
+product of nonvanishing factors, so $\log H_p(1,y)$ is holomorphic
+in $y$ on $|y|\leq\eta$. By Lemma~\ref{lem:local-factor-estimate},
+$H_p(1,y)=1+O_\eta(p^{-2})$ uniformly there, hence
+$\log H_p(1,y)=O_\eta(p^{-2})$. For each $y_0$ with
+$|y_0|\leq\eta/2$, Cauchy's estimate on the disk
+$|y-y_0|\leq\eta/2\subset\{|y|\leq\eta\}$ gives
+\[
+    |\partial_y\log H_p(1,y_0)|
+    \leq \frac{2}{\eta}\sup_{|y|\leq\eta}|\log H_p(1,y)|
+    = O_\eta(p^{-2}).
+\]
+Since $\sum_p p^{-2}<\infty$, the series
+$\sum_p\partial_y\log H_p(1,y)$ converges normally on
+$|y|\leq\eta/2$. Therefore
 \[
     \partial_y H(1,0)=\sum_p \partial_y\log H_p(1,0).
 \]
-Indeed, the summand computed below is $O(p^{-2})$, so the series
-converges absolutely and the logarithmic differentiation is justified.
 
 We compute
 \[
@@ -234,7 +247,7 @@ $T=\exp(\sqrt{\log x})$, we have
     \lambda_T=\frac{c_0}{2\log(T+2)}
     \asymp \frac1{\sqrt{\log x}}.
 \]
-Thus $\rho=1/\log x<\lambda_T$ and $\rho<r/2$ for all sufficiently
+Thus $\rho=1/\log x<\lambda_T$ and $\lambda_T<r/2$ for all sufficiently
 large $x$.
 
 By the definition of $I_H$ in~\eqref{eq:I-H}, together with the
@@ -472,7 +485,7 @@ For non-integral $x$, the contour decomposition
 \]
 By Proposition~\ref{prop:nonlocal-error}, for some $c_1>0$,
 \[
-    E_{\mathrm{Perron}}(x,T,y)
+    |E_{\mathrm{Perron}}(x,T,y)|
     +|I_{\mathrm{top}}|+|I_{\mathrm{bot}}|+|I_{\mathrm{left}}|
     \ll_\eta
     x\exp(-c_1\sqrt{\log x}),
@@ -490,8 +503,26 @@ The exponentially small nonlocal and Perron error is absorbed into
 $O_\eta(x(\log x)^{2\eta})$. Therefore the asserted asymptotic
 holds for non-integral $x$.
 
-For integral $x$, the replacement by $x+1/2$ described in
-Section~\ref{sec:perron-formula} gives the same estimate, since
-$A(x,y)=A(x+1/2,y)$ and replacing $x+1/2$ by $x$ changes the
-displayed main term by an amount absorbed into the same error term.
+For integral $x = N$, we apply the result at $X = N + 1/2$ and use
+$A(N, y) = A(X, y)$. Write
+\[
+    M(x, y) := x H(1, y)\frac{(\log x)^{1+2y}}{\Gamma(2+2y)}.
+\]
+For $|y| \leq \eta$, the factor $H(1,y)/\Gamma(2+2y)$ is uniformly
+bounded, and
+\[
+    \frac{\partial M}{\partial x}(x, y)
+    = \frac{H(1,y)}{\Gamma(2+2y)}
+      \Bigl[(\log x)^{1+2y} + (1+2y)(\log x)^{2y}\Bigr]
+    \ll_\eta (\log x)^{1+2\eta}
+\]
+uniformly for $|y| \leq \eta$ and $x \in [N, N+1/2]$. By the mean
+value theorem,
+\[
+    |M(N+1/2, y) - M(N, y)|
+    \ll_\eta (\log N)^{1+2\eta}
+    = O_\eta\bigl(N(\log N)^{2\eta}\bigr),
+\]
+which is absorbed into the error term of Proposition~\ref{prop:Axy-asymptotic}.
+Hence the asymptotic holds for integral $x$ as well.
 \end{proof}

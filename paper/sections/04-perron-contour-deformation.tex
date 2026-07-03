@@ -9,13 +9,13 @@ which satisfies the generating relation
 \begin{equation}\label{eq:Axy-generating}
     A(x, y) = \sum_{j \geq 0} T_j(x) y^j.
 \end{equation}
-We abbrevaite $\alpha=2+2y$.
+We abbreviate $\alpha=2+2y$.
 
 We treat the parameters $\eta, \delta \in (0,1/2)$ that appeared as local parameters in Lemma~\ref{lem:local-factor-estimate} and Proposition~\ref{prop:H-analytic} as global constants for the remainder of the paper. The entire analysis of Section~\ref{sec:perron} takes place within the region $\mathcal{R_{\delta, \eta}}$, on which the conclusions of Proposition~\ref{prop:H-analytic} apply to $H(s,y)$.
 
-In Section~\ref{sec:contour-decomposition} we make a specific choice $\delta^{\prime} \in (0,1/2)$ of $\delta$, constrained by zero-free region constant $c_0$, together with a truncation-dependent $\lambda_T < \delta^{\prime}$. Since $\delta^{\prime}$ is a particular admissible value of $\delta$, the conclusions of Proposition~\ref{prop:H-analytic} hold on $\mathcal{R}_{\delta^{\prime}, \eta}$. After $\delta^{\prime}$ is fixed, we may shrink $\eta$ if necessary for the contour estimates.
+In Section~\ref{sec:contour-decomposition} we make a specific choice $\delta^{\prime} \in (0,1/2)$ of $\delta$, constrained by zero-free-region constant $c_0$, together with a truncation-dependent $\lambda_T < \delta^{\prime}$. Since $\delta^{\prime}$ is a particular admissible value of $\delta$, the conclusions of Proposition~\ref{prop:H-analytic} hold on $\mathcal{R}_{\delta^{\prime}, \eta}$. After $\delta^{\prime}$ is fixed, we may shrink $\eta$ if necessary for the contour estimates.
 
-For $|y| \leq \eta$, the exponent $\alpha = 2+2y$ lies in the disk of radius $2\eta$ centered ad 2; since $2\eta < 1$, it is bounded away from non-positive integers. 
+For $|y| \leq \eta$, the exponent $\alpha = 2+2y$ lies in the disk of radius $2\eta$ centered at 2; since $2\eta < 1$, it is bounded away from non-positive integers. 
 
 \subsection{The truncated Perron formula}\label{sec:perron-formula}
 
@@ -231,7 +231,7 @@ lies within the domain of validity of the following estimate.
 Taking imaginary parts,
 \[
     |\arg\zeta(s)| = |\Im L(s)| \leq |L(s)|
-        \leq \log\log(|t|+4) + O(1). \ll \log{|t|} \qquad (|t| \geq 2)
+        \leq \log\log(|t|+4) + O(1) \ll \log{|t|} \qquad (|t| \geq 2)
 \]
 so the
 right-hand side is bounded by $C_{\arg}\log|t|$ with some absolute
@@ -884,7 +884,7 @@ Let $T=T(x)=\exp(\sqrt{\log x})$ and $c=1+1/\log x$. For
 $x\geq2$ with $x\notin\mathbb Z$ and $|y|\leq\eta$, there exists
 a fixed integer $K=K(\eta)$ such that
 \begin{equation}\label{eq:Eperron-bound}
-    E_{\mathrm{Perron}}(x,T,y)
+    |E_{\mathrm{Perron}}(x,T,y)|
     \ll_\eta
     \frac{x}{T}(\log x)^K.
 \end{equation}
@@ -893,7 +893,7 @@ a fixed integer $K=K(\eta)$ such that
 \begin{proof}
 Using~\eqref{eq:Eperron-weighted-raw} and Lemma~\ref{lem:euler-product-conv}, we obtain
 \[
-    E_{\mathrm{Perron}}(x,T,y)
+    |E_{\mathrm{Perron}}(x,T,y)|
     \ll_\eta
     x^c\sum_{n\geq1}
     \frac{d_K(n)}{n^c}
@@ -975,7 +975,7 @@ With $T = T(x) = \exp(\sqrt{\log x})$, there exists a constant
 $c_1 > 0$ (depending on $\eta, \varepsilon$ but not on $x$) such
 that
 \begin{equation}\label{eq:total-nonlocal-error}
-    E_{\mathrm{Perron}}(x, T, y)
+    |E_{\mathrm{Perron}}(x, T, y)|
     + |I_{\mathrm{top}}| + |I_{\mathrm{bot}}|
     + |I_{\mathrm{left}}|
     \ll_{\eta, \varepsilon}
@@ -991,7 +991,7 @@ We bound each term separately and take the worst.
 \emph{Perron error.}
 By Lemma~\ref{lem:perron-error} with $T = \exp(\sqrt{\log x})$,
 \[
-    E_{\mathrm{Perron}}
+    |E_{\mathrm{Perron}}|
     \ll_\eta
     x\exp(-\sqrt{\log x})(\log x)^K.
 \]
@@ -1002,7 +1002,7 @@ $x$,
 \]
 we have
 \[
-    E_{\mathrm{Perron}}
+    |E_{\mathrm{Perron}}|
     \ll_\eta x\exp\left(-\frac12\sqrt{\log x}\right).
 \]
 
